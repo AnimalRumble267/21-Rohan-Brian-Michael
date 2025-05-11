@@ -52,5 +52,77 @@ public class Player
         return false; //TODO fix this
     }
 
-    
+    /**
+     * [write description here]
+     * @return
+     */
+    public boolean isTurn()
+    {
+        return isTurn;
+    }
+
+    /**
+     * [write description here]
+     * @param card
+     */
+    public void giveCard(Card card)
+    {
+
+    }
+
+    /**
+     * [write description here]
+     * @param card
+     */
+    public void addNumberCard(Card card)
+    {
+
+    }
+
+    /**
+     * [write description here]
+     * @param card
+     */
+    public void addTrumpCard(Card card)
+    {
+
+    }
+
+    /**
+     * [write description here]
+     * @return
+     */
+    public Card removeLastNumberCard()
+    {
+        return null; // TODO fix this
+    }
+
+    /**
+     * [write description here]
+     */
+    public void resetHand()
+    {
+
+    }
+
+    /**
+     * [write description here]
+     * @param bet
+     * @return
+     */
+    public boolean punish(int bet)
+    {
+        return false; // TODO fix this
+    }
+
+    /**
+     * [write description here]
+     * @return
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    // TODO ADD OTHER SIGNATURES
 }
