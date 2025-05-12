@@ -27,6 +27,7 @@ public class PlayerPanel extends JPanel
         this.setBackground(Color.BLUE);
         this.setDoubleBuffered(true);
 
+        
         this.setFocusable(true);
     }
 
