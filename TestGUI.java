@@ -49,6 +49,11 @@ public class TestGUI
         greenPanel.setPreferredSize(new Dimension(100, 100));
         greenPanel.setSize(100, 100);
 
+        JPanel redPanel1 = new JPanel();
+        redPanel1.setBackground(Color.RED);
+        redPanel1.setPreferredSize(new Dimension(100, 100));
+        redPanel1.setSize(100,100);
+
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
         window.setResizable(true);
@@ -56,7 +61,7 @@ public class TestGUI
         window.setSize(new Dimension(1200,500));
         windowPane.setBackground(Color.PINK);
         window.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        BoxLayout boxLayout = new BoxLayout(windowPane, BoxLayout.Y_AXIS);
+        BoxLayout boxLayout = new BoxLayout(windowPane, BoxLayout.X_AXIS);
 
         /* THIS LINE IS NEEDED TO CREATE ALL FOUR SQUARES */
         windowPane.setLayout(boxLayout);
@@ -81,6 +86,7 @@ public class TestGUI
         windowPane.add(redPanel);
         window.add(yellowPanel);
         window.add(greenPanel);
+        window.add(redPanel1);
 
         window.pack();
 
@@ -116,8 +122,40 @@ public class TestGUI
         frame2.setLocation(frame1.getX() + frame1.getWidth(), frame1.getY());
     }
 
+    private static void tileTest()
+    {
+        Tile tile1 = new Tile(100, 100);
+        Tile tile2 = new Tile(100, 100);
+        Tile tile3 = new Tile(100, 100);
+
+        tile1.loadImage("/images/sample.png");
+        tile2.loadImage("/images/sample.png");
+        tile3.loadImage("/images/sample.png");
+
+        JFrame frame = new JFrame();
+        JPanel contentPane = (JPanel) frame.getContentPane();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(true);
+        BoxLayout boxLayout = new BoxLayout(contentPane, BoxLayout.X_AXIS);
+        contentPane.setLayout(boxLayout);
+
+        frame.add(tile1);
+        frame.add(tile2);
+        frame.add(tile3);
+
+        /* tile1.setVisible(true);
+        tile2.setVisible(true);
+        tile3.setVisible(true); */
+
+        frame.repaint();
+
+        frame.pack();
+
+        frame.setVisible(true);
+    }
+
     public static void main(String[] args) 
     {
-        boxLayoutTest();
+        tileTest();
     }    
 }
