@@ -1,6 +1,5 @@
-import java.awt.Graphics2D;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -13,16 +12,22 @@ import java.util.Stack;
  */
 public class PlayerGUI
 {
+    // These dimensions are required if images are DRAWN onto the screen.
+    // If images are added to the screen, then pack() will take care of dimensions
+    private final int FRAME_WIDTH = GameGUI.UNIT_SIZE * 8;
+    private final int FRAME_HEIGHT = GameGUI.UNIT_SIZE * 1;
+
     private Player player1;
     private Player player2;
-    private Graphics2D graphics2D1; // will instantiate once GUI is started
-    private Graphics2D graphics2D2; // will instantiate once GUI is started
     private JFrame gameWindow;
     private JFrame frame1;
     private JFrame frame2;
-    private PlayerPanel panel1;
-    private PlayerPanel panel2;
+    // TODO eventually factor these fields out into 
+    // GameGUI or some other higher-level GUI class
+    private Tile[] numberCardTiles;
+    private Tile[] trumpCardTiles;
 
+    private boolean tilesLoaded;
     private boolean guiStarted;
 
     /**
@@ -42,17 +47,17 @@ public class PlayerGUI
      */
     public void start()
     {
-        guiStarted = true;
+        
 
         /* INITIALIZING PLAYER 1's FRAME AND PANEL */
         // TODO frame1 = new JFrame();
-        panel1 = new PlayerPanel(player1);
-        graphics2D1 = (Graphics2D)panel1.getGraphics();
+        // TODO panel1 = new PlayerPanel(player1);
+        // TODO graphics2D1 = (Graphics2D)panel1.getGraphics();
 
         // Makes it so that the Panel is eligible to receive key input
-        panel1.setFocusable(true);
+        // TODO panel1.setFocusable(true);
 
-        gameWindow.add(panel1);
+        // TODO gameWindow.add(panel1);
 
         // Makes the game window the parent Component of the Player's Frame
         // TODO gameWindow.add(frame1);
@@ -73,11 +78,11 @@ public class PlayerGUI
 
         /* INITIALIZING PLAYER 2's FRAME AND PANEL */
         frame2 = new JFrame();
-        panel2 = new PlayerPanel(player2);
-        graphics2D2 = (Graphics2D)panel2.getGraphics();
+        // TODO panel2 = new PlayerPanel(player2);
+        // TODO graphics2D2 = (Graphics2D)panel2.getGraphics();
 
         // Makes it so that the Panel is eligible to receive key input
-        panel2.setFocusable(true);
+        // TODO panel2.setFocusable(true);
 
         // Makes the game window the parent Component of the Player's Frame
         // TODO gameWindow.add(frame2);
@@ -88,20 +93,60 @@ public class PlayerGUI
         
         // Places and shows the Player 2's Frame at the bottom right corner
         // of the game window
-        frame2.setLocation(gameWindow.getWidth() - PlayerPanel.PANEL_WIDTH, 
-                           gameWindow.getHeight() - PlayerPanel.PANEL_HEIGHT);
-        frame2.setVisible(true);
+        // TODO frame2.setLocation(gameWindow.getWidth() - PlayerPanel.PANEL_WIDTH, 
+        // TODO                    gameWindow.getHeight() - PlayerPanel.PANEL_HEIGHT);
+        // TODO frame2.setVisible(true);
 
         // Makes the player's Frame the parent Component of the Player's Panel
-        frame2.add(panel2);
+        // TODO frame2.add(panel2);
         // Makes the player's Frame fit the preferred dimensions of the player's Panel
-        frame2.pack();
+        // TODO frame2.pack();
 
         // Makes the game window fit the preferred dimensions of its components
         // TODO gameWindow.pack();
+
+        guiStarted = true;
     }
 
-    
+    private void loadTiles()
+    {
+
+        tilesLoaded = true;
+    }
+
+    private void loadNumberCardTiles()
+    {
+
+    }
+
+    private void loadTrumpCardTiles()
+    {
+
+    }
+
+    private void setUpFrame(int playerNumber)
+    {
+        if (!tilesLoaded)
+        {
+            System.out.println("ERROR: Must call loadTiles first");
+        }
+        else if (playerNumber == 1)
+        {
+            frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame1.setResizable(false);
+            frame1.setTitle(player1.getName() + "'s Hand");
+            frame1.setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+            frame1.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+
+            frame1.setLocation(gameWindow.getX() - frame1.getWidth(), 
+                               gameWindow.getY() + gameWindow.getHeight());
+        }
+        else
+        {
+
+        }
+        
+    }
 
     /**
      * 
