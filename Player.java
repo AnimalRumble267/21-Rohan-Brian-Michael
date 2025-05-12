@@ -119,6 +119,24 @@ public class Player
      * [write description here]
      * @return
      */
+    public Stack<Card> getNumberCardHand()
+    {
+        return null; // TODO fix this
+    }
+
+    /**
+     * [write description here]
+     * @return
+     */
+    public ArrayList<Card> getTrumpCardHand()
+    {
+        return null; // TODO fix this
+    }
+
+    /**
+     * [write description here]
+     * @return
+     */
     public String getName()
     {
         return name;

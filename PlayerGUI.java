@@ -1,6 +1,8 @@
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * 
@@ -13,33 +15,25 @@ public class PlayerGUI
 {
     private Player player1;
     private Player player2;
-    private Graphics2D graphics2D;
+    private Graphics2D graphics2D1; // will instantiate once GUI is started
+    private Graphics2D graphics2D2; // will instantiate once GUI is started
     private JFrame gameWindow;
     private JFrame frame1;
     private JFrame frame2;
-    private JPanel panel1;
-    private JPanel panel2;
+    private PlayerPanel panel1;
+    private PlayerPanel panel2;
 
     private boolean guiStarted;
-
-    private final int ORIGINAL_TILE_SIZE = 16;
-    private final int SCALE = 3;
-    private final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
-    private final int MAX_SCREEN_ROW = 3;       // TODO Change to fit
-    private final int MAX_SCREEN_COL = 8;       // TODO Change to fit
-    private final int SCREEN_HEIGHT = MAX_SCREEN_ROW * TILE_SIZE;
-    private final int SCREEN_WIDTH = MAX_SCREEN_COL * TILE_SIZE;
 
     /**
      * Constructs the GUI for a Player which will be shown only to the Player
      * @param p the Player
      * @param g2 the Graphics2D object for the Player's JPanel
      */
-    public PlayerGUI(Player p1, Player p2, Graphics2D g2, JFrame gw)
+    public PlayerGUI(Player p1, Player p2, JFrame gw)
     {
         player1 = p1;
         player2 = p2;
-        graphics2D = g2;
         gameWindow = gw;
     }
 
@@ -51,30 +45,42 @@ public class PlayerGUI
         guiStarted = true;
 
         /* INITIALIZING PLAYER 1's FRAME AND PANEL */
-        frame1 = new JFrame();
-        panel1 = new JPanel();
+        // TODO frame1 = new JFrame();
+        panel1 = new PlayerPanel(player1);
+        graphics2D1 = (Graphics2D)panel1.getGraphics();
+
+        // Makes it so that the Panel is eligible to receive key input
+        panel1.setFocusable(true);
+
+        gameWindow.add(panel1);
 
         // Makes the game window the parent Component of the Player's Frame
-        gameWindow.add(frame1);
+        // TODO gameWindow.add(frame1);
 
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.setResizable(false);
-        frame1.setTitle(player1.getName() + "'s Hand");
+        // TODO frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // TODO frame1.setResizable(false);
+        // TODO frame1.setTitle(player1.getName() + "'s Hand");
         
         // Places and shows the Player 1's Frame at the bottom left corner
         // of the game window
-        frame1.setLocation(0, gameWindow.getHeight() - SCREEN_HEIGHT);
-        frame1.setVisible(true);
+        // TODO frame1.setLocation(0, gameWindow.getHeight() - PlayerPanel.PANEL_HEIGHT);
+        // TODO frame1.setVisible(true);
 
         // Makes the player's Frame the parent Component of the Player's Panel
-        frame1.add(panel1);
+        // TODO frame1.add(panel1);
+        // Makes the player's Frame fit the preferred dimensions of the player's Panel
+        // TODO frame1.pack();
 
         /* INITIALIZING PLAYER 2's FRAME AND PANEL */
         frame2 = new JFrame();
-        panel2 = new JPanel();
+        panel2 = new PlayerPanel(player2);
+        graphics2D2 = (Graphics2D)panel2.getGraphics();
+
+        // Makes it so that the Panel is eligible to receive key input
+        panel2.setFocusable(true);
 
         // Makes the game window the parent Component of the Player's Frame
-        gameWindow.add(frame2);
+        // TODO gameWindow.add(frame2);
 
         frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame2.setResizable(false);
@@ -82,18 +88,20 @@ public class PlayerGUI
         
         // Places and shows the Player 2's Frame at the bottom right corner
         // of the game window
-        frame2.setLocation(gameWindow.getWidth() - SCREEN_WIDTH, 
-                           gameWindow.getHeight() - SCREEN_HEIGHT);
+        frame2.setLocation(gameWindow.getWidth() - PlayerPanel.PANEL_WIDTH, 
+                           gameWindow.getHeight() - PlayerPanel.PANEL_HEIGHT);
         frame2.setVisible(true);
 
         // Makes the player's Frame the parent Component of the Player's Panel
         frame2.add(panel2);
+        // Makes the player's Frame fit the preferred dimensions of the player's Panel
+        frame2.pack();
 
         // Makes the game window fit the preferred dimensions of its components
-        gameWindow.pack();
+        // TODO gameWindow.pack();
     }
 
-    public void load
+    
 
     /**
      * 
@@ -107,7 +115,15 @@ public class PlayerGUI
         }
         else if (playerNumber == 1)
         {
-            for (Card numberCard : player1.get)
+            Stack<Card> origNumberCardHand = player1.getNumberCardHand();
+            Stack<Card> temp = new Stack<Card>();
+
+            while (!origNumberCardHand.isEmpty())
+            {
+                temp.push(origNumberCardHand.pop());
+            }
+
+            
         }
         else
         {
