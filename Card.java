@@ -7,5 +7,9 @@
  */
 public interface Card 
 {
-    f
+
+    public int getValue() {
+    }
+
+    // gui methods
 }
