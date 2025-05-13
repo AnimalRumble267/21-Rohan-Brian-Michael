@@ -29,6 +29,10 @@ public class NumberCard implements Card
         return value;
     }
 
+    public boolean getIsHidden() {   
+        return isHidden;
+    }
+
     public void setValue(int v) {
         value = v;
     }
@@ -37,9 +41,7 @@ public class NumberCard implements Card
         isHidden = hiddenStatus;
     }
     
-    public boolean isHidden() {   
-        return isHidden;
-    }
+    
 
     // gui methods
 }
