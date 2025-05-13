@@ -19,13 +19,27 @@ public class NumberCard implements Card
         isHidden = false;
     }
 
+    public NumberCard(int v, boolean hiddenStatus) {
+        value = v;
+        isHidden = hiddenStatus;
+    }
 
     // methods
     public int getValue() {
         return value;
     }
 
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setIsHidden(boolean isHidden) {
+        this.isHidden = isHidden;
+    }
+    
     public boolean isHidden() {   
         return isHidden;
     }
+
+    // gui methods
 }
