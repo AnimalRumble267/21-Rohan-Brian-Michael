@@ -20,7 +20,9 @@ public class Player
      */
     public Player()
     {
-
+        name = "";
+        isTurn = false;
+        numberCardHand = new Stack<Card>()
     }
 
     /**
