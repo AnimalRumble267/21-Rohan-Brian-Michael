@@ -40,7 +40,11 @@ public class NumberCard implements Card
     public void setIsHidden(boolean hiddenStatus) {
         isHidden = hiddenStatus;
     }
+
     
+    public boolean equals(Object other) {
+        return (this.getValue() == ((NumebrCard)other.getValue());
+    }
     
 
     // gui methods
