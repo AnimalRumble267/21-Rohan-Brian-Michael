@@ -7,5 +7,5 @@
  */
 public interface Card 
 {
-    f
+    
 }

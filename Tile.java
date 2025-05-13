@@ -11,7 +11,7 @@ import javax.imageio.*;
  * @version
  * 
  */
-public class Tile extends JPanel
+public class Tile
 {
     private BufferedImage image;
     private boolean imageLoaded = false;
@@ -27,7 +27,6 @@ public class Tile extends JPanel
     {
         tileWidth = width;
         tileHeight = height;
-        this.setPreferredSize(new Dimension(width, height));
     }
 
     public void loadImage(String filePath)
@@ -43,20 +42,8 @@ public class Tile extends JPanel
         }
     }
 
-    public void paintComponent(Graphics g)
-    {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
-        g2.drawImage(image, this.getX(), this.getY(), GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
-        g2.dispose();
-    }
-
     public BufferedImage getImage()
     {
         return image;
     }
-
-    
-
-
 }

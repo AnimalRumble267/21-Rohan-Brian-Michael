@@ -22,10 +22,8 @@ public class PlayerGUI
     private JFrame gameWindow;
     private JFrame frame1;
     private JFrame frame2;
-    // TODO eventually factor these fields out into 
-    // GameGUI or some other higher-level GUI class
-    private Tile[] numberCardTiles;
-    private Tile[] trumpCardTiles;
+    private PlayerPanel panel1;
+    private PlayerPanel panel2;
 
     private boolean tilesLoaded;
     private boolean guiStarted;

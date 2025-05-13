@@ -12,7 +12,7 @@ public class Player
 {
     private String name;
     private boolean isTurn;
-    private Stack<Card> numberCardHand;
+    private ArrayList<Card> numberCardHand;
     private ArrayList<Card> trumpCardHand;
 
     /**
@@ -119,7 +119,7 @@ public class Player
      * [write description here]
      * @return
      */
-    public Stack<Card> getNumberCardHand()
+    public ArrayList<Card> getNumberCardHand()
     {
         return null; // TODO fix this
     }
