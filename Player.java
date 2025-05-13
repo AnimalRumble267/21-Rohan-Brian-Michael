@@ -22,7 +22,7 @@ public class Player
     {
         name = "";
         isTurn = false;
-        numberCardHand = new Stack<Card>()
+        numberCardHand = new ArrayList<Card>();
     }
 
     /**
@@ -31,32 +31,16 @@ public class Player
      */
     public Player(String name)
     {
-
+        this.name = name;
+        isTurn = false;
+        numberCardHand = new ArrayList<Card>();
     }
 
-    /**
-     * [write description here]
-     * @param port
-     * @return
-     */
-    public boolean createRoom(int port)
-    {
-        return false; //TODO fix this
-    }
+    
 
     /**
-     * [write description here]
-     * @param port
-     * @return
-     */
-    public boolean joinRoom(int port)
-    {
-        return false; //TODO fix this
-    }
-
-    /**
-     * [write description here]
-     * @return
+     * [ replace ]
+     * @return boolean isTurn
      */
     public boolean isTurn()
     {
