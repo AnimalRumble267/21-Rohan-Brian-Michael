@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * 
  * 
@@ -5,7 +7,7 @@
  * @version
  * 
  */
-public class Deck 
+public class Deck<E> extends ArrayList<E>
 {
     
 }

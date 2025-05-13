@@ -9,8 +9,8 @@ public class Dealer
 {
     
     /**
-     * Deals cards to Players and continues the round until both 
-     * Players pass. 
+     * Deals cards to Players and continues the round until a Player
+     * is eliminated.
      */
     public void deal()
     {
