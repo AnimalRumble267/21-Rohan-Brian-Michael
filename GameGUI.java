@@ -11,6 +11,8 @@ public class GameGUI
     public static final int SCALE = 3;
     public static final int UNIT_SIZE = ORIGINAL_TILE_SIZE * SCALE;
 
-    private Tile[] numberCardTiles;
-    private Tile[] trumpCardTiles;
+    public static final Tile[] numberCardTiles;
+    public static final Tile[] trumpCardTiles;
+
+    
 }

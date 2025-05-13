@@ -28,14 +28,14 @@ public class PlayerPanel extends JPanel
         super.paintComponents(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        ArrayList<Card> numberCards = player.getNumberCardHand();
-        ArrayList<Card> trumpCards = player.getTrumpCardHand();
+        ArrayList<Card> numberCardHand = player.getNumberCardHand();
+        ArrayList<Card> trumpCardHand = player.getTrumpCardHand();
         int i = 0;        
 
         // The row does not change, only the column changes
-        for (int c = 0; c < numberCards.size() * GameGUI.UNIT_SIZE; c += GameGUI.UNIT_SIZE)
+        for (int c = 0; c < numberCardHand.size() * GameGUI.UNIT_SIZE; c += GameGUI.UNIT_SIZE)
         {
-            g2.drawImage()
+            g2.drawImage();
         }
     }
 }
