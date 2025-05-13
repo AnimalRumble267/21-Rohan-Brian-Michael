@@ -22,7 +22,7 @@ public class Player
     {
         name = "";
         isTurn = false;
-        numberCardHand = new Stack<Card>()
+        numberCardHand = new ArrayList<Card>();
     }
 
     /**
@@ -31,32 +31,16 @@ public class Player
      */
     public Player(String name)
     {
-
+        this.name = name;
+        isTurn = false;
+        numberCardHand = new ArrayList<Card>();
     }
 
-    /**
-     * [write description here]
-     * @param port
-     * @return
-     */
-    public boolean createRoom(int port)
-    {
-        return false; //TODO fix this
-    }
+    
 
     /**
-     * [write description here]
-     * @param port
-     * @return
-     */
-    public boolean joinRoom(int port)
-    {
-        return false; //TODO fix this
-    }
-
-    /**
-     * [write description here]
-     * @return
+     * returns whether or not it is object player's turn
+     * @return boolean isTurn
      */
     public boolean isTurn()
     {
@@ -67,18 +51,9 @@ public class Player
      * [write description here]
      * @param card
      */
-    public void giveCard(Card card)
-    {
-
-    }
-
-    /**
-     * [write description here]
-     * @param card
-     */
     public void addNumberCard(Card card)
     {
-
+        numberCardHand.add(Card);
     }
 
     /**
@@ -87,7 +62,7 @@ public class Player
      */
     public void addTrumpCard(Card card)
     {
-
+        trumpCardHand.add(Card);
     }
 
     /**
@@ -96,7 +71,17 @@ public class Player
      */
     public Card removeLastNumberCard()
     {
-        return null; // TODO fix this
+        numberCardHand.remove(numberCardHand.size() - 1);
+    }
+
+    /**
+     * [write description here]
+     * @param index is from 0 to length of size - 1 
+     * @return
+     */
+    public Card removeTrumpCard(int index)
+    {
+        trumpCardHard.remove(index);
     }
 
     /**
@@ -104,17 +89,28 @@ public class Player
      */
     public void resetHand()
     {
-
+        numberCardHand = new ArrayList<Card>();
+        trumpCardHand = new Arraylist<Card>();
     }
 
     /**
      * [write description here]
      * @param bet
-     * @return
+     * @return boolean if player will die
      */
     public boolean punish(int bet)
     {
-        return false; // TODO fix this
+        int increment = 6;
+        double probability = 1 / increment;
+
+        for (int i = 0; i < bet; i++) {
+            if (Math.random() < probability) {
+                return true;
+            }
+            increment--;
+        }
+
+        return false;
     }
 
     /**

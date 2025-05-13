@@ -46,7 +46,20 @@ public class TrumpCard implements Card
         isPlayed = status;
     }
     
+    public boolean equals(Object other) {
+        boolean valueEqual = false;
+        boolean stringEqual = false;
 
+        if (this.getValue() == ((TrumpCard)other).getValue()) { 
+            valueEqual = true;
+        }
+
+        if (this.getType() == ((TrumpCard)other).getType()) {
+            stringEqual = true;
+        }
+
+        return (valueEqual && stringEqual);
+    }
 
     // gui
 }
