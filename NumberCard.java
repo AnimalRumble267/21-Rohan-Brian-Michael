@@ -19,9 +19,9 @@ public class NumberCard implements Card
         isHidden = false;
     }
 
-    public NumberCard(int v, boolean hiddenStatus) {
-        value = v;
-        isHidden = hiddenStatus;
+    public NumberCard(int value, boolean isHidden) {
+        this.value = value;
+        this.isHidden = isHidden;
     }
 
     // methods
@@ -29,12 +29,12 @@ public class NumberCard implements Card
         return value;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setValue(int v) {
+        value = v;
     }
 
-    public void setIsHidden(boolean isHidden) {
-        this.isHidden = isHidden;
+    public void setIsHidden(boolean hiddenStatus) {
+        isHidden = hiddenStatus;
     }
     
     public boolean isHidden() {   
