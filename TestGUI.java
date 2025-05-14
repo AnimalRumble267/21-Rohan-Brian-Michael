@@ -139,9 +139,9 @@ public class TestGUI
         BoxLayout boxLayout = new BoxLayout(contentPane, BoxLayout.X_AXIS);
         contentPane.setLayout(boxLayout);
 
-        frame.add(tile1);
+        /* frame.add(tile1);
         frame.add(tile2);
-        frame.add(tile3);
+        frame.add(tile3); */
 
         /* tile1.setVisible(true);
         tile2.setVisible(true);

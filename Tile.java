@@ -5,7 +5,8 @@ import java.io.IOException;
 import javax.imageio.*;
 
 /**
- * 
+ * Represents one tile on the screen. Each tile loads and
+ * stores an image.
  * 
  * @author Michael Lee
  * @version
