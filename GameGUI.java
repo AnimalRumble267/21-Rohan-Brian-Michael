@@ -17,16 +17,16 @@ public class GameGUI
     public static final int UNIT_SIZE = ORIGINAL_TILE_SIZE * SCALE;
 
     private static final String[] TRUMP_CARD_FILE_PATHS = {""}; // TODO Write file paths
-    public static final Tile[] NUMBER_CARD_TILES = new Tile[11];
+    public static final Tile[] NUMBER_CARD_TILES = new Tile[2]; // TODO CHANGE SIZE LATER
     public static final Tile[] TRUMP_CARD_TILES = new Tile[TRUMP_CARD_FILE_PATHS.length];
     private static boolean tilesLoaded = false;
 
-    public void loadTiles()
+    public static void loadTiles()
     {
         Tile newTile;
 
         // Loading numbercards;
-        for (int i = 0; i < 11; i++)
+        for (int i = 0; i < 2; i++)
         {
             newTile = new Tile(UNIT_SIZE, UNIT_SIZE);
             newTile.loadImage("/images/numbercard" + (i + 1) + ".png");

@@ -154,8 +154,25 @@ public class TestGUI
         frame.setVisible(true);
     }
 
+    public static void playerPanelTest()
+    {
+        GameGUI.loadTiles();
+        JFrame gameWindow = new JFrame();
+        gameWindow.setSize(new Dimension(1000, 1000));
+        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameWindow.setLocationRelativeTo(null);
+        gameWindow.setVisible(true);
+        Player p1 = new Player("Aidan");
+        Player p2 = new Player("Roy");
+        PlayerGUI pGUI = new PlayerGUI(p1, p2, gameWindow);
+        pGUI.start();
+        p1.giveNumberCard(new NumberCard(1, true));
+        p1.giveNumberCard(new NumberCard(2, true));
+        pGUI.drawPlayerHand(1);
+    }
+
     public static void main(String[] args) 
     {
-        tileTest();
+        playerPanelTest();
     }    
 }

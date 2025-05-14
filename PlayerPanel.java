@@ -56,6 +56,8 @@ public class PlayerPanel extends JPanel
             g2.drawImage(currentTile.getImage(), i, 0, GameGUI.UNIT_SIZE, 
                          GameGUI.UNIT_SIZE, null);
         }
+
+        g2.dispose();
     }
 
     /**

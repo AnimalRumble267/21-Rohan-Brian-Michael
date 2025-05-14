@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * 
  * 
- * @author Brian // Rohan
+ * @author Brian and Rohan
  * @version
  * 
  */
@@ -22,7 +22,8 @@ public class Player
     {
         name = "";
         isTurn = false;
-        numberCardHand = new ArrayList<Card>();
+        numberCardHand = new ArrayList<NumberCard>();
+        trumpCardHand = new ArrayList<TrumpCard>();
     }
 
     /**
@@ -33,7 +34,8 @@ public class Player
     {
         this.name = name;
         isTurn = false;
-        numberCardHand = new ArrayList<Card>();
+        numberCardHand = new ArrayList<NumberCard>();
+        trumpCardHand = new ArrayList<TrumpCard>();
     }
 
     
@@ -51,7 +53,7 @@ public class Player
      * [write description here]
      * @param card
      */
-    public void addNumberCard(NumberCard card)
+    public void giveNumberCard(NumberCard card)
     {
         numberCardHand.add(card);
     }
@@ -60,7 +62,7 @@ public class Player
      * [write description here]
      * @param card
      */
-    public void addTrumpCard(TrumpCard card)
+    public void giveTrumpCard(TrumpCard card)
     {
         trumpCardHand.add(card);
     }
@@ -71,8 +73,7 @@ public class Player
      */
     public NumberCard removeLastNumberCard()
     {
-        numberCardHand.remove(numberCardHand.size() - 1);
-        return numberCardHand;
+        return numberCardHand.remove(numberCardHand.size() - 1);
     }
 
     /**
@@ -80,10 +81,9 @@ public class Player
      * @param index is from 0 to length of size - 1 
      * @return
      */
-    public TrumpCard removeTrumpCard(Card other)
+    public TrumpCard removeTrumpCard(int index)
     {
-        card.getValue()
-        trumpCardHard.remove(();
+        return trumpCardHand.remove(index);
     }
 
     /**
@@ -91,8 +91,8 @@ public class Player
      */
     public void resetHand()
     {
-        numberCardHand = new ArrayList<Card>();
-        trumpCardHand = new Arraylist<Card>();
+        numberCardHand = new ArrayList<NumberCard>();
+        trumpCardHand = new ArrayList<TrumpCard>();
     }
 
     /**

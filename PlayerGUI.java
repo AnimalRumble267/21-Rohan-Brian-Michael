@@ -33,6 +33,9 @@ public class PlayerGUI
      */
     public PlayerGUI(Player p1, Player p2, JFrame gw)
     {
+        players = new Player[2];
+        frames = new JFrame[2];
+        panels = new PlayerPanel[2];
         players[0] = p1;
         players[1] = p2;
         gameWindow = gw;
@@ -77,18 +80,20 @@ public class PlayerGUI
         chosenFrame.setTitle(chosenPlayer.getName() + "'s Hand");
         chosenFrame.setFocusable(true);
         // Places this player's frame on the bottom left corner of the game's window
-        chosenFrame.setLocation(gameWindow.getX() - chosenFrame.getWidth(), 
-                            gameWindow.getY() + gameWindow.getHeight());
+        chosenFrame.setLocation(gameWindow.getX() - chosenFrame.getWidth() + 
+                                (index * gameWindow.getWidth() + 2 * chosenFrame.getWidth()),
+                                gameWindow.getY() + gameWindow.getHeight());
         chosenFrame.add(chosenPanel);
         chosenPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        panels[index] = (PlayerPanel) chosenFrame.getContentPane();
         chosenFrame.pack();
         chosenFrame.addMouseListener(listener);
         chosenFrame.setVisible(true);
-        chosenPanel.setVisible(true);
+        chosenFrame.getContentPane().setVisible(true);
     }
 
     /**
-     * 
+     *   
      * @param playerNumber 1 to draw player1's hand or 2 for player 2's hand
      */
     public void drawPlayerHand(int playerNumber)
