@@ -80,12 +80,13 @@ public class PlayerGUI
         chosenFrame.setTitle(chosenPlayer.getName() + "'s Hand");
         chosenFrame.setFocusable(true);
         // Places this player's frame on the bottom left corner of the game's window
-        chosenFrame.setLocation(gameWindow.getX() - chosenFrame.getWidth() + 
-                                (index * gameWindow.getWidth() + 2 * chosenFrame.getWidth()),
-                                gameWindow.getY() + gameWindow.getHeight());
+        chosenFrame.setLocation(null);
+
+        /* chosenFrame.setLocation(gameWindow.getX() - chosenFrame.getWidth() + 
+                                (index * gameWindow.getWidth() + index * 2 * chosenFrame.getWidth()),
+                                gameWindow.getY() + gameWindow.getHeight()); */
         chosenFrame.add(chosenPanel);
         chosenPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-        panels[index] = (PlayerPanel) chosenFrame.getContentPane();
         chosenFrame.pack();
         chosenFrame.addMouseListener(listener);
         chosenFrame.setVisible(true);
@@ -120,7 +121,7 @@ public class PlayerGUI
                 return;
             }
         }
-        panels[index].repaint();
+        frames[index].repaint();
     }
 
     /**
