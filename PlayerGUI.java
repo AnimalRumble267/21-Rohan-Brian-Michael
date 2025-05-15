@@ -87,7 +87,7 @@ public class PlayerGUI
         chosenFrame.add(chosenPanel);
         chosenFrame.pack();
         // Places this player's frame on the bottom left corner of the game's window
-        chosenFrame.setLocation(gameWindow.getX() + (-chosenFrame.getWidth() + (index * chosenFrame.getWidth() * 3)),
+        chosenFrame.setLocation(gameWindow.getX() + (-chosenFrame.getWidth() + (index * chosenFrame.getWidth() + index * gameWindow.getWidth())),
                                 gameWindow.getY() + (gameWindow.getHeight() - chosenFrame.getHeight()));
         chosenFrame.setVisible(true);
         chosenFrame.getContentPane().setVisible(true);
