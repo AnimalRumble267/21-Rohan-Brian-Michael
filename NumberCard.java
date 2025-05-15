@@ -43,7 +43,7 @@ public class NumberCard implements Card
 
     
     public boolean equals(Object other) {
-        return (this.getValue() == ((NumebrCard)other.getValue());
+        return (this.getValue() == ((NumberCard)other).getValue());
     }
     
 
