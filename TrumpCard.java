@@ -1,7 +1,6 @@
 /**
  * 
- * 
- * @author brian
+ * @author Brian
  * @version
  * 
  */
@@ -11,7 +10,7 @@ public class TrumpCard implements Card
     private String type;
     private boolean isPlayed;
 
-    // construcotrs
+    // Constructors
 
     public TrumpCard() {
         value = 0;
@@ -26,9 +25,7 @@ public class TrumpCard implements Card
         this.isPlayed = false;
     }
 
-    public TrumpCard(String t, 
-
-    // methods
+    // Methods
 
     public int getValue() {
         return value;
@@ -61,5 +58,5 @@ public class TrumpCard implements Card
         return (valueEqual && stringEqual);
     }
 
-    // gui
+    // GUI
 }
