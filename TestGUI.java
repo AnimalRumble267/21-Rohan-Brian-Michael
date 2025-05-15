@@ -132,24 +132,21 @@ public class TestGUI
         tile2.loadImage("/images/sample.png");
         tile3.loadImage("/images/sample.png");
 
+        GameGUI.loadTiles();
+
         JFrame frame = new JFrame();
-        JPanel contentPane = (JPanel) frame.getContentPane();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(true);
-        BoxLayout boxLayout = new BoxLayout(contentPane, BoxLayout.X_AXIS);
-        contentPane.setLayout(boxLayout);
-
-        /* frame.add(tile1);
-        frame.add(tile2);
-        frame.add(tile3); */
-
-        /* tile1.setVisible(true);
-        tile2.setVisible(true);
-        tile3.setVisible(true); */
-
-        frame.repaint();
-
+        frame.setVisible(true);
+        frame.setResizable(false);
+        Player player = new Player("Brian");
+        player.giveNumberCard(new NumberCard(1, false));
+        player.giveNumberCard(new NumberCard(2, false));
+        PlayerPanel panel = new PlayerPanel(player);
+        panel.setPreferredSize(new Dimension(200,100));
+        panel.setVisible(true);
+        frame.add(panel);
         frame.pack();
+        panel.repaint();
 
         frame.setVisible(true);
     }
@@ -161,6 +158,7 @@ public class TestGUI
         gameWindow.setSize(new Dimension(1000, 1000));
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.setLocationRelativeTo(null);
+        gameWindow.setTitle("Brian Lee");
         gameWindow.setVisible(true);
         Player p1 = new Player("Aidan");
         Player p2 = new Player("Roy");
@@ -173,6 +171,6 @@ public class TestGUI
 
     public static void main(String[] args) 
     {
-        playerPanelTest();
+        tileTest();
     }    
 }

@@ -26,9 +26,9 @@ public class PlayerPanel extends JPanel
         listener = new PlayerListener();
     }
 
-    public void paintComponents(Graphics g)
+    public void paintComponent(Graphics g)
     {
-        super.paintComponents(g);
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
         ArrayList<NumberCard> numberCardHand = player.getNumberCardHand();
@@ -42,8 +42,8 @@ public class PlayerPanel extends JPanel
         // Drawing number cards
         for (i = 0; i < numberCardHand.size() * GameGUI.UNIT_SIZE; i += GameGUI.UNIT_SIZE)
         {
-            currentNumberCard = numberCardHand.get(i);
-            currentTile = GameGUI.NUMBER_CARD_TILES[currentNumberCard.getValue()];
+            currentNumberCard = numberCardHand.get(i / GameGUI.UNIT_SIZE);
+            currentTile = GameGUI.NUMBER_CARD_TILES[currentNumberCard.getValue() - 1];
             g2.drawImage(currentTile.getImage(), i, 0, GameGUI.UNIT_SIZE, 
                          GameGUI.UNIT_SIZE, null);
         }

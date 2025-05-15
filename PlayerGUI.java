@@ -51,12 +51,12 @@ public class PlayerGUI
         {
             frames[i] = new JFrame();
             panels[i] = new PlayerPanel(players[i]);
-            setUpFrame(i + 1);
+            setUpWindow(i + 1);
         }
         guiStarted = true;
     }
 
-    private void setUpFrame(int playerNumber)
+    private void setUpWindow(int playerNumber)
     {
         int index = 0;
         if (playerNumber == 1)
@@ -79,16 +79,16 @@ public class PlayerGUI
         chosenFrame.setResizable(false);
         chosenFrame.setTitle(chosenPlayer.getName() + "'s Hand");
         chosenFrame.setFocusable(true);
-        // Places this player's frame on the bottom left corner of the game's window
-        chosenFrame.setLocation(null);
-
-        /* chosenFrame.setLocation(gameWindow.getX() - chosenFrame.getWidth() + 
-                                (index * gameWindow.getWidth() + index * 2 * chosenFrame.getWidth()),
-                                gameWindow.getY() + gameWindow.getHeight()); */
-        chosenFrame.add(chosenPanel);
         chosenPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        chosenPanel.setDoubleBuffered(true);
+        chosenPanel.addMouseListener(listener);
+        chosenPanel.setFocusable(true);
+        chosenPanel.setVisible(true);
+        chosenFrame.add(chosenPanel);
         chosenFrame.pack();
-        chosenFrame.addMouseListener(listener);
+        // Places this player's frame on the bottom left corner of the game's window
+        chosenFrame.setLocation(gameWindow.getX() + (-chosenFrame.getWidth() + (index * chosenFrame.getWidth() * 3)),
+                                gameWindow.getY() + (gameWindow.getHeight() - chosenFrame.getHeight()));
         chosenFrame.setVisible(true);
         chosenFrame.getContentPane().setVisible(true);
     }
@@ -121,7 +121,8 @@ public class PlayerGUI
                 return;
             }
         }
-        frames[index].repaint();
+        // Repainting the panel works; don't know about repainting the frame though
+        panels[index].repaint();
     }
 
     /**
@@ -135,12 +136,13 @@ public class PlayerGUI
 
     /**
      * Displays the punishment for the player at the end of a round.
-     * The animation changes based on the final bet of the round.
+     * The screen will go black, then play a sound based on if the player
+     * was hit or not, then cut back to the player being hit or not hit
      * @param bet
      */
-    public void punishAnimation(int bet)
+    public void punishAnimation(boolean dead)
     {
-
+        
     }
 
     /**
