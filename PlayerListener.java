@@ -5,11 +5,12 @@ import java.awt.event.*;
 
 public class PlayerListener implements MouseListener
 {
-    private Point pointClicked;
+
+    private Point point;
 
     public void mouseClicked(MouseEvent e) 
     {
-        pointClicked = e.getPoint();
+        PlayerPanel.pointClicked = e.getPoint();
     }
 
     public void mousePressed(MouseEvent e) 
@@ -30,13 +31,6 @@ public class PlayerListener implements MouseListener
     public void mouseExited(MouseEvent e) 
     {
         
-    }
-
-    public Point getMouseClick()
-    {
-        Point temp = pointClicked;
-        pointClicked = null;
-        return temp;
     }
 };
 

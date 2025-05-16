@@ -14,6 +14,7 @@ public class PlayerPanel extends JPanel
 {
     private Player player;
     private PlayerListener listener;
+    public static Point pointClicked;
 
     public PlayerPanel()
     {
@@ -67,11 +68,10 @@ public class PlayerPanel extends JPanel
      */
     public Point nextMouseClick()
     {
-        Point pointClicked = null;
         long currentTime = System.nanoTime();
         long lastTime = currentTime;
         long delta = 0;
-        long waitTime = 1000000000 / 30;
+        long waitTime = 1000000000;
 
         // This loop may cause problems because Swing is not thread safe
         while (pointClicked == null)
@@ -80,11 +80,13 @@ public class PlayerPanel extends JPanel
             delta += currentTime - lastTime;
             if (delta >= waitTime)
             {
-                pointClicked = listener.getMouseClick();
+                System.out.println(System.nanoTime());
+                delta = 0;
             }
             lastTime = currentTime;
         }
-        return pointClicked;
+        Point temp = pointClicked;
+        pointClicked = null;
+        return temp;
     }
-
 }

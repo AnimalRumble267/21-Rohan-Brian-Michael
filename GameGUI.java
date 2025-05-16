@@ -15,11 +15,16 @@ public class GameGUI
     public static final int ORIGINAL_TILE_SIZE = 32;
     public static final int SCALE = 3;
     public static final int UNIT_SIZE = ORIGINAL_TILE_SIZE * SCALE;
+    private final int PANEL_WIDTH = GameGUI.UNIT_SIZE * 10;
+    private final int PANEL_HEIGHT = GameGUI.UNIT_SIZE * 10;
 
     private static final String[] TRUMP_CARD_FILE_PATHS = {""}; // TODO Write file paths
     public static final Tile[] NUMBER_CARD_TILES = new Tile[2]; // TODO CHANGE SIZE LATER
     public static final Tile[] TRUMP_CARD_TILES = new Tile[TRUMP_CARD_FILE_PATHS.length];
     private static boolean tilesLoaded = false;
+
+    private JFrame gameWindow;
+    private JPanel gamePanel;
 
     public static void loadTiles()
     {
@@ -73,9 +78,14 @@ public class GameGUI
         return TRUMP_CARD_TILES;
     }
 
-    public static boolean pointInBounds(Point point, Component component)
+    /* public static boolean pointInBounds(Point point, Component component)
     {
         return ((point.getX() >= 0 && point.getX() < component.getWidth()) &&
                  point.getY() >= 0 && point.getY() < component.getHeight());
+    } */
+
+    public void start()
+    {
+
     }
 }

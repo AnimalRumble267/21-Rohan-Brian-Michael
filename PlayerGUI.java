@@ -24,7 +24,7 @@ public class PlayerGUI
     private boolean tilesLoaded;
     private boolean guiStarted;
 
-    private PlayerListener listener = new PlayerListener();
+    private PlayerListener[] listeners;
 
     /**
      * Constructs the GUI for a Player which will be shown only to the Player
@@ -36,6 +36,7 @@ public class PlayerGUI
         players = new Player[2];
         frames = new JFrame[2];
         panels = new PlayerPanel[2];
+        listeners = new PlayerListener[2];
         players[0] = p1;
         players[1] = p2;
         gameWindow = gw;
@@ -51,6 +52,7 @@ public class PlayerGUI
         {
             frames[i] = new JFrame();
             panels[i] = new PlayerPanel(players[i]);
+            listeners[i] = new PlayerListener();
             setUpWindow(i + 1);
         }
         guiStarted = true;
@@ -74,17 +76,18 @@ public class PlayerGUI
         }
         JFrame chosenFrame = frames[index];
         Player chosenPlayer = players[index];
-        JPanel chosenPanel = panels[index];
+        PlayerPanel chosenPanel = panels[index];
+        PlayerListener chosenListener = listeners[index];
         chosenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         chosenFrame.setResizable(false);
         chosenFrame.setTitle(chosenPlayer.getName() + "'s Hand");
         chosenFrame.setFocusable(true);
         chosenPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         chosenPanel.setDoubleBuffered(true);
-        chosenPanel.addMouseListener(listener);
         chosenPanel.setFocusable(true);
         chosenPanel.setVisible(true);
         chosenFrame.add(chosenPanel);
+        chosenFrame.getContentPane().addMouseListener(chosenListener);
         chosenFrame.pack();
         // Places this player's frame on the bottom left corner of the game's window
         chosenFrame.setLocation(gameWindow.getX() + (-chosenFrame.getWidth() + (index * chosenFrame.getWidth() + index * gameWindow.getWidth())),
@@ -124,6 +127,36 @@ public class PlayerGUI
         // Repainting the panel works; don't know about repainting the frame though
         panels[index].repaint();
     }
+
+    /* I'm not sure if PlayerGUI should be in charge of the two methods below... */
+
+    /**
+     * Waits for mouse input and removes the card that was clicked
+     * @param playerNumber
+     */
+    /* public NumberCard removeNumberCard(int playerNumber, Point click)
+    {
+        int clickCol = (int)click.getX() / GameGUI.UNIT_SIZE;
+        int index;
+        if (clickCol < players[playerNumber - 1].getNumberCardHand().size())
+        {
+            index = clickCol;
+            return players[playerNumber - 1].getNumberCardHand().remove(index);
+        }
+        return null;
+    } */
+
+    /* public TrumpCard removeTrumpCard(int playerNumber, Point click)
+    {
+        int clickCol = (int)click.getX() / GameGUI.UNIT_SIZE;
+        int index;
+        if (clickCol >= players[playerNumber - 1].getNumberCardHand().size())
+        {
+            index = clickCol - players[playerNumber - 1].getNumberCardHand().size();
+            return players[playerNumber - 1].getTrumpCardHand().remove(index);
+        }
+        return null;
+    } */
 
     /**
      * Displays a card, with number value visible, being delt to the player.
