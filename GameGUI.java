@@ -19,15 +19,29 @@ public class GameGUI
     private final int PANEL_HEIGHT = GameGUI.UNIT_SIZE * 10;
 
     private static final String[] TRUMP_CARD_FILE_PATHS = {""}; // TODO Write file paths
-    public static final Tile[] NUMBER_CARD_TILES = new Tile[2]; // TODO CHANGE SIZE LATER
+    public static final Tile[] NUMBER_CARD_TILES = new Tile[11]; // TODO CHANGE SIZE LATER
     public static final Tile[] TRUMP_CARD_TILES = new Tile[TRUMP_CARD_FILE_PATHS.length];
     private static boolean tilesLoaded = false;
+    private boolean guiStarted = false;
 
     private JFrame gameWindow;
-    private JPanel gamePanel;
+    private GamePanel gamePanel;
+    private Dealer dealer;
+
+    public GameGUI(Dealer d)
+    {
+        gameWindow = new JFrame();
+        gamePanel = new GamePanel();
+        dealer = d;
+    }
 
     public static void loadTiles()
     {
+        if (tilesLoaded)
+        {
+            return;
+        }
+
         Tile newTile;
 
         // Loading numbercards;
@@ -84,8 +98,27 @@ public class GameGUI
                  point.getY() >= 0 && point.getY() < component.getHeight());
     } */
 
+    private void setUpWindow()
+    {
+        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameWindow.setResizable(false);
+        gameWindow.setTitle("21");
+        gameWindow.setFocusable(true);
+        gamePanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        gamePanel.setDoubleBuffered(true);
+        gamePanel.setFocusable(true);
+        gamePanel.setVisible(true);
+        gameWindow.add(gamePanel);
+        gameWindow.pack();
+        gameWindow.setLocationRelativeTo(null);
+        gameWindow.setVisible(true);
+    }
+
     public void start()
     {
+        setUpWindow();
+        loadTiles();
 
+        guiStarted = true;
     }
 }
