@@ -12,6 +12,7 @@ import java.awt.event.*;
  */
 public class PlayerGUI
 {
+
     // These dimensions are required because images will be drawn 
     private final int PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
     private final int PANEL_HEIGHT = GameGUI.UNIT_SIZE * 1;
@@ -85,22 +86,23 @@ public class PlayerGUI
         chosenPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         chosenPanel.setDoubleBuffered(true);
         chosenPanel.setFocusable(true);
-        chosenPanel.setVisible(true);
+        chosenPanel.setVisible(false);      // Not visible yet
         chosenFrame.add(chosenPanel);
         chosenFrame.getContentPane().addMouseListener(chosenListener);
         chosenFrame.pack();
         // Places this player's frame on the bottom left corner of the game's window
         chosenFrame.setLocation(gameWindow.getX() + (-chosenFrame.getWidth() + (index * chosenFrame.getWidth() + index * gameWindow.getWidth())),
                                 gameWindow.getY() + (gameWindow.getHeight() - chosenFrame.getHeight()));
-        chosenFrame.setVisible(true);
+        chosenFrame.setVisible(false);       // Not visible yet
         chosenFrame.getContentPane().setVisible(true);
     }
 
     /**
-     *   
+     * Updates the Player's hand. Only draws it onto the screen if it is the
+     * Player's turn. If it is not the Player's turn, will hide the Player's hand.
      * @param playerNumber 1 to draw player1's hand or 2 for player 2's hand
      */
-    public void drawPlayerHand(int playerNumber)
+    public void updatePlayerHand(int playerNumber)
     {
         int index = 0;
         if (!guiStarted)
@@ -124,8 +126,23 @@ public class PlayerGUI
                 return;
             }
         }
-        // Repainting the panel works; don't know about repainting the frame though
-        panels[index].repaint();
+
+        // Always repaints the panels, does it before making the window visible 
+        // or does it after making the window hidden
+        if (players[index].isTurn())
+        {
+            // Repainting the panel works; don't know about repainting the frame though
+            panels[index].repaint();
+            frames[index].setVisible(true);
+            panels[index].setVisible(true);
+        }
+        else
+        {
+            frames[index].setVisible(false);
+            panels[index].setVisible(false);
+            // Repainting the panel works; don't know about repainting the frame though
+            panels[index].repaint();
+        }
     }
 
     /* I'm not sure if PlayerGUI should be in charge of the two methods below... */
@@ -210,14 +227,7 @@ public class PlayerGUI
 
         Point pointClicked = null;
         PlayerPanel chosenPanel = panels[index];
-        while (pointClicked == null)
-        {
-            pointClicked = chosenPanel.nextMouseClick();
-            if (!GameGUI.pointInBounds(pointClicked, chosenPanel))
-            {
-                pointClicked = null;
-            }
-        }
+        pointClicked = chosenPanel.nextMouseClick();
         return pointClicked;
     }
 }

@@ -18,7 +18,12 @@ public class TrumpCard implements Card
         isPlayed = false;
     }
 
-    
+    /**
+     * The type of the trump card can be "draw", "gofor", "shield",
+     * or "up". The meaning of the value of the trump card will vary.
+     * @param value
+     * @param type
+     */
     public TrumpCard(int value, String type) {
         this.type = type;
         this.value = value;

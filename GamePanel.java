@@ -25,6 +25,7 @@ public class GamePanel extends JPanel
 
     public void paintComponent(Graphics g)
     {
-
+        Graphics2D g2 = (Graphics2D)g;
+        
     }
 }

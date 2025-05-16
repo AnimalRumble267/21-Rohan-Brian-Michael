@@ -12,9 +12,8 @@ import java.awt.event.*;
  */
 public class PlayerPanel extends JPanel
 {
-    private Player player;
-    private PlayerListener listener;
     public static Point pointClicked;
+    private Player player;
 
     public PlayerPanel()
     {
@@ -24,7 +23,6 @@ public class PlayerPanel extends JPanel
     public PlayerPanel(Player p)
     {
         player = p;
-        listener = new PlayerListener();
     }
 
     public void paintComponent(Graphics g)
