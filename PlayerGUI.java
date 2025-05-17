@@ -165,15 +165,15 @@ public class PlayerGUI
     /**
      * Will wait until a point is clicked on the screen. Checks 
      * 30 times per second.
-     * @return the point that was clicked
+     * @return the mouse event
      */
-    public Point nextMouseClick(int playerNumber)
+    public MouseEvent nextMouseClick(int playerNumber)
     {
         if (!guiStarted)
         {
             System.out.println("ERROR: Must start GUI first");
             return null;
         }
-        return panel.nextMouseClick();
+        return panel.nextMouseClick(); // TODO Make it so that PlayerGUI returns the mouseEvent and not just the point so that we can detect hit/stand
     }
 }
