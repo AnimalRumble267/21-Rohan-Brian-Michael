@@ -13,16 +13,13 @@ import java.awt.event.*;
 public class PlayerPanel extends JPanel
 {
     public static Point pointClicked;
-    private Player player;
+    private ArrayList<NumberCard> numberCardHand;
+    private ArrayList<TrumpCard> trumpCardHand;
 
-    public PlayerPanel()
+    public PlayerPanel(ArrayList<NumberCard> n, ArrayList<TrumpCard> t)
     {
-        this(null);
-    }
-
-    public PlayerPanel(Player p)
-    {
-        player = p;
+        numberCardHand = n;
+        trumpCardHand = t;
     }
 
     public void paintComponent(Graphics g)
@@ -30,8 +27,6 @@ public class PlayerPanel extends JPanel
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        ArrayList<NumberCard> numberCardHand = player.getNumberCardHand();
-        ArrayList<TrumpCard> trumpCardHand = player.getTrumpCardHand();
         int i;
         Tile currentTile;
         NumberCard currentNumberCard;

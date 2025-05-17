@@ -14,31 +14,32 @@ public class Player
     private boolean isTurn;
     private ArrayList<NumberCard> numberCardHand;
     private ArrayList<TrumpCard> trumpCardHand;
-
-    /**
-     * [write description here]
-     */
-    public Player()
-    {
-        name = "";
-        isTurn = false;
-        numberCardHand = new ArrayList<NumberCard>();
-        trumpCardHand = new ArrayList<TrumpCard>();
-    }
+    private PlayerGUI playerGUI;
+    private int playerNumber;
 
     /**
      * [write description here]
      * @param name
      */
-    public Player(String name)
+    public Player(String name, int playerNum)
     {
         this.name = name;
         isTurn = false;
         numberCardHand = new ArrayList<NumberCard>();
         trumpCardHand = new ArrayList<TrumpCard>();
+        playerGUI = new PlayerGUI(this, playerNum);
+        playerNumber = playerNum;
     }
 
-    
+    public void startGUI()
+    {
+        playerGUI.start();
+    }
+
+    public void updateHand()
+    {
+        playerGUI.updateHand();
+    }
 
     /**
      * returns whether or not it is object player's turn
@@ -47,6 +48,11 @@ public class Player
     public boolean isTurn()
     {
         return isTurn;
+    }
+
+    public void setTurn(boolean turn)
+    {
+        isTurn = turn;
     }
 
     /**

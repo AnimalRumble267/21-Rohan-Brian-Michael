@@ -8,10 +8,12 @@
 public class Dealer
 {
     private Player[] players;
+    private GameGUI gameGUI;
     
     public Dealer()
     {
         players = new Player[2];
+        gameGUI = new GameGUI(this);
     }
 
     public Dealer(Player p1, Player p2)

@@ -17,30 +17,26 @@ public class PlayerGUI
     private final int PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
     private final int PANEL_HEIGHT = GameGUI.UNIT_SIZE * 1;
 
-    private Player[] players;
-    private JFrame gameWindow;
-    private JFrame[] frames;
-    private PlayerPanel[] panels;
+    private Player player;
+    private int playerNumber;
+    private JFrame frame;
+    private PlayerPanel panel;
 
     private boolean tilesLoaded;
     private boolean guiStarted;
 
-    private PlayerListener[] listeners;
+    private PlayerListener listener;
 
     /**
      * Constructs the GUI for a Player which will be shown only to the Player
      * @param p the Player
      * @param g2 the Graphics2D object for the Player's JPanel
      */
-    public PlayerGUI(Player p1, Player p2, JFrame gw)
+    public PlayerGUI(Player p, int pnum)
     {
-        players = new Player[2];
-        frames = new JFrame[2];
-        panels = new PlayerPanel[2];
-        listeners = new PlayerListener[2];
-        players[0] = p1;
-        players[1] = p2;
-        gameWindow = gw;
+        player = p;
+        playerNumber = pnum;
+        listener = new PlayerListener();
     }
 
     /**
@@ -49,52 +45,42 @@ public class PlayerGUI
     public void start()
     {
         /* INITIALIZING PLAYER 1's and 2's FRAME AND PANEL */
-        for (int i = 0; i < 2; i++)
-        {
-            frames[i] = new JFrame();
-            panels[i] = new PlayerPanel(players[i]);
-            listeners[i] = new PlayerListener();
-            setUpWindow(i + 1);
-        }
+        frame = new JFrame();
+        panel = new PlayerPanel(player.getNumberCardHand(), player.getTrumpCardHand());
+        listener = new PlayerListener();
+        setUpWindow(playerNumber);
         guiStarted = true;
     }
 
-    private void setUpWindow(int playerNumber)
+    private void setUpWindow(int playerNum)
     {
-        int index = 0;
-        if (playerNumber == 1)
-        {
-            index = 0;
-        }
-        else if (playerNumber == 2)
-        {
-            index = 1;
-        }
-        else
-        {
-            System.out.println("ERROR: Invalid player number");
-            return;
-        }
-        JFrame chosenFrame = frames[index];
-        Player chosenPlayer = players[index];
-        PlayerPanel chosenPanel = panels[index];
-        PlayerListener chosenListener = listeners[index];
-        chosenFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        chosenFrame.setResizable(false);
-        chosenFrame.setTitle(chosenPlayer.getName() + "'s Hand");
-        chosenFrame.setFocusable(true);
-        chosenPanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-        chosenPanel.setDoubleBuffered(true);
-        chosenPanel.setFocusable(true);
-        chosenPanel.setVisible(false);      // Not visible yet
-        chosenFrame.add(chosenPanel);
-        chosenFrame.getContentPane().addMouseListener(chosenListener);
-        chosenFrame.pack();
-        // Places this player's frame on the bottom left corner of the game's window
-        chosenFrame.setLocation(gameWindow.getX() + (-chosenFrame.getWidth() + (index * chosenFrame.getWidth() + index * gameWindow.getWidth())),
-                                gameWindow.getY() + (gameWindow.getHeight() - chosenFrame.getHeight()));
-        chosenFrame.setVisible(false);       // Not visible yet
-        chosenFrame.getContentPane().setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setTitle(player.getName() + "'s Hand");
+        frame.setFocusable(true);
+        panel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        panel.setDoubleBuffered(true);
+        panel.setFocusable(true);
+        panel.setVisible(false);      // Not visible yet
+        frame.add(panel);
+        frame.getContentPane().addMouseListener(listener);
+        frame.pack();
+        frame.setVisible(false);       // Not visible yet
+
+        /*
+         * frame.setLocation(gameWindow.getX() - frame.getWidth() + ((playerNum - 1) * frame.getWidth() + (playerNum - 1) * gameWindow.getWidth()),
+                                gameWindow.getY() + (gameWindow.getHeight() - frame.getHeight()));
+         */
+    }
+
+    public void setFrameLocation(Point p)
+    {
+        frame.setLocation(p);
+    }
+
+    public void setFrameLocation(int x, int y)
+    {
+        frame.setLocation(x, y);
     }
 
     /**
@@ -102,46 +88,27 @@ public class PlayerGUI
      * Player's turn. If it is not the Player's turn, will hide the Player's hand.
      * @param playerNumber 1 to draw player1's hand or 2 for player 2's hand
      */
-    public void updatePlayerHand(int playerNumber)
+    public void updateHand()
     {
-        int index = 0;
         if (!guiStarted)
         {
             System.out.println("ERROR: Must start GUI first");
             return;
         }
-        else
-        {
-            if (playerNumber == 1)
-            {
-                index = 0;
-            }
-            else if (playerNumber == 2)
-            {
-                index = 1;
-            }
-            else
-            {
-                System.out.println("ERROR: Invalid player number");
-                return;
-            }
-        }
 
-        // Always repaints the panels, does it before making the window visible 
-        // or does it after making the window hidden
-        if (players[index].isTurn())
+        // Always repaints the panels; repaints either before making the window visible 
+        // or after making the window hidden
+        if (player.isTurn())
         {
-            // Repainting the panel works; don't know about repainting the frame though
-            panels[index].repaint();
-            frames[index].setVisible(true);
-            panels[index].setVisible(true);
+            panel.repaint();
+            frame.setVisible(true);
+            panel.setVisible(true);
         }
         else
         {
-            frames[index].setVisible(false);
-            panels[index].setVisible(false);
-            // Repainting the panel works; don't know about repainting the frame though
-            panels[index].repaint();
+            frame.setVisible(false);
+            panel.setVisible(false);
+            panel.repaint();
         }
     }
 
@@ -202,32 +169,11 @@ public class PlayerGUI
      */
     public Point nextMouseClick(int playerNumber)
     {
-        int index;
         if (!guiStarted)
         {
             System.out.println("ERROR: Must start GUI first");
             return null;
         }
-        else
-        {
-            if (playerNumber == 1)
-            {
-                index = 0;
-            }
-            else if (playerNumber == 2)
-            {
-                index = 1;
-            }
-            else
-            {
-                System.out.println("ERROR: Invalid player number");
-                return null;
-            }
-        }
-
-        Point pointClicked = null;
-        PlayerPanel chosenPanel = panels[index];
-        pointClicked = chosenPanel.nextMouseClick();
-        return pointClicked;
+        return panel.nextMouseClick();
     }
 }

@@ -46,6 +46,13 @@ public class GameGUI
         dealer = d;
     }
 
+    public void start()
+    {
+        setUpWindow();
+        loadTiles();
+        guiStarted = true;
+    }
+
     private void setUpWindow()
     {
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,13 +67,6 @@ public class GameGUI
         gameWindow.pack();
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
-    }
-
-    public void start()
-    {
-        setUpWindow();
-        loadTiles();
-        guiStarted = true;
     }
 
     public void updateGameWindow()
