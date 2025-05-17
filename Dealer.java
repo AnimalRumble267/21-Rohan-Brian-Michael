@@ -1,3 +1,4 @@
+import java.util.*;
 /**
  * 
  * 
@@ -7,33 +8,55 @@
  */
 public class Dealer
 {
-    private Player[] players;
-    private GameGUI gameGUI;
-    
-    public Dealer()
-    {
-        players = new Player[2];
-        gameGUI = new GameGUI(this);
-    }
+    private Deck numberCardDeck;
+    private Deck trumpCardDeck;
+    private int bet;
+    private ArrayList<Player> players = new ArrayList<Player>();
+    /**
+     * Assigns players, creates Decks
+     * @param playerOne
+     * @param playerTwo
+     * @param bet
+     */
+    public Dealer(Player playerOne, Player playerTwo, int bet) {
+        players.add(playerOne);
+        players.add(playerTwo);
+        this.bet = bet;
 
-    public Dealer(Player p1, Player p2)
-    {
-        players = new Player[2];
-        players[0] = p1;
-        players[1] = p2;
-    }
+        ArrayList<Card> tempNumberDeck = new ArrayList<Card>(11);
+        for (int i = 1; i <= 11; i++) {
+            tempNumberDeck.add(new NumberCard(i,true));
+        }
+        numberCardDeck = new Deck(tempNumberDeck);
 
+       ArrayList<Card> tempTrumpDeck = new ArrayList<Card>(0);
+       // TODO Finish when all trumpcards decided
+       trumpCardDeck = new Deck(tempTrumpDeck);
+        
+    }
     /**
      * Deals cards to Players and continues the round until a Player
-     * is eliminated.
+     * 
      */
-    public void deal()
+    public int deal()
     {
-
+        return 0;
     }
-
-    public Player[] getPlayers()
-    {
+    
+    public ArrayList<Player> getPlayers() {
         return players;
     }
+
+    public void incrementBet() {
+        bet++;
+    }
+
+    public void clearBet() {
+        bet = 1;
+    }
+
+    public int getBet() {
+        return bet;
+    }
+
 }
