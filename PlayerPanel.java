@@ -12,14 +12,12 @@ import java.awt.event.*;
  */
 public class PlayerPanel extends JPanel
 {
-    public static Point pointClicked;
-    private ArrayList<NumberCard> numberCardHand;
-    private ArrayList<TrumpCard> trumpCardHand;
+    public static MouseEvent mouseClick;
+    private Player player;
 
-    public PlayerPanel(ArrayList<NumberCard> n, ArrayList<TrumpCard> t)
+    public PlayerPanel(Player p)
     {
-        numberCardHand = n;
-        trumpCardHand = t;
+        player = p;
     }
 
     public void paintComponent(Graphics g)
@@ -31,6 +29,8 @@ public class PlayerPanel extends JPanel
         Tile currentTile;
         NumberCard currentNumberCard;
         TrumpCard currentTrumpCard;
+        ArrayList<NumberCard> numberCardHand = player.getNumberCardHand();
+        ArrayList<TrumpCard> trumpCardHand = player.getTrumpCardHand();
 
         // Drawing the card tile images from left to right in order
         // Drawing number cards
@@ -59,7 +59,7 @@ public class PlayerPanel extends JPanel
      * 30 times per second.
      * @return the point that was clicked
      */
-    public Point nextMouseClick()
+    public MouseEvent nextMouseClick()
     {
         long currentTime = System.nanoTime();
         long lastTime = currentTime;
@@ -67,19 +67,19 @@ public class PlayerPanel extends JPanel
         long waitTime = 1000000000;
 
         // This loop may cause problems because Swing is not thread safe
-        while (pointClicked == null)
+        while (mouseClick == null)
         {
             currentTime = System.nanoTime();
             delta += currentTime - lastTime;
             if (delta >= waitTime)
             {
                 System.out.println(System.nanoTime());
-                delta = 0;
+                delta = 0; // this loop is only necessary for testing
             }
             lastTime = currentTime;
         }
-        Point temp = pointClicked;
-        pointClicked = null;
+        MouseEvent temp = mouseClick;
+        mouseClick = null;
         return temp;
     }
 }

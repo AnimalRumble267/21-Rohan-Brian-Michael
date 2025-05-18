@@ -138,7 +138,7 @@ public class TestGUI
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setResizable(false);
-        Player player = new Player("Brian");
+        Player player = new Player("Brian", 1);
         player.giveNumberCard(new NumberCard(1, false));
         player.giveNumberCard(new NumberCard(2, false));
         PlayerPanel panel = new PlayerPanel(player);
@@ -160,13 +160,15 @@ public class TestGUI
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setTitle("Brian Lee");
         gameWindow.setVisible(true);
-        Player p1 = new Player("Aidan");
-        Player p2 = new Player("Roy");
-        PlayerGUI pGUI = new PlayerGUI(p1, p2, gameWindow);
-        pGUI.start();
+        Player p1 = new Player("Aidan", 1);
+        Player p2 = new Player("Roy", 2);
+        p1.setTurn(true);
+        p2.setTurn(true);
+        p1.startGUI();
+        p2.startGUI();
         p1.giveNumberCard(new NumberCard(1, true));
         p1.giveNumberCard(new NumberCard(2, true));
-        pGUI.drawPlayerHand(1);
+        p1.updateHand();
     }
 
     public static void main(String[] args) 

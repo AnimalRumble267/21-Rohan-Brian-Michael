@@ -14,8 +14,8 @@ public class PlayerGUI
 {
 
     // These dimensions are required because images will be drawn 
-    private final int PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
-    private final int PANEL_HEIGHT = GameGUI.UNIT_SIZE * 1;
+    private final int PLAYER_PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
+    private final int PLAYER_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 1;
 
     private Player player;
     private int playerNumber;
@@ -46,7 +46,7 @@ public class PlayerGUI
     {
         /* INITIALIZING PLAYER 1's and 2's FRAME AND PANEL */
         frame = new JFrame();
-        panel = new PlayerPanel(player.getNumberCardHand(), player.getTrumpCardHand());
+        panel = new PlayerPanel(player);
         listener = new PlayerListener();
         setUpWindow(playerNumber);
         guiStarted = true;
@@ -58,7 +58,7 @@ public class PlayerGUI
         frame.setResizable(false);
         frame.setTitle(player.getName() + "'s Hand");
         frame.setFocusable(true);
-        panel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        panel.setPreferredSize(new Dimension(PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT));
         panel.setDoubleBuffered(true);
         panel.setFocusable(true);
         panel.setVisible(false);      // Not visible yet
@@ -82,7 +82,7 @@ public class PlayerGUI
     {
         frame.setLocation(x, y);
     }
-
+    
     /**
      * Updates the Player's hand. Only draws it onto the screen if it is the
      * Player's turn. If it is not the Player's turn, will hide the Player's hand.
@@ -163,9 +163,9 @@ public class PlayerGUI
     }
 
     /**
-     * Will wait until a point is clicked on the screen. Checks 
-     * 30 times per second.
-     * @return the mouse event
+     * Will wait until a point is clicked on the screen. Checks 30 times
+     * per second. Returns the mouse event received from the listener.
+     * @return the mouse event (can return which mouse button was pressed)
      */
     public MouseEvent nextMouseClick(int playerNumber)
     {

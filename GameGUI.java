@@ -15,22 +15,22 @@ public class GameGUI
     public static final int ORIGINAL_TILE_SIZE = 32;
     public static final int SCALE = 3;
     public static final int UNIT_SIZE = ORIGINAL_TILE_SIZE * SCALE;
-    private final int PANEL_WIDTH = GameGUI.UNIT_SIZE * 10;
-    private final int PANEL_HEIGHT = GameGUI.UNIT_SIZE * 10;
+    public static final int GAME_PANEL_WIDTH = GameGUI.UNIT_SIZE * 10;
+    public static final int GAME_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 10;
 
-    private static final String[] TRUMP_CARD_FILE_PATHS =  {"/images/trumpcards/trumpdraw2", 
-                                                            "/images/trumpcards/trumpdraw3",
-                                                            "/images/trumpcards/trumpdraw4",
-                                                            "/images/trumpcards/trumpdraw5",
-                                                            "/images/trumpcards/trumpdraw6",
-                                                            "/images/trumpcards/trumpdraw7",
-                                                            "/images/trumpcards/trumpgofor17",
-                                                            "/images/trumpcards/trumpgofor24",
-                                                            "/images/trumpcards/trumpgofor27",
-                                                            "/images/trumpcards/trumpshield",
-                                                            "/images/trumpcards/trumpupone",
-                                                            "/images/trumpcards/trumpuptwo"};
-    public static final Tile[] NUMBER_CARD_TILES = new Tile[11];
+    private static final String[] TRUMP_CARD_FILE_PATHS =  {"/images/trumpcards/trumpdraw2.png", 
+                                                            "/images/trumpcards/trumpdraw3.png",
+                                                            "/images/trumpcards/trumpdraw4.png",
+                                                            "/images/trumpcards/trumpdraw5.png",
+                                                            "/images/trumpcards/trumpdraw6.png",
+                                                            "/images/trumpcards/trumpdraw7.png",
+                                                            "/images/trumpcards/trumpgofor17.png",
+                                                            "/images/trumpcards/trumpgofor24.png",
+                                                            "/images/trumpcards/trumpgofor27.png",
+                                                            "/images/trumpcards/trumpshield1.png",
+                                                            "/images/trumpcards/trumpup1.png",
+                                                            "/images/trumpcards/trumpup2.png"};
+    public static final Tile[] NUMBER_CARD_TILES = new Tile[12];
     public static final Tile[] TRUMP_CARD_TILES = new Tile[TRUMP_CARD_FILE_PATHS.length];
     private static boolean tilesLoaded = false;
     private boolean guiStarted = false;
@@ -42,7 +42,7 @@ public class GameGUI
     public GameGUI(Dealer d)
     {
         gameWindow = new JFrame();
-        gamePanel = new GamePanel();
+        gamePanel = new GamePanel(d);
         dealer = d;
     }
 
@@ -59,7 +59,8 @@ public class GameGUI
         gameWindow.setResizable(false);
         gameWindow.setTitle("21");
         gameWindow.setFocusable(true);
-        gamePanel.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        gamePanel.setPreferredSize(new Dimension(GAME_PANEL_WIDTH, GAME_PANEL_HEIGHT));
+        gamePanel.setBackground(Color.DARK_GRAY);
         gamePanel.setDoubleBuffered(true);
         gamePanel.setFocusable(true);
         gamePanel.setVisible(true);
@@ -67,6 +68,7 @@ public class GameGUI
         gameWindow.pack();
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
+        
     }
 
     public void updateGameWindow()
@@ -89,12 +91,15 @@ public class GameGUI
         Tile newTile;
 
         // Loading numbercards;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < NUMBER_CARD_TILES.length - 1; i++)
         {
             newTile = new Tile(UNIT_SIZE, UNIT_SIZE);
             newTile.loadImage("/images/numbercards/numbercard" + (i + 1) + ".png");
             NUMBER_CARD_TILES[i] = newTile;
         }
+        newTile = new Tile(UNIT_SIZE, UNIT_SIZE);
+        newTile.loadImage("/images/numbercards/numbercardhidden.png");
+        NUMBER_CARD_TILES[11] = newTile;
 
         // Loading numbercards
         for (int i = 0; i < TRUMP_CARD_FILE_PATHS.length; i++)
