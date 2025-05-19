@@ -12,6 +12,7 @@ public class Dealer
     private Deck trumpCardDeck;
     private int bet;
     private ArrayList<Player> players = new ArrayList<Player>();
+    private boolean punishTracker = false;
     /**
      * Assigns players, creates Decks
      * @param playerOne
@@ -68,6 +69,9 @@ public class Dealer
      */
     public boolean punish(int bet)
     {
+        punishTracker = true;
+        gameGUI.update(); // address here w/ michaelLLLLLLLLLLLELLWELGWELGWEGNLKWEJLTLW:EJT L:WEL:GKKJWE:gj;lwkjEL;KJEWG
+        
         int increment = 6;
         double probability = 1 / increment;
 
@@ -79,6 +83,11 @@ public class Dealer
         }
 
         return false;
+        punishTrucker = false;
+    }
+    
+    public boolean getPunishStatus() {
+        return punishTracker;
     }
 
 }
