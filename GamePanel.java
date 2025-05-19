@@ -1,6 +1,7 @@
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.sound.*; // TODO ADD A SOUND CLASS
 
 /**
  * 
@@ -13,6 +14,7 @@ public class GamePanel extends JPanel
 {
     private Dealer dealer;
     private Player[] players;
+    private Sound[] soundEffects;
 
     public GamePanel(Dealer d)
     {
@@ -27,9 +29,31 @@ public class GamePanel extends JPanel
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        if (dealer.getPunishStatus())
+        // if the dealer is in the punishing stage, check each time if player is dead
+        if (dealer.isPunishing())
         {
-            // TODO Think of a way to know what to display during the punishment
+            g2.drawImage()
+
+            // This loop makes the screen wait for 2 seconds
+            long currentTime = System.nanoTime();
+            long lastTime = currentTime;
+            long delta = 0;
+            long waitTime = 3000000000;
+
+            while (delta < waitTime)
+            {
+                currentTime = System.nanoTime();
+                delta += currentTime - lastTime;
+                lastTime = currentTime;
+            }
+
+            // Paints the screen completely black
+            g2.setColor(Color.BLACK);
+            g2.drawRect(0, 0, this.getWidth(), this.getHeight());
+            if (dealer.playerIsEliminated())
+            {
+
+            }   
         }
         else
         {

@@ -81,6 +81,7 @@ public class GameGUI
         gamePanel.repaint();
     }
 
+    // TODO this is static only for testing purposes
     public static void loadTiles()
     {
         if (tilesLoaded)
