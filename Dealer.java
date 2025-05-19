@@ -12,6 +12,7 @@ public class Dealer
     private Deck trumpCardDeck;
     private int bet;
     private ArrayList<Player> players = new ArrayList<Player>();
+    private boolean punishTracker = false;
     /**
      * Assigns players, creates Decks
      * @param playerOne
@@ -57,6 +58,36 @@ public class Dealer
 
     public int getBet() {
         return bet;
+    }
+
+     /**
+     * generate changing probability of a player dying on a single shot. This probability will increase after each shot 
+     * doesn't kill the player (probability is 1/n, and n decreases by 1 everyshot). if, on any given shot, the player
+     * gets unlucky (randomly generated probability falls under probability), the player dies.
+     * @param bet
+     * @return boolean if player will die
+     */
+    public boolean punish(int bet)
+    {
+        punishTracker = true;
+        gameGUI.update(); // address here w/ michaelLLLLLLLLLLLELLWELGWELGWEGNLKWEJLTLW:EJT L:WEL:GKKJWE:gj;lwkjEL;KJEWG
+        
+        int increment = 6;
+        double probability = 1 / increment;
+
+        for (int i = 0; i < bet; i++) {
+            if (Math.random() < probability) {
+                return true;
+            }
+            increment--;
+        }
+
+        return false;
+        punishTrucker = false;
+    }
+    
+    public boolean getPunishStatus() {
+        return punishTracker;
     }
 
 }
