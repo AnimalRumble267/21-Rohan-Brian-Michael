@@ -59,4 +59,26 @@ public class Dealer
         return bet;
     }
 
+     /**
+     * generate changing probability of a player dying on a single shot. This probability will increase after each shot 
+     * doesn't kill the player (probability is 1/n, and n decreases by 1 everyshot). if, on any given shot, the player
+     * gets unlucky (randomly generated probability falls under probability), the player dies.
+     * @param bet
+     * @return boolean if player will die
+     */
+    public boolean punish(int bet)
+    {
+        int increment = 6;
+        double probability = 1 / increment;
+
+        for (int i = 0; i < bet; i++) {
+            if (Math.random() < probability) {
+                return true;
+            }
+            increment--;
+        }
+
+        return false;
+    }
+
 }
