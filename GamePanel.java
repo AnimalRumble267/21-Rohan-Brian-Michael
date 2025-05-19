@@ -26,15 +26,23 @@ public class GamePanel extends JPanel
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        for (int i = 0; i < 2; i++)
+
+        if (dealer.getPunishStatus())
         {
-            drawPlayerHand(g2, i, GameGUI.UNIT_SIZE + (i * (-GameGUI.UNIT_SIZE) + i * (GameGUI.GAME_PANEL_WIDTH - GameGUI.UNIT_SIZE)),
-            GameGUI.UNIT_SIZE);
+            // TODO Think of a way to know what to display during the punishment
         }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                drawPlayerHand(g2, i, GameGUI.UNIT_SIZE + (i * (-GameGUI.UNIT_SIZE) + i * (GameGUI.GAME_PANEL_WIDTH - GameGUI.UNIT_SIZE)),
+                GameGUI.UNIT_SIZE);
+            }
 
         //Might be Comicbd.ttf
         g2.setFont(new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE / 2));
         g2.drawString("BET", GameGUI.GAME_PANEL_WIDTH / 2 - 20, GameGUI.UNIT_SIZE);
+        }
         
     }
 
