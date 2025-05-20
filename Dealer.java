@@ -26,14 +26,33 @@ public class Dealer
 
         ArrayList<Card> tempNumberDeck = new ArrayList<Card>(11);
         for (int i = 1; i <= 11; i++) {
-            tempNumberDeck.add(new NumberCard(i,true));
+            tempNumberDeck.add(new NumberCard(i, true));
         }
         numberCardDeck = new Deck(tempNumberDeck);
 
-       ArrayList<Card> tempTrumpDeck = new ArrayList<Card>(0);
-       // TODO Finish when all trumpcards decided
-       trumpCardDeck = new Deck(tempTrumpDeck);
+        ArrayList<Card> tempTrumpDeck = new ArrayList<Card>(0);
+        trumpCardDeck = new Deck(tempTrumpDeck);
         
+        // add number trumps
+        for (int j = 1; j < 8; j++) {
+            trumpCardDeck.add(new TrumpCard(j, "trumpDraw"));
+        }
+    
+        // go for trumps
+        tempTrumpDeck.add(new TrumpCard(17 , "trumpgofor");
+        tempTrumpDeck.add(new TrumpCard(24 , "trumpgofor");
+        tempTrumpDeck.add(new TrumpCard(27 , "trumpgofor");
+
+        // bet trumps
+        tempTrumpDeck.add(new TrumpCard(1 , "trumpup");
+        tempTrumpDeck.add(new TrumpCard(2 , "trumpup");
+
+        numberCardDeck.shuffle();
+        trumpCardDeck.shuffle();
+        // have no implemented -- will test first
+        // trump cards that have not been implemented: bet (shieldPlus, bless, bloodshed, destroy, friendship, reincarnation)
+        // AND the entirety of deck trumps
+
     }
     /**
      * Deals cards to Players and continues the round until a Player
