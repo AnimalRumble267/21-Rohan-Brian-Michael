@@ -92,13 +92,11 @@ public class Dealer
         }
 
         if (result) {
+            return true;
         }
         else {
-            // you survive!
-            
+            return false;  
         }
-        return false;
-        punishTracker = false;
     }
     
     public boolean getPunishStatus() {
