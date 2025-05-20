@@ -70,7 +70,36 @@ public class Game
 
         // check for who's alive, players' turns, then player action, in that order
 
-        while (
+        while (player1.isAlive() && player2.isAlive()) {
+
+            if (
+                // TODO scanner action for mouseclick
+
+
+
+
+                // hit: draw, calcaulte value, if it's over 21 run punishment
+
+                
+
+
+
+                // stand: end player turn, 
+
+
+
+                
+
+
+
+
+            // check for punishment
+
+            if (player1.numberCardHand
+
+
+            
+        }
 
 
             
