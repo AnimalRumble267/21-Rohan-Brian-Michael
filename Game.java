@@ -37,31 +37,9 @@ public class Game
         Player player2 = new Player(player2name, 2);
 
         // Dealer
-        Dealer dealer = new Dealer(player1, player2, 0);
-        
-        // Card
-        // TODO NumberCard, TrumpCard Deck?
-        Card card = new Card();
-        
-        // give each player 1 hidden card and 1 exposed card
-
-        // TODO help wth value
-        player1.giveNumberCard(new NumberCard<Card>(active.draw()), true);
-        player1.giveNumberCard(new NumberCard<Card>(active.draw()), false);
-        player1.updateHand();
-
-        player2.giveNumberCard(new NumberCard<Card>(active.draw()), true);
-        player2.giveNumberCard(new NumberCard<Card>(active.draw()), false);
-        player2.updateHand();
-
-        // TODO inquire abt instatiating all variations of number and trump cards within Dealer
-        // Deck
-        // TODO discuss this bc I have no clue where the card deck is need card deck to instantiate Deck
-        Deck active = new Deck(SOMETHINGHEREARGHHHWEHGEWGL:JWEL:GJKL:WEJGL:WJEL:TJLK:);
-        deck.shuffle();
+        Dealer dealer = new Dealer(player1, player2, 1);
         
         // Part 2: build start of game interface (GUI stuff)
-
         // very not done but will do this part last
         player1.startGUI();
         player2.startGUI();
