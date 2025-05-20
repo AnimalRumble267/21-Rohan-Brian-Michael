@@ -14,6 +14,7 @@ public class Dealer
     private ArrayList<Player> players = new ArrayList<Player>();
     private boolean punishTracker = false;
     private int goal = 21;
+    private boolean willDie = false;
     /**
      * Assigns players, creates Decks
      * @param playerOne
@@ -231,9 +232,7 @@ public class Dealer
      * @return boolean if player will die
      */
     public boolean punish(Player playerNumber, int bet)
-    {
-        punishTracker = true;
-        gameGUI.update(); // address here w/ michaelLLLLLLLLLLLELLWELGWELGWEGNLKWEJLTLW:EJT L:WEL:GKKJWE:gj;lwkjEL;KJEWG
+    { 
         boolean result = false;
         boolean needToBreak = false;
         
@@ -243,11 +242,14 @@ public class Dealer
         for (int i = 0; i < bet; i++) {
             
             if (Math.random() < probability) {
+                willDie = true;
                 result = true;
                 needToBreak = true;
             }
+
+            gameGUI.update();
             
-            if (needToBreak = true) {
+            if (needToBreak) {
                 break;
             }
             
@@ -260,10 +262,11 @@ public class Dealer
         else {
             return false;  
         }
-    }
-    
-    public boolean getPunishStatus() {
-        return punishTracker;
+
     }
 
+    public boolean willDie() {
+        return willDie;
+    }    
+    
 }
