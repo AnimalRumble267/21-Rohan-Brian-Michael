@@ -16,7 +16,7 @@ public class GamePanel extends JPanel
     private Player[] players;
     private Sound[] soundEffects;
     private Font comicSans = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE / 2);
-    private Color darkGreen = new Color()
+    private Color darkGreen = new Color(25, 87, 30)
 
     public GamePanel(Dealer d)
     {
@@ -43,7 +43,7 @@ public class GamePanel extends JPanel
         GameGUI.wait(10.0);
 
         // if the dealer is in the punishing stage, check each time if player is dead
-        if (false) // dealer.isPunishing()
+        if (dealer.isPunishing())
         {
             g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2,
                          GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
