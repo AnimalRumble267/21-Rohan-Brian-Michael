@@ -14,8 +14,12 @@ public class Player
     private String name;
     private boolean isTurn;
     private boolean isAlive;
+    
     private ArrayList<NumberCard> numberCardHand;
+    private int numberCardHand value;
+    
     private ArrayList<TrumpCard> trumpCardHand;
+    
     private PlayerGUI playerGUI;
     private int playerNumber;
 
@@ -114,6 +118,19 @@ public class Player
         return trumpCardHand.remove(index);
     }
 
+    /** 
+     * calculates total value of numberCardHand
+     * @param 
+     * @returns value
+     */
+    public int calculate() {
+        int temp = 0;
+        for (numberCard nC : numberCardHand) {
+            temp += nC.getValue();
+        }
+    }
+
+    
     /**
      * clears both trump card and number card hands
      */
