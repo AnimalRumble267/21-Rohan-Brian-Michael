@@ -105,7 +105,7 @@ public class Game
             }
                 
             else if (returnerAction == 3) {
-                if (turnInicator == 1) {
+                if (turnIndicator == 1) {
                     playerAction(player1, 1, dealer.getBet());
                 }
                 else { 

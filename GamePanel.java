@@ -42,7 +42,7 @@ public class GamePanel extends JPanel
         GameGUI.wait(2.0);
 
         // if the dealer is in the punishing stage, check each time if player is dead
-        if (true) // dealer.isPunishing()
+        if (false) // dealer.isPunishing()
         {
             g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2,
                          GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
@@ -91,7 +91,7 @@ public class GamePanel extends JPanel
                 GameGUI.UNIT_SIZE);
             }
 
-            drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE * 3);
+            drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE * 3 - 10);
 
             // Drawing the bet
             int stringWidth;
@@ -105,10 +105,10 @@ public class GamePanel extends JPanel
             g2.drawString("BET", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, GameGUI.UNIT_SIZE * 2);
             stringWidth = fontMetrics.stringWidth(dealer.getBet() + "");
             g2.setColor(Color.RED);
-            g2.fillRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 6, GameGUI.UNIT_SIZE - 30);
+            g2.fillRect(GameGUI.GAME_PANEL_WIDTH / 2 - 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 6, GameGUI.UNIT_SIZE - 30);
             g2.setStroke(new BasicStroke(3));
             g2.setColor(Color.BLACK);
-            g2.drawRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 6, GameGUI.UNIT_SIZE - 30);
+            g2.drawRect(GameGUI.GAME_PANEL_WIDTH / 2 - 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 6, GameGUI.UNIT_SIZE - 30);
             g2.drawString(dealer.getBet() + "", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 2.6));
         }
         g2.dispose();
