@@ -26,6 +26,8 @@ public class GamePanel extends JPanel
         soundEffects = new Sound[2];
         soundEffects[0] = new Sound("/sound/trigger.wav");
         soundEffects[1] = new Sound("/sound/blast.wav");
+        soundEffects[0].loadSound();
+        soundEffects[1].loadSound();
     }
 
     public void paintComponent(Graphics g)
@@ -35,25 +37,29 @@ public class GamePanel extends JPanel
         FontMetrics fontMetrics = g2.getFontMetrics();
         
         g2.setColor(Color.DARK_GRAY);
-        g2.drawRect(0, 0, this.getWidth(), this.getHeight());
+        g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+        System.out.println("Made it to line 41");
+        GameGUI.wait(2.0);
 
         // if the dealer is in the punishing stage, check each time if player is dead
-        if (false) // dealer.isPunishing()
+        if (true) // dealer.isPunishing()
         {
             g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2,
                          GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
+            System.out.println("Made it to line 49");
 
             GameGUI.wait(2.0);
 
             // Paints the screen completely black
             g2.setColor(Color.BLACK);
-            g2.drawRect(0, 0, this.getWidth(), this.getHeight());
+            g2.fillRect(0, 0, this.getWidth(), this.getHeight());
 
             GameGUI.wait(2.5);
 
             if (false) // dealer.playerIsEliminated()
             {
                 soundEffects[1].play();
+                GameGUI.wait(1.0);
                 soundEffects[1].stop();
                 g2.setColor(Color.DARK_GRAY);
                 g2.drawRect(0, 0, this.getWidth(), this.getHeight());
@@ -64,13 +70,14 @@ public class GamePanel extends JPanel
             else
             {
                 soundEffects[0].play();
+                GameGUI.wait(0.5);
                 soundEffects[0].stop();
-                GameGUI.wait(2.0);
+                GameGUI.wait(1.0);
             }
         }
         else if (false) // dealer.isStarting()
         {
-            // g2.drawRect(0, 0, );
+            // g2.fillRect(0, 0, );
         }
         else if (false) // dealer.isEnding()
         {
@@ -84,24 +91,27 @@ public class GamePanel extends JPanel
                 GameGUI.UNIT_SIZE);
             }
 
+            drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE * 3);
+
+            // Drawing the bet
             int stringWidth;
-            int stringHeight;
-            //Might be Comicbd.ttf
             g2.setColor(Color.BLACK);
             g2.setFont(comicSans);
+
             // g2.drawLine(GameGUI.GAME_PANEL_WIDTH / 2, 0, GameGUI.GAME_PANEL_WIDTH / 2, GameGUI.GAME_PANEL_HEIGHT); // Reference Lines
             // g2.drawLine(0, GameGUI.GAME_PANEL_WIDTH / 2, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_WIDTH / 2); // Reference Lines
+
             stringWidth = fontMetrics.stringWidth("BET");
-            System.out.println(stringWidth);
             g2.drawString("BET", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, GameGUI.UNIT_SIZE * 2);
             stringWidth = fontMetrics.stringWidth(dealer.getBet() + "");
-            stringHeight = fontMetrics.get // TODO FINISH THIS
-            System.out.println(stringWidth);
+            g2.setColor(Color.RED);
+            g2.fillRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 6, GameGUI.UNIT_SIZE - 30);
+            g2.setStroke(new BasicStroke(3));
+            g2.setColor(Color.BLACK);
+            g2.drawRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 6, GameGUI.UNIT_SIZE - 30);
             g2.drawString(dealer.getBet() + "", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 2.6));
-            g2.setColor(Color.YELLOW);
-            g2.drawRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 2.6), stringWidth * 3, );
         }
-        
+        g2.dispose();
     }
 
     private void drawPlayerHand(Graphics2D g2, int playerNumber, int x, int y)
@@ -115,9 +125,9 @@ public class GamePanel extends JPanel
         int i;
 
         // Drawing number cards
-        for (i = y; i < numberCardHand.size() * GameGUI.UNIT_SIZE; i += GameGUI.UNIT_SIZE)
+        for (i = y; i < y + numberCardHand.size() * GameGUI.UNIT_SIZE; i += GameGUI.UNIT_SIZE)
         {
-            currentNumberCard = numberCardHand.get(i / GameGUI.UNIT_SIZE);
+            currentNumberCard = numberCardHand.get((i - y) / GameGUI.UNIT_SIZE);
             if (currentNumberCard.getIsHidden())
             {
                 currentTile = GameGUI.NUMBER_CARD_TILES[12];
@@ -129,15 +139,21 @@ public class GamePanel extends JPanel
             g2.drawImage(currentTile.getImage(), x, i, GameGUI.UNIT_SIZE, 
                          GameGUI.UNIT_SIZE, null);
         }
+    }
 
-        // TODO Decide how the GameGUI will know what trump cards have been played (so it knows what the draw where)
-        // You could have dealer have two lists, one having player 1's played trump cards and two having player 2's played trump cards
+    private void drawTrumpCards(Graphics g2, int x, int y)
+    {
+        // ArrayList<TrumpCard> trumpCards = dealer.getTrumpCards();
+        ArrayList<TrumpCard> trumpCards = new ArrayList<>();
+        trumpCards.add(new TrumpCard(17, "gofor"));
+        trumpCards.add(new TrumpCard(24, "gofor")); // for testing purposes
+        TrumpCard currentTrumpCard;
+        Tile currentTile;
+        int i;
 
-        // Drawing trump cards
-        for ( ; i < numberCardHand.size() * GameGUI.UNIT_SIZE + 
-            trumpCardHand.size() * GameGUI.UNIT_SIZE; i += GameGUI.UNIT_SIZE)
+        for (i = y; i < y + trumpCards.size() * GameGUI.UNIT_SIZE; i += GameGUI.UNIT_SIZE)
         {
-            currentTrumpCard = trumpCardHand.get(i / GameGUI.UNIT_SIZE);
+            currentTrumpCard = trumpCards.get((i - y) / GameGUI.UNIT_SIZE);
             currentTile = GameGUI.TRUMP_CARD_TILES[GameGUI.getTrumpCardIndex(currentTrumpCard)];
             g2.drawImage(currentTile.getImage(), x, i, GameGUI.UNIT_SIZE, 
                          GameGUI.UNIT_SIZE, null);

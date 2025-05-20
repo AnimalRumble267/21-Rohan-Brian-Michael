@@ -37,18 +37,9 @@ public class PlayerPanel extends JPanel
         for (i = 0; i < numberCardHand.size() * GameGUI.UNIT_SIZE; i += GameGUI.UNIT_SIZE)
         {
             currentNumberCard = numberCardHand.get(i / GameGUI.UNIT_SIZE);
-            if (currentNumberCard.getIsHidden())
-            {
-                currentTile = GameGUI.NUMBER_CARD_TILES[11];
-                g2.drawImage(currentTile.getImage(), i, 0, GameGUI.UNIT_SIZE, 
-                             GameGUI.UNIT_SIZE, null);
-            }
-            else
-            {
-                currentTile = GameGUI.NUMBER_CARD_TILES[currentNumberCard.getValue() - 1];
-                g2.drawImage(currentTile.getImage(), i, 0, GameGUI.UNIT_SIZE, 
-                             GameGUI.UNIT_SIZE, null);
-            }
+            currentTile = GameGUI.NUMBER_CARD_TILES[currentNumberCard.getValue() - 1];
+            g2.drawImage(currentTile.getImage(), i, 0, GameGUI.UNIT_SIZE, 
+                         GameGUI.UNIT_SIZE, null);
         }
         // Drawing trump cards
         for ( ; i < numberCardHand.size() * GameGUI.UNIT_SIZE + 

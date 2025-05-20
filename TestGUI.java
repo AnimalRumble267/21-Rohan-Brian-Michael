@@ -206,6 +206,13 @@ public class TestGUI
         p2.updateHand(); */
     }
 
+    private static void soundTest()
+    {
+        Sound sound1 = new Sound("/sound/blast.wav");
+        sound1.loadSound();
+        sound1.play();
+    }
+
     public static void main(String[] args) 
     {
         gamePanelTest();
