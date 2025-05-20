@@ -1,7 +1,7 @@
 import java.util.Stack;
 import java.util.ArrayList;
-import java.awt.Point;
-
+import java.awt.*;
+import java.awt.event.*;
 /**
  * 
  * 
@@ -141,5 +141,23 @@ public class Player
         return name;
     }
 
+    public int getInput() {
+        MouseEvent input = playerGUI.nextMouseClick(playerNumber);
+        if (input.getButton() == 2) {
+            return 2; // STAND
+        }
+        else {
+            Point loc = input.getLocationOnScreen();
+            int trumpThreshold = GameGUI.UNIT_SIZE * 8 * numberCardHand.size();
+            if (loc.getX() > trumpThreshold) {
+                int numTrump = (int)(loc.getX() - trumpThreshold) / 8;
+                return 30 + numTrump; // TRUMP
+            }
+            else {
+                return 1; // HIT
+            }
+        }
+        
+    }
     // TODO ADD OTHER SIGNATURES
 }
