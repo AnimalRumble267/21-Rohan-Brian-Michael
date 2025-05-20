@@ -13,6 +13,7 @@ public class Dealer
     private int bet;
     private ArrayList<Player> players = new ArrayList<Player>();
     private boolean punishTracker = false;
+    private int goal = 21;
     /**
      * Assigns players, creates Decks
      * @param playerOne
@@ -60,9 +61,146 @@ public class Dealer
      */
     public int deal()
     {
+        numberCardDeck.shuffle();
+        trumpCardDeck.shuffle();
+        
+        // Give starting hand (2 Cards, 1 TC)
+        NumberCard muteCardOne = (NumberCard)numberCardDeck.draw();
+        muteCardOne.setIsHidden(true);
+        players.get(0).giveNumberCard(muteCardOne);
+        NumberCard muteCardTwo = (NumberCard)numberCardDeck.draw();
+        muteCardTwo.setIsHidden(true);
+        players.get(1).giveNumberCard(muteCardTwo);
+
+        NumberCard cardOne = (NumberCard)numberCardDeck.draw();
+        cardOne.setIsHidden(false);
+        players.get(0).giveNumberCard(cardOne);
+        NumberCard cardTwo = (NumberCard)numberCardDeck.draw();
+        cardTwo.setIsHidden(false);
+        players.get(1).giveNumberCard(cardTwo);
+
+        TrumpCard trumpCardOne = (TrumpCard)trumpCardDeck.draw();
+        players.get(0).giveTrumpCard(trumpCardOne);
+        TrumpCard trumpCardTwo = (TrumpCard)trumpCardDeck.draw();
+        players.get(1).giveTrumpCard(trumpCardTwo);
+
+        Player playerOne = players.get(0);
+        Player playerTwo = players.get(1);
+        
+
+        // Starting turn
+        if (Math.random() < 0.5) {
+            playerOne.setTurn(true);
+        }
+        else {
+            playerTwo.setTurn(true);
+        }
+
+        // Wait until both players stand
+        boolean bothStand = false;
+        int oneCode;
+        int twoCode;
+        while (bothStand == false) {
+            if (playerOne.isTurn()) {
+                oneCode = playerOne.getInput();
+                if (oneCode / 10 == 3) {
+                    while (oneCode / 10 == 3) {
+                        handleAction(playerOne, oneCode);
+                        oneCode = playerOne.getInput();
+                    }
+                }
+                else {
+                    handleAction(playerOne, oneCode);
+                }
+
+                playerOne.setTurn(false);
+                playerTwo.setTurn(true);
+
+                twoCode = playerTwo.getInput();
+                if (twoCode / 10 == 3) {
+                    while (twoCode / 10 == 3) {
+                        handleAction(playerTwo, twoCode);
+                        twoCode = playerTwo.getInput();
+                    }
+                }
+
+                playerOne.setTurn(true);
+                playerTwo.setTurn(false);
+
+            }
+            else {
+                twoCode = playerTwo.getInput();
+                if (twoCode / 10 == 3) {
+                    while (twoCode / 10 == 3) {
+                        handleAction(playerTwo, twoCode);
+                        twoCode = playerTwo.getInput();
+                    }
+                }
+
+                playerOne.setTurn(true);
+                playerTwo.setTurn(false);
+
+
+                oneCode = playerOne.getInput();
+                if (oneCode / 10 == 3) {
+                    while (oneCode / 10 == 3) {
+                        handleAction(playerOne, oneCode);
+                        oneCode = playerOne.getInput();
+                    }
+                }
+                else {
+                    handleAction(playerOne, oneCode);
+                }
+
+                playerOne.setTurn(false);
+                playerTwo.setTurn(true);
+                
+            }
+            if (twoCode == 2 && oneCode == 2) {
+                bothStand = true;
+            }
+        }
+        int valOne = playerOne.calculate();
+        int valTwo = playerTwo.calculate();
+        int distanceFromGoal1 = goal - valOne;
+        int distanceFromGoal2 = goal - valTwo;
+        if (valOne > goal && valTwo > goal) {
+            if (distanceFromGoal1  == distanceFromGoal2) {
+                return 0;
+            }
+            else if (distanceFromGoal1 < distanceFromGoal2) {
+                return 2;
+            }
+            else if (distanceFromGoal2 < distanceFromGoal1) {
+                return 1;
+            }
+        }
+        else if (valOne > goal) {
+            return 2;
+        }
+        else if (valTwo > goal) {
+            return 1;
+        }
+        else {
+            if (distanceFromGoal1 == distanceFromGoal2) {
+                return 0;
+            }
+            else if (distanceFromGoal1 < distanceFromGoal2) {
+                return 1;
+            }
+            else if (distanceFromGoal2 < distanceFromGoal1) {
+                return 2;
+            }
+        }
+        return 3; // ERROR
+        
+
+    }
+
+    
+    public int handleAction(Player activePlayer, int code) {
         return 0;
     }
-    
     public ArrayList<Player> getPlayers() {
         return players;
     }
