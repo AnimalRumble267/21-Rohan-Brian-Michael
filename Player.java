@@ -16,7 +16,7 @@ public class Player
     private boolean isAlive;
     
     private ArrayList<NumberCard> numberCardHand;
-    private int numberCardHand value;
+    private int value;
     
     private ArrayList<TrumpCard> trumpCardHand;
     
@@ -125,9 +125,10 @@ public class Player
      */
     public int calculate() {
         int temp = 0;
-        for (numberCard nC : numberCardHand) {
+        for (NumberCard nC : numberCardHand) {
             temp += nC.getValue();
         }
+        return temp;
     }
 
     
