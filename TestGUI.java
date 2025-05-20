@@ -166,13 +166,48 @@ public class TestGUI
         p2.setTurn(true);
         p1.startGUI();
         p2.startGUI();
+        p1.setFrameLocation(gameWindow.getX() - PlayerGUI.PLAYER_PANEL_WIDTH,
+        gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT));
+        p2.setFrameLocation(gameWindow.getX()  + gameWindow.getWidth(),
+        gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT));
         p1.giveNumberCard(new NumberCard(1, true));
         p1.giveNumberCard(new NumberCard(2, true));
         p1.updateHand();
+        p2.updateHand();
+    }
+
+    public static void gamePanelTest()
+    {
+        Player p1 = new Player("Aidan", 1);
+        Player p2 = new Player("Roy", 2);
+        p1.setTurn(true);
+        p2.setTurn(true);
+        p1.startGUI();
+        p2.startGUI();
+        /* p1.setFrameLocation(gameWindow.getX() - PlayerGUI.PLAYER_PANEL_WIDTH,
+        gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT));
+        p2.setFrameLocation(gameWindow.getX()  + gameWindow.getWidth(),
+        gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT)); */
+        Dealer dealer = new Dealer(p1, p2, 1);
+        GameGUI gameGUI = new GameGUI(dealer);
+        gameGUI.loadTiles();
+        gameGUI.start();
+        gameGUI.updateGameWindow();
+        /* JFrame gameWindow = new JFrame();
+        gameWindow.setSize(new Dimension(1000, 1000));
+        gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gameWindow.setLocationRelativeTo(null);
+        gameWindow.setTitle("Brian Lee");
+        gameWindow.setVisible(true); */
+
+        /* p1.giveNumberCard(new NumberCard(1, true));
+        p1.giveNumberCard(new NumberCard(2, true));
+        p1.updateHand();
+        p2.updateHand(); */
     }
 
     public static void main(String[] args) 
     {
-        playerPanelTest();
+        gamePanelTest();
     }    
 }

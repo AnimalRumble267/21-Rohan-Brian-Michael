@@ -32,6 +32,9 @@ public class GameGUI
                                                             "/images/trumpcards/trumpup2.png"};
     public static final Tile[] NUMBER_CARD_TILES = new Tile[12];
     public static final Tile[] TRUMP_CARD_TILES = new Tile[TRUMP_CARD_FILE_PATHS.length];
+    public static final Tile NERF_GUN_TILE = new Tile(UNIT_SIZE, UNIT_SIZE);
+    public static final Tile[] PLAYER_TILES = new Tile[2];
+
     private static boolean tilesLoaded = false;
     private boolean guiStarted = false;
 
@@ -98,9 +101,9 @@ public class GameGUI
             newTile.loadImage("/images/numbercards/numbercard" + (i + 1) + ".png");
             NUMBER_CARD_TILES[i] = newTile;
         }
-        newTile = new Tile(UNIT_SIZE, UNIT_SIZE);
-        newTile.loadImage("/images/numbercards/numbercardhidden.png");
-        NUMBER_CARD_TILES[11] = newTile;
+
+        NUMBER_CARD_TILES[11] = new Tile(UNIT_SIZE, UNIT_SIZE);
+        NUMBER_CARD_TILES[11].loadImage("/images/numbercards/numbercardhidden.png");
 
         // Loading numbercards
         for (int i = 0; i < TRUMP_CARD_FILE_PATHS.length; i++)
@@ -109,6 +112,15 @@ public class GameGUI
             newTile.loadImage(TRUMP_CARD_FILE_PATHS[i]);
             TRUMP_CARD_TILES[i] = newTile;
         }
+
+        NERF_GUN_TILE.loadImage("/images/nerfgun.png");
+
+        // TODO ADD THESE IMAGES TO THE PLAYER FOLDER
+        PLAYER_TILES[0] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
+        PLAYER_TILES[0].loadImage("/images/player/livingplayer.png");
+        PLAYER_TILES[1] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
+        //PLAYER_TILES[1].loadImage("/image/player/notlivingplayer.png");
+
         tilesLoaded = true;
     }
 
@@ -127,19 +139,37 @@ public class GameGUI
         return -1;
     }
 
+    // TODO static only for testing
     public static boolean tilesLoaded()
     {
         return tilesLoaded;
     }
 
+    // TODO static only for testing
     public static Tile[] getNumberCardTiles()
     {
         return NUMBER_CARD_TILES;
     }
 
+    // TODO static only for testing
     public static Tile[] getTrumpCardTiles()
     {
         return TRUMP_CARD_TILES;
+    }
+
+    public static void wait(double sec)
+    {
+        long currentTime = System.nanoTime();
+        long lastTime = currentTime;
+        long delta = 0;
+        double waitTime = sec * 1000000000L;
+
+        while (delta < waitTime)
+        {
+            currentTime = System.nanoTime();
+            delta += currentTime - lastTime;
+            lastTime = currentTime;
+        }
     }
 
     /* public static boolean pointInBounds(Point point, Component component)

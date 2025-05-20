@@ -1,5 +1,6 @@
 import java.util.Stack;
 import java.util.ArrayList;
+import java.awt.Point;
 
 /**
  * 
@@ -39,6 +40,16 @@ public class Player
     public void updateHand()
     {
         playerGUI.updateHand();
+    }
+
+    public void setFrameLocation(int x, int y)
+    {
+        playerGUI.setFrameLocation(x, y);
+    }
+
+    public void setFrameLocation(Point p)
+    {
+        playerGUI.setFrameLocation(p);
     }
 
     /**

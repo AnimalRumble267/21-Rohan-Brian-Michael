@@ -19,11 +19,6 @@ public class Tile
     private int tileWidth;
     private int tileHeight;
 
-    public Tile()
-    {
-        this(100, 100);
-    }
-
     public Tile(int width, int height)
     {
         tileWidth = width;

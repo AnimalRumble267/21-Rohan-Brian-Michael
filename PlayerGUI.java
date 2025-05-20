@@ -14,8 +14,8 @@ public class PlayerGUI
 {
 
     // These dimensions are required because images will be drawn 
-    private final int PLAYER_PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
-    private final int PLAYER_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 1;
+    public static final int PLAYER_PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
+    public static final int PLAYER_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 1 + 32;
 
     private Player player;
     private int playerNumber;
@@ -58,13 +58,14 @@ public class PlayerGUI
         frame.setResizable(false);
         frame.setTitle(player.getName() + "'s Hand");
         frame.setFocusable(true);
+        frame.setLocationRelativeTo(null);
         panel.setPreferredSize(new Dimension(PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT));
+        frame.setSize(new Dimension(PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT));
         panel.setDoubleBuffered(true);
         panel.setFocusable(true);
         panel.setVisible(false);      // Not visible yet
         frame.add(panel);
         frame.getContentPane().addMouseListener(listener);
-        frame.pack();
         frame.setVisible(false);       // Not visible yet
 
         /*
