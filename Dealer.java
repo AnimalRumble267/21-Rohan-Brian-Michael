@@ -83,7 +83,7 @@ public class Dealer
         }
 
         return false;
-        punishTrucker = false;
+        punishTracker = false;
     }
     
     public boolean getPunishStatus() {
