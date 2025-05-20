@@ -16,6 +16,7 @@ public class GamePanel extends JPanel
     private Player[] players;
     private Sound[] soundEffects;
     private Font comicSans = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE / 2);
+    private Color darkGreen = new Color()
 
     public GamePanel(Dealer d)
     {
@@ -36,17 +37,16 @@ public class GamePanel extends JPanel
         Graphics2D g2 = (Graphics2D)g;
         FontMetrics fontMetrics = g2.getFontMetrics();
         
-        g2.setColor(Color.DARK_GRAY);
+        g2.setColor(darkGreen);
         g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-        System.out.println("Made it to line 41");
-        GameGUI.wait(2.0);
+        System.out.println("Made it to here");
+        GameGUI.wait(10.0);
 
         // if the dealer is in the punishing stage, check each time if player is dead
         if (false) // dealer.isPunishing()
         {
             g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2,
                          GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
-            System.out.println("Made it to line 49");
 
             GameGUI.wait(2.0);
 
@@ -143,10 +143,8 @@ public class GamePanel extends JPanel
 
     private void drawTrumpCards(Graphics g2, int x, int y)
     {
-        // ArrayList<TrumpCard> trumpCards = dealer.getTrumpCards();
+        //ArrayList<TrumpCard> trumpCards = dealer.getTrumpCards();
         ArrayList<TrumpCard> trumpCards = new ArrayList<>();
-        trumpCards.add(new TrumpCard(17, "gofor"));
-        trumpCards.add(new TrumpCard(24, "gofor")); // for testing purposes
         TrumpCard currentTrumpCard;
         Tile currentTile;
         int i;
