@@ -115,10 +115,11 @@ public class Game
         // reset game will be handled in playerAction 
     }
 
-    public static int playerAction(Player player, int playerNumber, int action) {
+    public static int playerAction(Player player, int playerNumber, int action) 
+    {
         // note: selecting trump card does not end your turn
 
-        // 1 = endGame, 3 = drew a trump card, ask for another action
+        // 1 = end game, someone died; 2 = passed the turn; 3 = drew a trump card, ask for another action
         int temp = -1;
         
         
@@ -132,29 +133,34 @@ public class Game
                 boolean deathStatus = dealer.punish(player, dealer.getBet());
                 if (deathStatus) 
                 {
-                    resetGame();
+                    return 1;
                 }
             }
         }
 
-        else if (action == 2) {
+        else if (action == 2) 
+        {
             // stand: end player turn
             player.setTurn(false);
 
-            if (playerNumber == 1) {
+            if (playerNumber == 1)
+            {
                 player2.setTurn(true);
             }
-            else {
+                
+            else 
+            {
                 player1.setTurn(true);
-            }            
+            }
+
+            return 2;
         }
 
-        else {
+        else 
+        {
             int trumpCardIdentifer = action - 3; 
             // TODO do action based on trump card
-
-            return;
-            // ask again for action but this will just be done after this static method is called
+            return 3;
         }
     }
 
