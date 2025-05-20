@@ -32,22 +32,23 @@ public class Dealer
         numberCardDeck = new Deck(tempNumberDeck);
 
         ArrayList<Card> tempTrumpDeck = new ArrayList<Card>(0);
-        trumpCardDeck = new Deck(tempTrumpDeck);
         
         // add number trumps
         for (int j = 1; j < 8; j++) {
-            trumpCardDeck.add(new TrumpCard(j, "trumpDraw"));
+            trumpCardDeck.add(new TrumpCard(j, "trumpDraw")22);
         }
     
         // go for trumps
-        tempTrumpDeck.add(new TrumpCard(17 , "trumpgofor");
-        tempTrumpDeck.add(new TrumpCard(24 , "trumpgofor");
-        tempTrumpDeck.add(new TrumpCard(27 , "trumpgofor");
+        tempTrumpDeck.add(new TrumpCard(17 , "trumpgofor"));
+        tempTrumpDeck.add(new TrumpCard(24 , "trumpgofor"));
+        tempTrumpDeck.add(new TrumpCard(27 , "trumpgofor"));
 
         // bet trumps
-        tempTrumpDeck.add(new TrumpCard(1 , "trumpup");
-        tempTrumpDeck.add(new TrumpCard(2 , "trumpup");
+        tempTrumpDeck.add(new TrumpCard(1 , "trumpup"));
+        tempTrumpDeck.add(new TrumpCard(2 , "trumpup"));
 
+        trumpCardDeck = new Deck(tempTrumpDeck);
+        
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
         // have no implemented -- will test first
