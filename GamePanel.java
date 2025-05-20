@@ -16,7 +16,7 @@ public class GamePanel extends JPanel
     private Player[] players;
     private Sound[] soundEffects;
     private Font comicSans = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE / 2);
-    private Color darkGreen = new Color(25, 87, 30)
+    private Color darkGreen = new Color(25, 87, 30);
 
     public GamePanel(Dealer d)
     {
@@ -56,7 +56,7 @@ public class GamePanel extends JPanel
 
             GameGUI.wait(2.5);
 
-            if (false) // dealer.playerIsEliminated()
+            if (dealer.willDie())
             {
                 soundEffects[1].play();
                 GameGUI.wait(1.0);

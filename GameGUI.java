@@ -40,6 +40,7 @@ public class GameGUI
 
     private JFrame gameWindow;
     private GamePanel gamePanel;
+    private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
 
     public GameGUI(Dealer d)
@@ -63,7 +64,7 @@ public class GameGUI
         gameWindow.setTitle("21");
         gameWindow.setFocusable(true);
         gamePanel.setPreferredSize(new Dimension(GAME_PANEL_WIDTH, GAME_PANEL_HEIGHT));
-        gamePanel.setBackground(Color.DARK_GRAY);
+        gamePanel.setBackground(darkGreen);
         gamePanel.setDoubleBuffered(true);
         gamePanel.setFocusable(true);
         gamePanel.setVisible(true);

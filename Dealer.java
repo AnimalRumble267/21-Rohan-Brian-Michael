@@ -14,7 +14,10 @@ public class Dealer
     private ArrayList<Player> players = new ArrayList<Player>();
     private boolean punishTracker = false;
     private int goal = 21;
+    private boolean isPunishing = false;
     private boolean willDie = false;
+
+    private GameGUI gameGUI;
     /**
      * Assigns players, creates Decks
      * @param playerOne
@@ -36,7 +39,7 @@ public class Dealer
         
         // add number trumps
         for (int j = 1; j < 8; j++) {
-            trumpCardDeck.add(new TrumpCard(j, "trumpDraw")22);
+            tempTrumpDeck.add(new TrumpCard(j, "trumpDraw"));
         }
     
         // go for trumps
@@ -56,6 +59,7 @@ public class Dealer
         // trump cards that have not been implemented: bet (shieldPlus, bless, bloodshed, destroy, friendship, reincarnation)
         // AND the entirety of deck trumps
 
+        gameGUI = new GameGUI(this);
     }
     /**
      * Deals cards to Players and continues the round until a Player
@@ -233,6 +237,7 @@ public class Dealer
      */
     public boolean punish(Player playerNumber, int bet)
     { 
+        isPunishing = true;
         boolean result = false;
         boolean needToBreak = false;
         
@@ -247,7 +252,7 @@ public class Dealer
                 needToBreak = true;
             }
 
-            gameGUI.update();
+            gameGUI.updateGameWindow();
             
             if (needToBreak) {
                 break;
@@ -268,5 +273,10 @@ public class Dealer
     public boolean willDie() {
         return willDie;
     }    
+
+    public boolean isPunishing()
+    {
+        return isPunishing();
+    }
     
 }
