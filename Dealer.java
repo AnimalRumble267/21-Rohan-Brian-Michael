@@ -199,8 +199,13 @@ public class Dealer
     }
 
     
-    public int handleAction(Player activePlayer, int code) {
-        return 0;
+    public void handleAction(Player activePlayer, int code) {
+        if (code == 1) {
+            activePlayer.giveNumberCard((NumberCard) numberCardDeck.draw());
+        }
+        else if (code / 10 == 3) {
+            // TRUMP CARD LOGIC
+        }
     }
     public ArrayList<Player> getPlayers() {
         return players;
