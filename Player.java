@@ -13,6 +13,7 @@ public class Player
 {
     private String name;
     private boolean isTurn;
+    private boolean isAlive;
     private ArrayList<NumberCard> numberCardHand;
     private ArrayList<TrumpCard> trumpCardHand;
     private PlayerGUI playerGUI;
@@ -64,6 +65,16 @@ public class Player
     public void setTurn(boolean turn)
     {
         isTurn = turn;
+    }
+
+    public boolean isAlive()
+    {
+        return isAlive;
+    }
+
+    public void setAlive(boolean status) 
+    {
+        isAlive = status;
     }
 
     /**
