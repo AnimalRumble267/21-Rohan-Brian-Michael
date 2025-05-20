@@ -43,116 +43,17 @@ public class Game
         // very not done but will do this part last
         player1.startGUI();
         player2.startGUI();
+
         
     
         // Part 3; Game loop
-
-        // determinig order first
-
-        
-        if (Math.random() < 0.5) {
-            player1.setTurn(true);
-        }
-        else {
-            player2.setTurn(true);
-        }
         
         // check for who's alive, players' turns, then player action, in that order
         while (player1.isAlive() && player2.isAlive()) {
-            // first turn in one round
-
-            // 1 means player 1 went first, 2 means player 2 went first
-            int turnIndicator;
+            // for round: 0 is draw, 1 is player 1 wins, 2 is player 2 wins
+            int turnResult = deal();
             
-            // 1 = end game, someone died; 2 = passed the turn; 3 = drew a trump card, ask for another action
-            int returnerAction = -1;
-            
-            if (player1.isTurn) {
-                playerAction(player1, 1, dealer.getBet());
-                
-                turnIndicator = 1;
-            }
-            else {
-                playerAction(player2, 2, dealer.getBet());
-                turnIndicator = 2;
-            }
-
-            // check for punishment
-            if (returnerAction == 1) {
-                resetGame();
-            }
-                
-            else if (returnerAction == 3) {
-                if (turnIndicator == 1) {
-                    playerAction(player1, 1, dealer.getBet());
-                }
-                else { 
-                    playerAction(player2, 2, dealer.getBet());
-                }
-            }
-
-            //second turn in one round
-            if (turnIndicator == 1) {
-                playerAction(player2, 2, dealer.getBet());
-            }
-                
-            else {
-                playerAction(player1, 1, dealer.getBet());
-            }
-
-            // check for punishment
-            if (returnerAction == 1) {
-                resetGame();
-            }
-                
-            else if (returnerAction == 3) {
-                if (turnInicator == 1) {
-                    playerAction(player2, 2, dealer.getBet());
-                }
-                else { 
-                    playerAction(player1, 1, dealer.getBet());
-                }
-            }
-            
-        }
-    }
-
-    public static void playerAction(Player player, int playerNumber, int action) {
-        // note: selecting trump card does not end your turn
-        
-        if (action == 1) {
-            // hit: draw, calcaulte value, if it's over 21 run punishment
-            player.giveNumberCard(active); // TODO how to handle trump card...
-            player.update();
-            if (player.calcualte() > 21) {
-                boolean deathStatus = dealer.punish(player, dealer.getBet());
-                if (deathStatus) {
-                    returnerAction =  1;
-                }
-            }
-        }
-
-        else if (action == 2) {
-            // stand: end player turn
-            player.setTurn(false);
-
-            if (playerNumber == 1) {
-                player2.setTurn(true);
-            }
-                
-            else {
-                player1.setTurn(true);
-            }
-
-            returnerAction = 2;
-        }
-
-        else {
-            // TODO: activate the action for the trump card
-            int trumpCardIdentifer = action - 3; 
-
-            
-            returnerAction = 3;
+            // run punishment and if dead, update GUI and resetGame();
         }
     }
 
@@ -163,11 +64,11 @@ public class Game
 
         // this part will be converted to buttons/mouse click interface
         System.out.println("Player 1, do you wish to continue the game? (Y/N): ");
-        Char player1Choice = scanner.nextLine();
+        char player1Choice = scanner.nextChar();
         System.out.println("Player 2, do you wish to continue the game? (Y/N): "); 
-        Char player2Choice = scanner.nextLine();
+        char player2Choice = scanner.nextChar();
 
-        if ((player1Choice.equals(player2Choice)).equals("Y")) {
+        if ((player1Choice == player2Choice)) ==  'Y') {
             // TODO restart the game with the same names
         }
             

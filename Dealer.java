@@ -14,6 +14,7 @@ public class Dealer
     private ArrayList<Player> players = new ArrayList<Player>();
     private boolean punishTracker = false;
     private int goal = 21;
+    private boolean willDie = false;
     /**
      * Assigns players, creates Decks
      * @param playerOne
@@ -32,22 +33,23 @@ public class Dealer
         numberCardDeck = new Deck(tempNumberDeck);
 
         ArrayList<Card> tempTrumpDeck = new ArrayList<Card>(0);
-        trumpCardDeck = new Deck(tempTrumpDeck);
         
         // add number trumps
         for (int j = 1; j < 8; j++) {
-            trumpCardDeck.add(new TrumpCard(j, "trumpDraw"));
+            trumpCardDeck.add(new TrumpCard(j, "trumpDraw")22);
         }
     
         // go for trumps
-        tempTrumpDeck.add(new TrumpCard(17 , "trumpgofor");
-        tempTrumpDeck.add(new TrumpCard(24 , "trumpgofor");
-        tempTrumpDeck.add(new TrumpCard(27 , "trumpgofor");
+        tempTrumpDeck.add(new TrumpCard(17 , "trumpgofor"));
+        tempTrumpDeck.add(new TrumpCard(24 , "trumpgofor"));
+        tempTrumpDeck.add(new TrumpCard(27 , "trumpgofor"));
 
         // bet trumps
-        tempTrumpDeck.add(new TrumpCard(1 , "trumpup");
-        tempTrumpDeck.add(new TrumpCard(2 , "trumpup");
+        tempTrumpDeck.add(new TrumpCard(1 , "trumpup"));
+        tempTrumpDeck.add(new TrumpCard(2 , "trumpup"));
 
+        trumpCardDeck = new Deck(tempTrumpDeck);
+        
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
         // have no implemented -- will test first
@@ -198,8 +200,13 @@ public class Dealer
     }
 
     
-    public int handleAction(Player activePlayer, int code) {
-        return 0;
+    public void handleAction(Player activePlayer, int code) {
+        if (code == 1) {
+            activePlayer.giveNumberCard((NumberCard) numberCardDeck.draw());
+        }
+        else if (code / 10 == 3) {
+            // TRUMP CARD LOGIC
+        }
     }
     public ArrayList<Player> getPlayers() {
         return players;
@@ -225,9 +232,7 @@ public class Dealer
      * @return boolean if player will die
      */
     public boolean punish(Player playerNumber, int bet)
-    {
-        punishTracker = true;
-        gameGUI.update(); // address here w/ michaelLLLLLLLLLLLELLWELGWELGWEGNLKWEJLTLW:EJT L:WEL:GKKJWE:gj;lwkjEL;KJEWG
+    { 
         boolean result = false;
         boolean needToBreak = false;
         
@@ -237,11 +242,14 @@ public class Dealer
         for (int i = 0; i < bet; i++) {
             
             if (Math.random() < probability) {
+                willDie = true;
                 result = true;
                 needToBreak = true;
             }
+
+            gameGUI.update();
             
-            if (needToBreak = true) {
+            if (needToBreak) {
                 break;
             }
             
@@ -254,10 +262,11 @@ public class Dealer
         else {
             return false;  
         }
-    }
-    
-    public boolean getPunishStatus() {
-        return punishTracker;
+
     }
 
+    public boolean willDie() {
+        return willDie;
+    }    
+    
 }
