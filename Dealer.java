@@ -67,21 +67,36 @@ public class Dealer
      * @param bet
      * @return boolean if player will die
      */
-    public boolean punish(int bet)
+    public boolean punish(Player playerNumber, int bet)
     {
         punishTracker = true;
         gameGUI.update(); // address here w/ michaelLLLLLLLLLLLELLWELGWELGWEGNLKWEJLTLW:EJT L:WEL:GKKJWE:gj;lwkjEL;KJEWG
+        boolean result = false;
+        boolean needToBreak = false;
         
         int increment = 6;
         double probability = 1 / increment;
 
         for (int i = 0; i < bet; i++) {
+            
             if (Math.random() < probability) {
-                return true;
+                result = true;
+                needToBreak = true;
             }
+            
+            if (needToBreak = true) {
+                break;
+            }
+            
             increment--;
         }
 
+        if (result) {
+        }
+        else {
+            // you survive!
+            
+        }
         return false;
         punishTracker = false;
     }
