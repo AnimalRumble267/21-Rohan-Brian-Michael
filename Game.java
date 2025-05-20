@@ -70,14 +70,10 @@ public class Game
 
         // check for who's alive, players' turns, then player action, in that order
 
-        
+        while (
 
 
-        
-        
-
-        
-        
+            
 
 
         // Part 4: end of Game/restart
