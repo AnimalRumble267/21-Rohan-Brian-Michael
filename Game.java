@@ -172,6 +172,8 @@ public class Game
         else {
             // TODO: activate the action for the trump card
             int trumpCardIdentifer = action - 3; 
+
+            
             returnerAction = 3;
         }
     }
