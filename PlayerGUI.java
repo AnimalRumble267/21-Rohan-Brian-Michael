@@ -48,11 +48,11 @@ public class PlayerGUI
         frame = new JFrame();
         panel = new PlayerPanel(player);
         listener = new PlayerListener();
-        setUpWindow(playerNumber);
+        setUpWindow();
         guiStarted = true;
     }
 
-    private void setUpWindow(int playerNum)
+    private void setUpWindow()
     {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -67,21 +67,9 @@ public class PlayerGUI
         frame.add(panel);
         frame.getContentPane().addMouseListener(listener);
         frame.setVisible(false);       // Not visible yet
-
-        /*
-         * frame.setLocation(gameWindow.getX() - frame.getWidth() + ((playerNum - 1) * frame.getWidth() + (playerNum - 1) * gameWindow.getWidth()),
-                                gameWindow.getY() + (gameWindow.getHeight() - frame.getHeight()));
-         */
-    }
-
-    public void setFrameLocation(Point p)
-    {
-        frame.setLocation(p);
-    }
-
-    public void setFrameLocation(int x, int y)
-    {
-        frame.setLocation(x, y);
+        frame.setLocationRelativeTo(null);
+        frame.setLocation(GameGUI.GAME_PANEL_X - frame.getWidth() + ((playerNumber - 1) * frame.getWidth() + (playerNumber - 1) * GameGUI.GAME_PANEL_WIDTH),
+                          GameGUI.GAME_PANEL_Y + (GameGUI.GAME_PANEL_HEIGHT - frame.getHeight()));
     }
     
     /**
@@ -93,7 +81,7 @@ public class PlayerGUI
     {
         if (!guiStarted)
         {
-            System.out.println("ERROR: Must start GUI first");
+            System.out.println("ERROR: Must start GUI first - updateHand()");
             return;
         }
 
@@ -144,26 +132,6 @@ public class PlayerGUI
     } */
 
     /**
-     * Displays a card, with number value visible, being delt to the player.
-     * @param card
-     */
-    public void dealCardAnimation(Card card)
-    {
-
-    }
-
-    /**
-     * Displays the punishment for the player at the end of a round.
-     * The screen will go black, then play a sound based on if the player
-     * was hit or not, then cut back to the player being hit or not hit
-     * @param bet
-     */
-    public void punishAnimation(boolean dead)
-    {
-        
-    }
-
-    /**
      * Will wait until a point is clicked on the screen. Checks 30 times
      * per second. Returns the mouse event received from the listener.
      * @return the mouse event (can return which mouse button was pressed)
@@ -175,6 +143,6 @@ public class PlayerGUI
             System.out.println("ERROR: Must start GUI first");
             return null;
         }
-        return panel.nextMouseClick(); // TODO Make it so that PlayerGUI returns the mouseEvent and not just the point so that we can detect hit/stand
+        return panel.nextMouseClick();
     }
 }

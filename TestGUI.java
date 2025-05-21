@@ -132,7 +132,7 @@ public class TestGUI
         tile2.loadImage("/images/sample.png");
         tile3.loadImage("/images/sample.png");
 
-        GameGUI.loadTiles();
+        // GameGUI.loadTiles();
 
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -153,7 +153,7 @@ public class TestGUI
 
     public static void playerPanelTest()
     {
-        GameGUI.loadTiles();
+        // GameGUI.loadTiles();
         JFrame gameWindow = new JFrame();
         gameWindow.setSize(new Dimension(1000, 1000));
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,10 +166,10 @@ public class TestGUI
         p2.setTurn(true);
         p1.startGUI();
         p2.startGUI();
-        p1.setFrameLocation(gameWindow.getX() - PlayerGUI.PLAYER_PANEL_WIDTH,
+/*         p1.setFrameLocation(gameWindow.getX() - PlayerGUI.PLAYER_PANEL_WIDTH,
         gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT));
         p2.setFrameLocation(gameWindow.getX()  + gameWindow.getWidth(),
-        gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT));
+        gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT)); */
         p1.giveNumberCard(new NumberCard(1, true));
         p1.giveNumberCard(new NumberCard(2, true));
         p1.updateHand();
@@ -180,19 +180,26 @@ public class TestGUI
     {
         Player p1 = new Player("Aidan", 1);
         Player p2 = new Player("Roy", 2);
+        Dealer dealer = new Dealer(p1, p2, 1);
+        dealer.startGUI();
+        p1.giveNumberCard(new NumberCard(1, true));
+        p1.giveNumberCard(new NumberCard(2, false));
+        p1.giveTrumpCard(new TrumpCard(17, "gofor"));
+        p2.giveNumberCard(new NumberCard(10, true));
+        p2.giveNumberCard(new NumberCard(11, false));
+        p2.giveNumberCard(new NumberCard(4, false));
         p1.setTurn(true);
         p2.setTurn(true);
         p1.startGUI();
         p2.startGUI();
+        p1.updateHand();
+        p2.updateHand();
+        dealer.updateGameWindow();
         /* p1.setFrameLocation(gameWindow.getX() - PlayerGUI.PLAYER_PANEL_WIDTH,
         gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT));
         p2.setFrameLocation(gameWindow.getX()  + gameWindow.getWidth(),
         gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT)); */
-        Dealer dealer = new Dealer(p1, p2, 1);
-        GameGUI gameGUI = new GameGUI(dealer);
-        gameGUI.loadTiles();
-        gameGUI.start();
-        gameGUI.updateGameWindow();
+        
         /* JFrame gameWindow = new JFrame();
         gameWindow.setSize(new Dimension(1000, 1000));
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

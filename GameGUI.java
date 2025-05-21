@@ -15,8 +15,18 @@ public class GameGUI
     public static final int ORIGINAL_TILE_SIZE = 32;
     public static final int SCALE = 3;
     public static final int UNIT_SIZE = ORIGINAL_TILE_SIZE * SCALE;
-    public static final int GAME_PANEL_WIDTH = GameGUI.UNIT_SIZE * 10;
-    public static final int GAME_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 10;
+    public static final int GAME_PANEL_WIDTH = GameGUI.UNIT_SIZE * 9;
+    public static final int GAME_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 9;
+
+    // TODO MUST UPDATE MONITOR DIMENSIONS IN "DisplayInformation.txt" BEFORE YOU START THE GAME
+    /* private static Scanner scan = new Scanner("DisplayInformation.txt");
+    private static final int MONITOR_WIDTH = scan.nextInt();
+    private static final int MONITOR_HEIGHT = scan.nextInt(); */
+
+    private static int x;
+    private static int y;
+    public static final int GAME_PANEL_X = x;
+    public static final int GAME_PANEL_Y = y;
 
     private static final String[] TRUMP_CARD_FILE_PATHS =  {"/images/trumpcards/trumpdraw2.png", 
                                                             "/images/trumpcards/trumpdraw3.png",
@@ -35,7 +45,6 @@ public class GameGUI
     public static final Tile NERF_GUN_TILE = new Tile(UNIT_SIZE, UNIT_SIZE);
     public static final Tile[] PLAYER_TILES = new Tile[2];
 
-    private static boolean tilesLoaded = false;
     private boolean guiStarted = false;
 
     private JFrame gameWindow;
@@ -48,6 +57,13 @@ public class GameGUI
         gameWindow = new JFrame();
         gamePanel = new GamePanel(d);
         dealer = d;
+
+        // Finding the position of the game window
+        gameWindow.setLocationRelativeTo(null);
+        x = gameWindow.getX();
+        y = gameWindow.getY();
+        System.out.println("x: " + x);
+        System.out.println("y: " + y);
     }
 
     public void start()
@@ -72,27 +88,20 @@ public class GameGUI
         gameWindow.pack();
         gameWindow.setLocationRelativeTo(null);
         gameWindow.setVisible(true);
-        
     }
 
     public void updateGameWindow()
     {
         if (!guiStarted)
         {
-            System.out.println("ERROL: Must start GUI first");
+            System.out.println("ERROR: Must start GUI first - updateGameWindow()");
             return;
         }
         gamePanel.repaint();
     }
 
-    // TODO this is static only for testing purposes
-    public static void loadTiles()
+    public void loadTiles()
     {
-        if (tilesLoaded)
-        {
-            return;
-        }
-
         Tile newTile;
 
         // Loading numbercards;
@@ -106,7 +115,7 @@ public class GameGUI
         NUMBER_CARD_TILES[11] = new Tile(UNIT_SIZE, UNIT_SIZE);
         NUMBER_CARD_TILES[11].loadImage("/images/numbercards/numbercardhidden.png");
 
-        // Loading numbercards
+        // Loading trumpcards
         for (int i = 0; i < TRUMP_CARD_FILE_PATHS.length; i++)
         {
             newTile = new Tile(UNIT_SIZE, UNIT_SIZE);
@@ -121,8 +130,6 @@ public class GameGUI
         PLAYER_TILES[0].loadImage("/images/player/livingplayer.png");
         PLAYER_TILES[1] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
         //PLAYER_TILES[1].loadImage("/image/player/notlivingplayer.png");
-
-        tilesLoaded = true;
     }
 
     public static int getTrumpCardIndex(TrumpCard trumpCard)
@@ -138,24 +145,6 @@ public class GameGUI
             }
         }
         return -1;
-    }
-
-    // TODO static only for testing
-    public static boolean tilesLoaded()
-    {
-        return tilesLoaded;
-    }
-
-    // TODO static only for testing
-    public static Tile[] getNumberCardTiles()
-    {
-        return NUMBER_CARD_TILES;
-    }
-
-    // TODO static only for testing
-    public static Tile[] getTrumpCardTiles()
-    {
-        return TRUMP_CARD_TILES;
     }
 
     public static void wait(double sec)

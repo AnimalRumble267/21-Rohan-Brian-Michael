@@ -61,6 +61,17 @@ public class Dealer
 
         gameGUI = new GameGUI(this);
     }
+
+    public void startGUI()
+    {
+        gameGUI.start();
+    }
+
+    public void updateGameWindow()
+    {
+        gameGUI.updateGameWindow();
+    }
+
     /**
      * Deals cards to Players and continues the round until a Player
      * 

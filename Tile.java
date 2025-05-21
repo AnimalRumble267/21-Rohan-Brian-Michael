@@ -35,6 +35,7 @@ public class Tile
         catch (IOException e)
         {
             e.printStackTrace();
+            System.out.println("ERROR - loadImage(" + filePath + ")");
         }
     }
 
