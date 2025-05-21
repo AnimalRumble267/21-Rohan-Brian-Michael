@@ -51,7 +51,7 @@ public class Game
         // check for who's alive, players' turns, then player action, in that order
         while (player1.isAlive() && player2.isAlive()) {
             // for round: 0 is draw, 1 is player 1 wins, 2 is player 2 wins
-            int turnResult = deal();
+            int turnResult = dealer.deal();
             
             // run punishment and if dead, update GUI and resetGame();
         }
