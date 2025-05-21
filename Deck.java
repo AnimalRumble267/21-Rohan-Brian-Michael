@@ -12,11 +12,14 @@ public class Deck
     private ArrayList<Card> idleDeck;
     private LinkedList<Card> activeDeck;
 
-    public Deck(ArrayList<Card> i) {
+    public Deck(ArrayList<Card> i) 
+    {
         idleDeck = i;
+        activeDeck = new LinkedList<Card>();
     }
 
-    public void shuffle() {
+    public void shuffle() 
+    {
         activeDeck.clear();
         for (int i = 0; i < idleDeck.size(); i++) {
             activeDeck.add(idleDeck.get(i));
@@ -24,7 +27,8 @@ public class Deck
         Collections.shuffle(activeDeck, new Random(555));
     }
 
-    public Card draw() {
+    public Card draw() 
+    {
         if (activeDeck.isEmpty()) {
             return null;
         }

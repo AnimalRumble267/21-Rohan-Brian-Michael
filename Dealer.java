@@ -14,7 +14,7 @@ public class Dealer
     private ArrayList<Player> players = new ArrayList<Player>();
     private boolean punishTracker = false;
     private int goal = 21;
-    private boolean isPunishing = false;
+    private int status = 1; // TODO defaults to 1 for testing purposes, should be 0
     private boolean willDie = false;
 
     private GameGUI gameGUI;
@@ -67,6 +67,7 @@ public class Dealer
      */
     public int deal()
     {
+        status = 1;
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
         
@@ -237,7 +238,7 @@ public class Dealer
      */
     public boolean punish(Player playerNumber, int bet)
     { 
-        isPunishing = true;
+        status = 2;
         boolean result = false;
         boolean needToBreak = false;
         
@@ -270,13 +271,21 @@ public class Dealer
 
     }
 
-    public boolean willDie() {
+    public boolean playerWillDie() {
         return willDie;
     }    
 
-    public boolean isPunishing()
+    /**
+     * Returns the current status of the dealer.
+     * 0 = starting game
+     * 1 = playing the game normally
+     * 2 = punishing a player
+     * 3 = ending game
+     * @return the current status
+     */
+    public int getStatus()
     {
-        return isPunishing();
+        return status;
     }
     
 }
