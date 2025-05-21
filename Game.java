@@ -62,13 +62,15 @@ public class Game
     public static void resetGame() {
         // assumption that at least one round has begun so interface has already been instantiated
 
+        Scanner scanner = new Scanner(System.in);
+
         // this part will be converted to buttons/mouse click interface
         System.out.println("Player 1, do you wish to continue the game? (Y/N): ");
-        char player1Choice = scanner.nextChar();
+        String player1Choice = scanner.nextLine();
         System.out.println("Player 2, do you wish to continue the game? (Y/N): "); 
-        char player2Choice = scanner.nextChar();
+        String player2Choice = scanner.nextLine();
 
-        if ((player1Choice == player2Choice)) ==  'Y') {
+        if ((player1Choice.equals(player2Choice)) && (player1Choice.equals("Y"))) {
             // TODO restart the game with the same names
         }
             
