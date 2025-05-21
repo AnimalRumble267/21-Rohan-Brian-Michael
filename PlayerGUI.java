@@ -68,8 +68,16 @@ public class PlayerGUI
         frame.getContentPane().addMouseListener(listener);
         frame.setVisible(false);       // Not visible yet
         frame.setLocationRelativeTo(null);
-        frame.setLocation(GameGUI.GAME_PANEL_X - frame.getWidth() + ((playerNumber - 1) * frame.getWidth() + (playerNumber - 1) * GameGUI.GAME_PANEL_WIDTH),
-                          GameGUI.GAME_PANEL_Y + (GameGUI.GAME_PANEL_HEIGHT - frame.getHeight()));
+    }
+
+    public void setFrameLocation(int x, int y)
+    {
+        if (!guiStarted)
+        {
+            System.out.println("ERROR: Must start GUI first - setFrameLocation(int x, int y)");
+            return;
+        }
+        frame.setLocation(x, y);
     }
     
     /**

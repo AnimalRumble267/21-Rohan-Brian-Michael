@@ -14,7 +14,7 @@ public class Dealer
     private ArrayList<Player> players = new ArrayList<Player>();
     private boolean punishTracker = false;
     private int goal = 21;
-    private int status = 1; // TODO defaults to 1 for testing purposes, should be 0
+    private int status = 1; // TODO defaults to 4 for testing purposes, should be 0
     private boolean willDie = false;
 
     private GameGUI gameGUI;
@@ -70,6 +70,16 @@ public class Dealer
     public void updateGameWindow()
     {
         gameGUI.updateGameWindow();
+    }
+
+    public int getGameWindowX()
+    {
+        return gameGUI.getGameWindowX();
+    }
+
+    public int getGameWindowY()
+    {
+        return gameGUI.getGameWindowY();
     }
 
     /**

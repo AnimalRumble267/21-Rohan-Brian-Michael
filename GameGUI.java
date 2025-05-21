@@ -23,11 +23,6 @@ public class GameGUI
     private static final int MONITOR_WIDTH = scan.nextInt();
     private static final int MONITOR_HEIGHT = scan.nextInt(); */
 
-    private static int x;
-    private static int y;
-    public static final int GAME_PANEL_X = x;
-    public static final int GAME_PANEL_Y = y;
-
     private static final String[] TRUMP_CARD_FILE_PATHS =  {"/images/trumpcards/trumpdraw2.png", 
                                                             "/images/trumpcards/trumpdraw3.png",
                                                             "/images/trumpcards/trumpdraw4.png",
@@ -57,13 +52,6 @@ public class GameGUI
         gameWindow = new JFrame();
         gamePanel = new GamePanel(d);
         dealer = d;
-
-        // Finding the position of the game window
-        gameWindow.setLocationRelativeTo(null);
-        x = gameWindow.getX();
-        y = gameWindow.getY();
-        System.out.println("x: " + x);
-        System.out.println("y: " + y);
     }
 
     public void start()
@@ -160,6 +148,16 @@ public class GameGUI
             delta += currentTime - lastTime;
             lastTime = currentTime;
         }
+    }
+
+    public int getGameWindowX()
+    {
+        return gameWindow.getX();
+    }
+
+    public int getGameWindowY()
+    {
+        return gameWindow.getY();
     }
 
     /* public static boolean pointInBounds(Point point, Component component)

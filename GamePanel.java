@@ -17,6 +17,7 @@ public class GamePanel extends JPanel
     private Sound[] soundEffects;
     private Font comicSansHalf = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE / 2);
     private Font comicSansFull = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE);
+    private Font timesNewRomanFull = new Font("Times New Roman", Font.BOLD, GameGUI.UNIT_SIZE * 4);
     private Color darkGreen = new Color(25, 87, 30);
     private Color brown = new Color(79, 59, 52);
     private BasicStroke border = new BasicStroke(5);
@@ -40,13 +41,15 @@ public class GamePanel extends JPanel
         Graphics2D g2 = (Graphics2D)g;
         FontMetrics fontMetrics = g2.getFontMetrics();
         
-        g2.setColor(darkGreen);
+        g2.setColor(Color.DARK_GRAY);
         g2.drawRect(0, 0, this.getWidth(), this.getHeight());
         g2.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         // if the dealer is playing the game normally
         if (dealer.getStatus() == 1)
         {
+            g2.setColor(darkGreen);
+            g2.fillRect(0, 0, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_HEIGHT);
             int playerCardX;
             int playerCardY;
             for (int i = 0; i < 2; i++)
@@ -55,28 +58,21 @@ public class GamePanel extends JPanel
                 playerCardX = (int)(GameGUI.UNIT_SIZE * 1.5) + (i * (int)(-GameGUI.UNIT_SIZE * 1.5) + 
                               i * (GameGUI.GAME_PANEL_WIDTH - (int)(2.5 * GameGUI.UNIT_SIZE)));
                 playerCardY = (int)(GameGUI.UNIT_SIZE * 2.4);
-                g2.setColor(brown);
-                g2.fillRect(playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8,
-                            (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.125) + 
+                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8, (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.125) + 
                             GameGUI.UNIT_SIZE * players[i].getNumberCardHand().size() + 
-                            (int)(GameGUI.UNIT_SIZE * 0.125));
-                g2.setColor(Color.BLACK);
-                g2.setStroke(border);
-                g2.drawRect(playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8,
-                            (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.125) + 
-                            GameGUI.UNIT_SIZE * players[i].getNumberCardHand().size() + 
-                            (int)(GameGUI.UNIT_SIZE * 0.125));
+                            (int)(GameGUI.UNIT_SIZE * 0.125), brown, Color.BLACK);
                 drawPlayerHand(g2, i + 1, playerCardX, playerCardY);
 
                 // Drawing player profile pictures + background
-                g2.setColor(Color.DARK_GRAY);
+                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7), (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 1.25), Color.DARK_GRAY, Color.BLACK);
+                /* g2.setColor(Color.DARK_GRAY);
                 g2.fillRect(playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7), (int)(GameGUI.UNIT_SIZE * 1.25),
                             (int)(GameGUI.UNIT_SIZE * 1.25));
                 g2.setColor(Color.BLACK);
                 g2.drawRect(playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7), (int)(GameGUI.UNIT_SIZE * 1.25),
                             (int)(GameGUI.UNIT_SIZE * 1.25));
                 g2.drawImage(GameGUI.PLAYER_TILES[0].getImage(), playerCardX, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
-                             GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
+                             GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null); */
             }
 
             // Drawing trump cards that have been played
@@ -142,7 +138,14 @@ public class GamePanel extends JPanel
         // if the dealer is starting the game
         else if (dealer.getStatus() == 0)
         {
-            // g2.fillRect(0, 0, );
+            g2.setColor(Color.DARK_GRAY);
+            g2.fillRect(0, 0, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_HEIGHT);
+
+            int stringWidth;
+            g2.setColor(Color.RED);
+            g2.setFont(comicSansFull);
+            stringWidth = fontMetrics.stringWidth("21");
+            g2.drawString("21", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 3));
         }
         // if the dealer is ending the game
         else if (dealer.getStatus() == 3)
@@ -198,5 +201,14 @@ public class GamePanel extends JPanel
             g2.drawImage(currentTile.getImage(), x, i, GameGUI.UNIT_SIZE, 
                          GameGUI.UNIT_SIZE, null);
         }
+    }
+
+    private void drawRectWithBorder(Graphics2D g2, int x, int y, int width, int height, Color fillColor, Color borderColor)
+    {
+        g2.setColor(fillColor);
+        g2.fillRect(x, y, width, height);
+        g2.setStroke(border);
+        g2.setColor(borderColor);
+        g2.drawRect(x, y, width, height);
     }
 }

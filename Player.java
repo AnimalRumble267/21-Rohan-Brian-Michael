@@ -47,6 +47,11 @@ public class Player
         playerGUI.updateHand();
     }
 
+    public void setFrameLocation(int x, int y)
+    {
+        playerGUI.setFrameLocation(x, y);
+    }
+
     /**
      * returns whether or not it is object player's turn
      * @return boolean isTurn
