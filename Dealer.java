@@ -13,7 +13,7 @@ public class Dealer
     private int bet;
     private ArrayList<Player> players = new ArrayList<Player>();
     private int goal = 21;
-    private int status = 3; // TODO defaults to a number other than 0 for testing purposes, should be 0
+    private int status = 3; // TODO Make 0
     private int punishStatus = 0;
     private boolean playerWillBeEliminated = false;
     private ArrayList<TrumpCard> cache;
@@ -289,7 +289,7 @@ public class Dealer
         double probability = 1.0 / increment;
 
         for (int i = 0; i < bet; i++) {
-            
+            probability = 1.0 / increment;
             punishStatus = 1;
             gameGUI.updateGameWindow();
 
