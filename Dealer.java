@@ -16,7 +16,7 @@ public class Dealer
     private int status = 3; // TODO defaults to a number other than 0 for testing purposes, should be 0
     private int punishStatus = 0;
     private boolean playerWillBeEliminated = false;
-
+    private ArrayList<TrumpCard> cache;
     private GameGUI gameGUI;
     /**
      * Assigns players, creates Decks
@@ -39,7 +39,7 @@ public class Dealer
         numberCardDeck = new Deck(tempNumberDeck);
 
         ArrayList<Card> tempTrumpDeck = new ArrayList<Card>(0);
-        
+        cache = new ArrayList<TrumpCard>();
         // add number trumps
         for (int j = 1; j < 8; j++) {
             tempTrumpDeck.add(new TrumpCard(j, "trumpDraw"));
@@ -242,7 +242,7 @@ public class Dealer
             activePlayer.giveNumberCard((NumberCard) numberCardDeck.draw());
         }
         else if (code / 10 == 3) {
-            // TRUMP CARD LOGIC
+            //
         }
     }
     public ArrayList<Player> getPlayers() {
