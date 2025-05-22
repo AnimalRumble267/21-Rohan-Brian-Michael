@@ -188,8 +188,8 @@ public class TestGUI
         p2.giveNumberCard(new NumberCard(10, true));
         p2.giveNumberCard(new NumberCard(11, false));
         p2.giveNumberCard(new NumberCard(4, false));
-        p1.setTurn(false);
-        p2.setTurn(false);
+        p1.setTurn(true);
+        p2.setTurn(true);
         p1.startGUI();
         p2.startGUI();
         p1.setFrameLocation(dealer.getGameWindowX() - PlayerGUI.PLAYER_PANEL_WIDTH, 

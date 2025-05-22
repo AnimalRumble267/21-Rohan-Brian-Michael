@@ -58,44 +58,42 @@ public class GamePanel extends JPanel
                 playerCardX = (int)(GameGUI.UNIT_SIZE * 1.5) + (i * (int)(-GameGUI.UNIT_SIZE * 1.5) + 
                               i * (GameGUI.GAME_PANEL_WIDTH - (int)(2.5 * GameGUI.UNIT_SIZE)));
                 playerCardY = (int)(GameGUI.UNIT_SIZE * 2.4);
-                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8, (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.125) + 
-                            GameGUI.UNIT_SIZE * players[i].getNumberCardHand().size() + 
-                            (int)(GameGUI.UNIT_SIZE * 0.125), brown, Color.BLACK);
+                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8,
+                                   (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.125) + 
+                                   GameGUI.UNIT_SIZE * players[i].getNumberCardHand().size() + 
+                                   (int)(GameGUI.UNIT_SIZE * 0.125), brown, Color.BLACK);
                 drawPlayerHand(g2, i + 1, playerCardX, playerCardY);
 
                 // Drawing player profile pictures + background
-                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7), (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 1.25), Color.DARK_GRAY, Color.BLACK);
-                /* g2.setColor(Color.DARK_GRAY);
-                g2.fillRect(playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7), (int)(GameGUI.UNIT_SIZE * 1.25),
-                            (int)(GameGUI.UNIT_SIZE * 1.25));
-                g2.setColor(Color.BLACK);
-                g2.drawRect(playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7), (int)(GameGUI.UNIT_SIZE * 1.25),
-                            (int)(GameGUI.UNIT_SIZE * 1.25));
+                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
+                                   (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 1.25), 
+                                   Color.DARK_GRAY, Color.BLACK);
                 g2.drawImage(GameGUI.PLAYER_TILES[0].getImage(), playerCardX, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
-                             GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null); */
+                             GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
             }
 
             // Drawing trump cards that have been played
-            drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE * 3 - 10);
+            // TODO CHANGE AFTER TESTING IS DONE
+            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3) - GameGUI.UNIT_SIZE / 8,
+                               (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.25) + GameGUI.UNIT_SIZE * 2 + 
+                               (int)(GameGUI.UNIT_SIZE * 0.25), Color.RED, Color.BLACK);
+            /* drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3) - GameGUI.UNIT_SIZE / 8,
+                               (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.25) + GameGUI.UNIT_SIZE * dealer.getTrumpCards().size() + 
+                               (int)(GameGUI.UNIT_SIZE * 0.25), Color.RED, Color.BLACK); */
+            drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3));
 
             // Drawing the bet
             int stringWidth;
             g2.setColor(Color.BLACK);
             g2.setFont(comicSansHalf);
             stringWidth = fontMetrics.stringWidth("BET");
-            g2.setColor(brown);
-            g2.fillRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 4, (int)(GameGUI.UNIT_SIZE * 1.4), stringWidth * 8, (int)(GameGUI.UNIT_SIZE * 0.7));
-            g2.setStroke(border);
-            g2.setColor(Color.BLACK);
-            g2.drawRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 4, (int)(GameGUI.UNIT_SIZE * 1.4), stringWidth * 8, (int)(GameGUI.UNIT_SIZE * 0.7));
+            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 4, (int)(GameGUI.UNIT_SIZE * 1.4), stringWidth * 8,
+                               (int)(GameGUI.UNIT_SIZE * 0.7), brown, Color.BLACK);
             g2.drawString("BET", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 1.9));
             stringWidth = fontMetrics.stringWidth(dealer.getBet() + "");
-            g2.setColor(Color.YELLOW);
-            g2.fillRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 9, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 18, GameGUI.UNIT_SIZE - 30);
-            g2.setColor(Color.BLACK);
-            g2.drawRect(GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 9, (int)(GameGUI.UNIT_SIZE * 2.1), stringWidth * 18, GameGUI.UNIT_SIZE - 30);
+            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 9, (int)(GameGUI.UNIT_SIZE * 2.1), 
+                               stringWidth * 18, GameGUI.UNIT_SIZE - 30, Color.YELLOW, Color.BLACK);
             g2.drawString(dealer.getBet() + "", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 2.6));
-
         }
         // if the dealer is punishing a player
         else if (dealer.getStatus() == 2)
@@ -103,11 +101,13 @@ public class GamePanel extends JPanel
             // Drawing the NERF gun
             g2.setStroke(border);
             g2.setColor(brown);
-            g2.fillArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
+            g2.fillArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, 
+                       (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
             g2.setColor(Color.BLACK);
-            g2.drawArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
-            g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE / 2, this.getHeight() / 2 - GameGUI.UNIT_SIZE / 2,
-                         GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
+            g2.drawArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, 
+                       (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
+            g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE / 2, 
+                         this.getHeight() / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
             GameGUI.wait(2.0);
 
             // Paints the screen completely black
@@ -190,6 +190,8 @@ public class GamePanel extends JPanel
     {
         //ArrayList<TrumpCard> trumpCards = dealer.getTrumpCards();
         ArrayList<TrumpCard> trumpCards = new ArrayList<>();
+        trumpCards.add(new TrumpCard(17, "gofor"));
+        trumpCards.add(new TrumpCard(2, "draw"));
         TrumpCard currentTrumpCard;
         Tile currentTile;
         int i;
