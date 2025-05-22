@@ -161,4 +161,14 @@ public class GameGUI
     {
         return gameWindow.getY();
     }
+
+    public MouseEvent nextMouseClick()
+    {
+        if (!guiStarted)
+        {
+            System.out.println("ERROR: Must start GUI first");
+            return null;
+        }
+        return gamePanel.nextMouseClick();
+    }
 }

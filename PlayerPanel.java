@@ -42,7 +42,7 @@ public class PlayerPanel extends JPanel
         {
             currentNumberCard = numberCardHand.get(i / GameGUI.UNIT_SIZE);
             currentTile = GameGUI.NUMBER_CARD_TILES[currentNumberCard.getValue() - 1];
-            g2.drawImage(currentTile.getImage(), i, 0, GameGUI.UNIT_SIZE, 
+            g2.drawImage(currentTile.getImage(), i, this.getHeight() / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE, 
                          GameGUI.UNIT_SIZE, null);
         }
         // Drawing trump cards
