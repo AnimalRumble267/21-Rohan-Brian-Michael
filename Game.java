@@ -78,7 +78,6 @@ public class Game
             // TODO boot everyone out and return to start of game interface
         }
     }
-
 }
 
 

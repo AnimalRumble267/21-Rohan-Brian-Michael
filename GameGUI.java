@@ -159,10 +159,4 @@ public class GameGUI
     {
         return gameWindow.getY();
     }
-
-    /* public static boolean pointInBounds(Point point, Component component)
-    {
-        return ((point.getX() >= 0 && point.getX() < component.getWidth()) &&
-                 point.getY() >= 0 && point.getY() < component.getHeight());
-    } */
 }
