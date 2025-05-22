@@ -23,6 +23,7 @@ public class Game
     
 
     private static Dealer dealer = new Dealer(player1, player2, 1);
+    private static Dealer tempDealer = dealer;
 
     public static void main(String[] args)
     {
@@ -35,8 +36,6 @@ public class Game
         player2name = scanner.nextLine(); 
      
         // Part 2: build start of game interface (GUI stuff)
-
-        // very not done but will do this part last
         player1.startGUI();
         player2.startGUI();
         
@@ -49,12 +48,12 @@ public class Game
             // 2 = player 2 wins
             // 3 = error
 
-            int turnResult = dealer.deal();
+            int turnResult = tempDealer.deal();
 
             // run punishment and if dead, update GUI and resetGame()
 
             if (turnResult == 1 || turnResult == 2) {
-                dealer.punish(dealer.getBet());
+                tempDealer.punish(tempDealer.getBet());
             }
             
         }
@@ -63,22 +62,22 @@ public class Game
     
     // Part 4: end of Game/restart
     public static void resetGame() {
-        // assumption that at least one round has begun so interface has already been instantiated
-
-        // this part will be converted to buttons/mouse click interface
         System.out.println("Player 1, do you wish to continue the game? (Y/N): ");
         player1Choice = scanner.nextLine();
         System.out.println("Player 2, do you wish to continue the game? (Y/N): "); 
         player2Choice = scanner.nextLine();
 
         if (player1Choice == "Y" && player2Choice == "Y") {
-            // dealer needs to update;
-            dealer.resetBet();
-                
+            tempDealer = dealer;
         }
             
         else {
-            // TODO boot everyone out and return to start of game interface
+            System.out.println("Player 1, enter your name: ");
+            player1name = scanner.nextLine();
+            System.out.println("Player 2, enter your name: ");
+            player2name = scanner.nextLine(); 
+
+            tempDealer = dealer;
         }
     }
 
