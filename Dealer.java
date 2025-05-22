@@ -154,7 +154,9 @@ public class Dealer
                         twoCode = playerTwo.getInput();
                     }
                 }
-                // TODO Perhaps add an else {handleAction} here?
+                else {
+                    handleAction(playerOne, oneCode);
+                }
 
                 playerOne.setTurn(true);
                 playerTwo.setTurn(false);
@@ -168,7 +170,9 @@ public class Dealer
                         twoCode = playerTwo.getInput();
                     }
                 }
-                // TODO Perhaps add an else {handleAction} here?
+                else {
+                    handleAction(playerOne, oneCode);
+                }
 
                 playerOne.setTurn(true);
                 playerTwo.setTurn(false);
