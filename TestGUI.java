@@ -198,7 +198,7 @@ public class TestGUI
                             dealer.getGameWindowY() + GameGUI.GAME_PANEL_HEIGHT - PlayerGUI.PLAYER_PANEL_HEIGHT);
         p1.updateHand();
         p2.updateHand();
-        dealer.updateGameWindow();
+        dealer.punish(p1, 6);
         /* p1.setFrameLocation(gameWindow.getX() - PlayerGUI.PLAYER_PANEL_WIDTH,
         gameWindow.getY() + (gameWindow.getHeight() - PlayerGUI.PLAYER_PANEL_HEIGHT));
         p2.setFrameLocation(gameWindow.getX()  + gameWindow.getWidth(),

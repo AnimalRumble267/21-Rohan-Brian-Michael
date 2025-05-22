@@ -81,7 +81,7 @@ public class GamePanel extends JPanel
             // Drawing trump cards that have been played
             // TODO CHANGE AFTER TESTING IS DONE
             drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3) - GameGUI.UNIT_SIZE / 8,
-                               (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * 2, Color.RED, Color.BLACK);
+                               (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * 2 + GameGUI.UNIT_SIZE / 5, Color.RED, Color.BLACK);
             /* drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3) - GameGUI.UNIT_SIZE / 8,
                                (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * dealer.getTrumpCards().size(), Color.RED, Color.BLACK); */
             drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3));
