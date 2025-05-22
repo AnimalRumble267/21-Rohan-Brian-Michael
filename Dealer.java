@@ -42,7 +42,7 @@ public class Dealer
         cache = new ArrayList<TrumpCard>();
         // add number trumps
         for (int j = 1; j < 8; j++) {
-            tempTrumpDeck.add(new TrumpCard(j, "trumpDraw"));
+            tempTrumpDeck.add(new TrumpCard(j, "trumpdraw"));
         }
     
         // go for trumps
@@ -246,7 +246,19 @@ public class Dealer
             activePlayer.giveNumberCard((NumberCard) numberCardDeck.draw());
         }
         else if (code / 10 == 3) {
-            //
+            int numTrump = code % 10;
+            TrumpCard trump = activePlayer.getTrumpCardHand().get(numTrump);
+            String trumpType = trump.getType();
+            if (trumpType.equals("trumpgofor")) {
+                goal = trump.getValue();
+            }
+            else if (trumpType.equals("trumpdraw")) {
+                // Pray
+            }
+            else if (trumpType.equals("trumpup")) {
+                bet += trump.getValue();
+            }
+
         }
     }
     public ArrayList<Player> getPlayers() {
@@ -261,6 +273,9 @@ public class Dealer
         bet = 1;
     }
 
+    public int getGoal() {
+        return goal;
+    }
     public int getBet() {
         return bet;
     }
