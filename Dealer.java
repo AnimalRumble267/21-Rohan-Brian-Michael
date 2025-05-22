@@ -20,6 +20,9 @@ public class Dealer
     private GameGUI gameGUI;
     /**
      * Assigns players, creates Decks
+     * intantiates the types of number and trump cards
+     * Number cards: 1-11
+     * Trump cards: String type --> name, int value --> value of the command within the Trump Card
      * @param playerOne
      * @param playerTwo
      * @param bet
@@ -227,7 +230,13 @@ public class Dealer
 
     }
 
-    
+    /**
+     * takes in the parameter of a player and a code (symbolizing action of the player to either hit, stand or play trump)
+     * executes result of selecting the hit, stand or playing a trump card
+     * @param Player activePlayer
+     * @param int code 
+     @ 
+     */
     public void handleAction(Player activePlayer, int code) {
         if (code == 1) {
             activePlayer.giveNumberCard((NumberCard) numberCardDeck.draw());
