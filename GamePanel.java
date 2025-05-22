@@ -2,6 +2,7 @@ import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import javax.sound.sampled.*;
+import java.awt.event.*;
 
 /**
  * 
@@ -17,10 +18,13 @@ public class GamePanel extends JPanel
     private Sound[] soundEffects;
     private Font comicSansHalf = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE / 2);
     private Font comicSansFull = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE);
-    private Font timesNewRomanFull = new Font("Times New Roman", Font.BOLD, GameGUI.UNIT_SIZE * 4);
+    private Font timesNewRomanHalf = new Font("Times New Roman", Font.BOLD, GameGUI.UNIT_SIZE / 2);
+    private Font timesNewRomanFull = new Font("Times New Roman", Font.BOLD, GameGUI.UNIT_SIZE);
     private Color darkGreen = new Color(25, 87, 30);
     private Color brown = new Color(79, 59, 52);
     private BasicStroke border = new BasicStroke(5);
+
+    public static MouseEvent mouseEvent = null;
 
     public GamePanel(Dealer d)
     {
@@ -37,9 +41,11 @@ public class GamePanel extends JPanel
 
     public void paintComponent(Graphics g)
     {
+        //Something to note: the screen only updates after the entire method has finished executing
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         FontMetrics fontMetrics = g2.getFontMetrics();
+        int stringWidth;
         
         g2.setColor(Color.DARK_GRAY);
         g2.drawRect(0, 0, this.getWidth(), this.getHeight());
@@ -74,16 +80,13 @@ public class GamePanel extends JPanel
 
             // Drawing trump cards that have been played
             // TODO CHANGE AFTER TESTING IS DONE
-            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3) - GameGUI.UNIT_SIZE / 8,
-                               (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.25) + GameGUI.UNIT_SIZE * 2 + 
-                               (int)(GameGUI.UNIT_SIZE * 0.25), Color.RED, Color.BLACK);
+            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3) - GameGUI.UNIT_SIZE / 8,
+                               (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * 2, Color.RED, Color.BLACK);
             /* drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3) - GameGUI.UNIT_SIZE / 8,
-                               (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.25) + GameGUI.UNIT_SIZE * dealer.getTrumpCards().size() + 
-                               (int)(GameGUI.UNIT_SIZE * 0.25), Color.RED, Color.BLACK); */
+                               (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * dealer.getTrumpCards().size(), Color.RED, Color.BLACK); */
             drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3));
 
             // Drawing the bet
-            int stringWidth;
             g2.setColor(Color.BLACK);
             g2.setFont(comicSansHalf);
             stringWidth = fontMetrics.stringWidth("BET");
@@ -98,41 +101,60 @@ public class GamePanel extends JPanel
         // if the dealer is punishing a player
         else if (dealer.getStatus() == 2)
         {
-            // Drawing the NERF gun
-            g2.setStroke(border);
-            g2.setColor(brown);
-            g2.fillArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, 
-                       (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
-            g2.setColor(Color.BLACK);
-            g2.drawArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, 
-                       (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
-            g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE / 2, 
-                         this.getHeight() / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
-            GameGUI.wait(2.0);
-
-            // Paints the screen completely black
-            g2.setColor(Color.BLACK);
-            g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-
-            GameGUI.wait(2.0);
-
-            if (dealer.playerWillDie())
+            if (dealer.getPunishStatus() == 0)
             {
-                soundEffects[1].play();
-                GameGUI.wait(1.0);
-                soundEffects[1].stop();
+                // Setting background
+                g2.setColor(Color.DARK_GRAY);
+                g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+                // Drawing the NERF gun
+                g2.setStroke(border);
+                g2.setColor(brown);
+                g2.fillArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, 
+                           (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
+                g2.setColor(Color.BLACK);
+                g2.drawArc(this.getWidth() / 2 - GameGUI.UNIT_SIZE, this.getHeight() / 2 - GameGUI.UNIT_SIZE, 
+                           (int)(GameGUI.UNIT_SIZE * 2), (int)(GameGUI.UNIT_SIZE * 2), 0, 360);
+                g2.drawImage(GameGUI.NERF_GUN_TILE.getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE / 2, 
+                             this.getHeight() / 2 - GameGUI.UNIT_SIZE / 2, GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
+            }
+            else if (dealer.getPunishStatus() == 1)
+            {
+                // Paints the screen completely black
+                g2.setColor(Color.BLACK);
+                g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+            }
+            else if (dealer.getPunishStatus() == 2)
+            {
+                g2.setColor(Color.BLACK);
+                g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+                if (dealer.playerWillBeEliminated())
+                {
+                    soundEffects[1].play();
+                }   
+                else
+                {
+                    soundEffects[0].play();
+                }
+            }
+            else if (dealer.getPunishStatus() == 3)
+            {
                 g2.setColor(Color.DARK_GRAY);
                 g2.drawRect(0, 0, this.getWidth(), this.getHeight());
-                g2.drawImage(GameGUI.PLAYER_TILES[1].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
-                             this.getHeight() / 2, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
-                GameGUI.wait(2.0);
-            }   
-            else
-            {
-                soundEffects[0].play();
-                GameGUI.wait(0.5);
-                soundEffects[0].stop();
-                GameGUI.wait(1.0);
+                if (dealer.playerWillBeEliminated())
+                {
+                    soundEffects[1].stop();
+                    soundEffects[1].setFramePosition(0);
+                    g2.drawImage(GameGUI.PLAYER_TILES[1].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
+                                 this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
+                }
+                else
+                {
+                    soundEffects[0].stop();
+                    soundEffects[0].setFramePosition(0);
+                    g2.drawImage(GameGUI.PLAYER_TILES[0].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
+                                 this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
+                }
             }
         }
         // if the dealer is starting the game
@@ -141,20 +163,26 @@ public class GamePanel extends JPanel
             g2.setColor(Color.DARK_GRAY);
             g2.fillRect(0, 0, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_HEIGHT);
 
-            int stringWidth;
             g2.setColor(Color.RED);
             g2.setFont(comicSansFull);
             stringWidth = fontMetrics.stringWidth("21");
             g2.drawString("21", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 3));
         }
         // if the dealer is ending the game
-        else if (dealer.getStatus() == 3)
+        else // (dealer.getStatus() == 3)
         {
+            this.setFocusable(true); // Can only receive mouse input after game is over
+            g2.setColor(Color.BLACK);
+            g2.fillRect(0, 0, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_HEIGHT);
+            g2.setFont(timesNewRomanFull);
+            stringWidth = fontMetrics.stringWidth("Game Over");
+            g2.setColor(Color.RED);
+            g2.drawString("Game Over", this.getWidth() / 2 - stringWidth * 4, this.getHeight() / 2 - GameGUI.UNIT_SIZE);
+            g2.setFont(timesNewRomanHalf);
+            stringWidth = fontMetrics.stringWidth("Play Again?");
+            g2.drawString("Play Again?", this.getWidth() / 2 - stringWidth * 4, this.getHeight() / 2 + (int)(GameGUI.UNIT_SIZE * 0.6));
 
-        }
-        else
-        {
-
+            // TODO make sure to setFocusable(false) after the game over screen is done
         }
         g2.dispose();
     }
@@ -212,5 +240,29 @@ public class GamePanel extends JPanel
         g2.setStroke(border);
         g2.setColor(borderColor);
         g2.drawRect(x, y, width, height);
+    }
+
+    public MouseEvent nextMouseClick()
+    {
+        long currentTime = System.nanoTime();
+        long lastTime = currentTime;
+        long delta = 0;
+        long waitTime = 1000000000 / 10; // checks 10 times per second
+
+        // This loop may cause problems because Swing is not thread safe
+        while (mouseEvent == null)
+        {
+            currentTime = System.nanoTime();
+            delta += currentTime - lastTime;
+            if (delta >= waitTime)
+            {
+                // System.out.println(System.nanoTime());
+                delta = 0; // this loop is only necessary for testing
+            }
+            lastTime = currentTime;
+        }
+        MouseEvent temp = mouseEvent;
+        mouseEvent = null;
+        return temp;
     }
 }

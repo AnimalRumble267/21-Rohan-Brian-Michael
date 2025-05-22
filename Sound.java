@@ -46,4 +46,8 @@ public class Sound
         clip.stop();
     }
 
+    public void setFramePosition(int framePosition)
+    {
+        clip.setFramePosition(framePosition);
+    }
 }

@@ -46,6 +46,7 @@ public class GameGUI
     private GamePanel gamePanel;
     private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
+    private GameListener listener = new GameListener();
 
     public GameGUI(Dealer d)
     {
@@ -70,7 +71,8 @@ public class GameGUI
         gamePanel.setPreferredSize(new Dimension(GAME_PANEL_WIDTH, GAME_PANEL_HEIGHT));
         gamePanel.setBackground(darkGreen);
         gamePanel.setDoubleBuffered(true);
-        gamePanel.setFocusable(true);
+        gamePanel.setFocusable(false);
+        gamePanel.addMouseListener(listener);
         gamePanel.setVisible(true);
         gameWindow.add(gamePanel);
         gameWindow.pack();
@@ -117,7 +119,7 @@ public class GameGUI
         PLAYER_TILES[0] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
         PLAYER_TILES[0].loadImage("/images/player/livingplayer.png");
         PLAYER_TILES[1] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
-        //PLAYER_TILES[1].loadImage("/image/player/notlivingplayer.png");
+        PLAYER_TILES[1].loadImage("/images/player/notlivingplayer.png");
     }
 
     public static int getTrumpCardIndex(TrumpCard trumpCard)

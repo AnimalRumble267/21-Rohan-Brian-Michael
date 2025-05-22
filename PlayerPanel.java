@@ -14,6 +14,7 @@ public class PlayerPanel extends JPanel
 {
     public static MouseEvent mouseClick;
     private Player player;
+    private Color brown = new Color(79, 59, 52);
 
     public PlayerPanel(Player p)
     {
@@ -24,6 +25,9 @@ public class PlayerPanel extends JPanel
     {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
+        g2.setColor(brown);
+        g2.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         int i;
         Tile currentTile;
@@ -64,7 +68,7 @@ public class PlayerPanel extends JPanel
         long currentTime = System.nanoTime();
         long lastTime = currentTime;
         long delta = 0;
-        long waitTime = 1000000000;
+        long waitTime = 1000000000 / 10; // checks 10 times per second
 
         // This loop may cause problems because Swing is not thread safe
         while (mouseClick == null)
@@ -73,7 +77,7 @@ public class PlayerPanel extends JPanel
             delta += currentTime - lastTime;
             if (delta >= waitTime)
             {
-                System.out.println(System.nanoTime());
+                // System.out.println(System.nanoTime());
                 delta = 0; // this loop is only necessary for testing
             }
             lastTime = currentTime;

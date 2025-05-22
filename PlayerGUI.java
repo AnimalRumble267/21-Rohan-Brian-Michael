@@ -15,7 +15,7 @@ public class PlayerGUI
 
     // These dimensions are required because images will be drawn 
     public static final int PLAYER_PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
-    public static final int PLAYER_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 1 + 32;
+    public static final int PLAYER_PANEL_HEIGHT = (int)(GameGUI.UNIT_SIZE * 1.5);
 
     private Player player;
     private int playerNumber;

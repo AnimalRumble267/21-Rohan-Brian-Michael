@@ -12,10 +12,10 @@ public class Dealer
     private Deck trumpCardDeck;
     private int bet;
     private ArrayList<Player> players = new ArrayList<Player>();
-    private boolean punishTracker = false;
     private int goal = 21;
-    private int status = 1; // TODO defaults to a number other than 0 for testing purposes, should be 0
-    private boolean willDie = false;
+    private int status = 3; // TODO defaults to a number other than 0 for testing purposes, should be 0
+    private int punishStatus = 0;
+    private boolean playerWillBeEliminated = false;
 
     private GameGUI gameGUI;
     /**
@@ -151,6 +151,7 @@ public class Dealer
                         twoCode = playerTwo.getInput();
                     }
                 }
+                // TODO Perhaps add an else {handleAction} here?
 
                 playerOne.setTurn(true);
                 playerTwo.setTurn(false);
@@ -164,6 +165,7 @@ public class Dealer
                         twoCode = playerTwo.getInput();
                     }
                 }
+                // TODO Perhaps add an else {handleAction} here?
 
                 playerOne.setTurn(true);
                 playerTwo.setTurn(false);
@@ -193,7 +195,7 @@ public class Dealer
         int distanceFromGoal1 = goal - valOne;
         int distanceFromGoal2 = goal - valTwo;
         if (valOne > goal && valTwo > goal) {
-            if (distanceFromGoal1  == distanceFromGoal2) {
+            if (distanceFromGoal1 == distanceFromGoal2) {
                 return 0;
             }
             else if (distanceFromGoal1 < distanceFromGoal2) {
@@ -260,21 +262,44 @@ public class Dealer
     public boolean punish(Player playerNumber, int bet)
     { 
         status = 2;
+        punishStatus = 0;
+        playerWillBeEliminated = false;
+
+        gameGUI.updateGameWindow();
+        GameGUI.wait(2.0);
+        System.out.println("Waiting... 0");
+
         boolean result = false;
         boolean needToBreak = false;
         
         int increment = 6;
-        double probability = 1 / increment;
+        double probability = 1.0 / increment;
 
         for (int i = 0; i < bet; i++) {
             
+            punishStatus = 1;
+            gameGUI.updateGameWindow();
+
+            GameGUI.wait(2.0);
+            System.out.println("Waiting... 1");
+
             if (Math.random() < probability) {
-                willDie = true;
+                playerWillBeEliminated = true;
                 result = true;
                 needToBreak = true;
             }
 
+            punishStatus = 2;
             gameGUI.updateGameWindow();
+            System.out.println("Waiting... 2");
+            
+            GameGUI.wait(1.5);
+
+            punishStatus = 3;
+            gameGUI.updateGameWindow();
+            System.out.println("Waiting... 3");
+
+            GameGUI.wait(1.5);
             
             if (needToBreak) {
                 break;
@@ -292,8 +317,12 @@ public class Dealer
 
     }
 
-    public boolean playerWillDie() {
-        return willDie;
+    /**
+     * Returns whether or not the player being punished will be eliminated
+     * @return
+     */
+    public boolean playerWillBeEliminated() {
+        return playerWillBeEliminated;
     }    
 
     /**
@@ -308,5 +337,20 @@ public class Dealer
     {
         return status;
     }
+
+    /**
+     * Returns the current status of the punishment.
+     * 0 = starting punishment
+     * 1 = waiting for punishment
+     * 2 = hearing punishment
+     * 3 = outcome of punishment
+     * @return the current punishment status
+     */
+    public int getPunishStatus()
+    {
+        return punishStatus;
+    }
+
+
     
 }
