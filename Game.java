@@ -10,24 +10,29 @@ import java.util.Scanner;
  */
 public class Game
 {
-    Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
+    
+    private static String player1name;
+    private static String player2name;
+    private static String player1Choice;
+    private static String player2Choice;
+
+    private static Player player1 = new Player(player1name, 1);
+    private static Player player2 = new Player(player2name, 2);
+
+    
+
+    private static Dealer dealer = new Dealer(player1, player2, 1);
 
     public static void main(String[] args)
     {
         // Part 1: Instantiations and Game Setup
-
         
         // Player and name readings
         System.out.println("Player 1, enter your name: ");
-        String player1name = scanner.nextLine();
+        player1name = scanner.nextLine();
         System.out.println("Player 2, enter your name: ");
-        String player2name = scanner.nextLine(); 
-        
-        Player player1 = new Player(player1name, 1);
-        Player player2 = new Player(player2name, 2);
-
-        // Dealer
-        Dealer dealer = new Dealer(player1, player2, 1);
+        player2name = scanner.nextLine(); 
      
         // Part 2: build start of game interface (GUI stuff)
 
@@ -36,8 +41,6 @@ public class Game
         player2.startGUI();
         
         // Part 3; Game loop
-
-        
         // check for who's alive, players' turns, then player action, in that order
         while (player1.isAlive() && player2.isAlive()) {
             // for deal:
@@ -58,19 +61,20 @@ public class Game
     }
 
     
-    
     // Part 4: end of Game/restart
     public static void resetGame() {
         // assumption that at least one round has begun so interface has already been instantiated
 
         // this part will be converted to buttons/mouse click interface
         System.out.println("Player 1, do you wish to continue the game? (Y/N): ");
-        Char player1Choice = scanner.nextLine();
+        player1Choice = scanner.nextLine();
         System.out.println("Player 2, do you wish to continue the game? (Y/N): "); 
-        Char player2Choice = scanner.nextLine();
+        player2Choice = scanner.nextLine();
 
-        if ((player1Choice.equals(player2Choice)).equals("Y")) {
-            // TODO restart the game with the same names
+        if (player1Choice == "Y" && player2Choice == "Y") {
+            // dealer needs to update;
+            dealer.resetBet();
+                
         }
             
         else {
