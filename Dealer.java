@@ -253,7 +253,11 @@ public class Dealer
                 goal = trump.getValue();
             }
             else if (trumpType.equals("trumpdraw")) {
-                // Pray
+                NumberCard tempCard = (NumberCard) numberCardDeck.getCard(trump.getValue());
+                if (tempCard == null) {
+                    return;
+                }
+                activePlayer.giveNumberCard(tempCard);
             }
             else if (trumpType.equals("trumpup")) {
                 bet += trump.getValue();
