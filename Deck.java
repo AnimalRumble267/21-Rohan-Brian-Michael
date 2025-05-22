@@ -34,4 +34,8 @@ public class Deck
         }
         return (activeDeck.removeFirst());
     }
+
+    public Card getCard(int value) {
+        return (activeDeck.remove(value));
+    }
 }
