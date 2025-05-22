@@ -115,7 +115,6 @@ public class GameGUI
 
         NERF_GUN_TILE.loadImage("/images/nerfgun.png");
 
-        // TODO ADD THESE IMAGES TO THE PLAYER FOLDER
         PLAYER_TILES[0] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
         PLAYER_TILES[0].loadImage("/images/player/livingplayer.png");
         PLAYER_TILES[1] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);

@@ -31,6 +31,7 @@ public class Player
     {
         this.name = name;
         isTurn = false;
+        isAlive = true;
         numberCardHand = new ArrayList<NumberCard>();
         trumpCardHand = new ArrayList<TrumpCard>();
         playerGUI = new PlayerGUI(this, playerNum);

@@ -105,6 +105,7 @@ public class Dealer
      */
     public int deal()
     {
+        gameGUI.updateGameWindow();
         status = 1;
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
@@ -142,6 +143,11 @@ public class Dealer
             playerTwo.setTurn(true);
         }
 
+        playerOne.updateHand();
+        playerTwo.updateHand();
+
+        gameGUI.updateGameWindow();
+
         // Wait until both players stand
         boolean bothStand = false;
         int oneCode;
@@ -165,7 +171,10 @@ public class Dealer
                 }
 
                 playerOne.setTurn(false);
+                playerOne.updateHand();
                 playerTwo.setTurn(true);
+                playerTwo.updateHand();
+                gameGUI.updateGameWindow();
 
                 twoCode = playerTwo.getInput();
                 if (twoCode / 10 == 3)
@@ -182,8 +191,10 @@ public class Dealer
                 }
 
                 playerOne.setTurn(true);
+                playerOne.updateHand();
                 playerTwo.setTurn(false);
-
+                playerTwo.updateHand();
+                gameGUI.updateGameWindow();
             }
             else
             {
@@ -202,7 +213,10 @@ public class Dealer
                 }
 
                 playerOne.setTurn(true);
+                playerOne.updateHand();
                 playerTwo.setTurn(false);
+                playerTwo.updateHand();
+                gameGUI.updateGameWindow();
 
                 oneCode = playerOne.getInput();
                 if (oneCode / 10 == 3)
@@ -219,12 +233,19 @@ public class Dealer
                 }
 
                 playerOne.setTurn(false);
+                playerOne.updateHand();
                 playerTwo.setTurn(true);
-
+                playerTwo.updateHand();
+                gameGUI.updateGameWindow();
             }
             if (twoCode == 2 && oneCode == 2)
             {
                 bothStand = true;
+                playerOne.setTurn(false);
+                playerTwo.setTurn(false);
+                playerOne.updateHand();
+                playerTwo.updateHand();
+                gameGUI.updateGameWindow();
             }
         }
         int valOne = playerOne.calculate();
@@ -335,13 +356,6 @@ public class Dealer
         bet++;
     }
 
-
-    public void clearBet()
-    {
-        bet = 1;
-    }
-
-
     public int getGoal()
     {
         return goal;
@@ -353,6 +367,12 @@ public class Dealer
         return bet;
     }
 
+    public void resetBet()
+    {
+        bet = 1;
+    }    
+
+
     /**
      * generate changing probability of a player dying on a single shot. This
      * probability will increase after each shot doesn't kill the player
@@ -363,7 +383,7 @@ public class Dealer
      * @param bet
      * @return boolean if player will die
      */
-    public boolean punish(int bet)
+    public void punish(Player player, int bet)
     {
         status = 2;
         punishStatus = 0;
@@ -417,13 +437,8 @@ public class Dealer
 
         if (result)
         {
-            return true;
+            player.setAlive(false);
         }
-        else
-        {
-            return false;
-        }
-
     }
 
 
