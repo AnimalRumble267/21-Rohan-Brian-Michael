@@ -295,7 +295,7 @@ public class Dealer
      * @param bet
      * @return boolean if player will die
      */
-    public boolean punish(Player playerNumber, int bet)
+    public boolean punish(int bet)
     { 
         status = 2;
         punishStatus = 0;
