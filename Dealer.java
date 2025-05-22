@@ -171,7 +171,7 @@ public class Dealer
                     }
                 }
                 else {
-                    handleAction(playerOne, oneCode);
+                    handleAction(playerOne, twoCode);
                 }
 
                 playerOne.setTurn(true);
