@@ -353,12 +353,6 @@ public class Dealer
         return bet;
     }
 
-    public void resetBet()
-    {
-        bet = 1;
-    }    
-
-
     /**
      * generate changing probability of a player dying on a single shot. This
      * probability will increase after each shot doesn't kill the player
