@@ -109,6 +109,24 @@ public class GamePanel extends JPanel
             drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 9, (int)(GameGUI.UNIT_SIZE * 2.1) + 25, 
                                stringWidth * 18, GameGUI.UNIT_SIZE - 30, Color.YELLOW, Color.BLACK);
             g2.drawString(dealer.getBet() + "", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 2.6) + 25);
+
+            if (dealer.isFirstDeal())
+            {
+                g2.setColor(Color.RED);
+                int index;
+                if (players[0].isTurn())
+                {
+                    index = 0;
+                }
+                else
+                {
+                    index = 1;
+                }
+
+                stringWidth = fontMetrics.stringWidth(players[index].getName() + " is going first...");
+                g2.drawString(players[index].getName() + " is going first...", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, 
+                              (int)(GameGUI.UNIT_SIZE* 6));
+            }
         }
         // if the dealer is punishing a player
         else if (dealer.getStatus() == 2)

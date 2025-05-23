@@ -167,11 +167,11 @@ public class Player
     }
 
     public int getInput() {
-        MouseEvent input = playerGUI.nextMouseClick(playerNumber);
-        if (input.getButton() == 2) {
+        MouseEvent input = playerGUI.nextMouseClick();
+        if (input.getButton() == MouseEvent.BUTTON2) {
             return 2; // STAND
         }
-        else {
+        else { // TODO ADD RIGHT CLICK TO VIEW INFO ABOUT TRUMP CARDS
             Point loc = input.getLocationOnScreen();
             int trumpThreshold = GameGUI.UNIT_SIZE * 8 * numberCardHand.size();
             if (loc.getX() > trumpThreshold) {
@@ -184,5 +184,4 @@ public class Player
         }
         
     }
-    // TODO ADD OTHER SIGNATURES
 }

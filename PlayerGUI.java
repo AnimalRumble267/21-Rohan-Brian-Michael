@@ -21,6 +21,9 @@ public class PlayerGUI
     private int playerNumber;
     private JFrame frame;
     private PlayerPanel panel;
+    private JFrame descriptionFrame;
+    private JPanel descriptionPanel;
+    private JTextField descriptionField;
 
     private boolean tilesLoaded;
     private boolean guiStarted;
@@ -49,12 +52,19 @@ public class PlayerGUI
         panel = new PlayerPanel(player);
         listener = new PlayerListener();
         setUpWindow();
+
+        descriptionFrame = new JFrame();
+        descriptionPanel = new JPanel();
+        descriptionField = new JTextField();
+        setUpDescriptionWindow();
+
         guiStarted = true;
     }
 
     private void setUpWindow()
     {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setAlwaysOnTop(true);
         frame.setResizable(false);
         frame.setTitle(player.getName() + "'s Hand");
         frame.setFocusable(true);
@@ -68,6 +78,26 @@ public class PlayerGUI
         frame.getContentPane().addMouseListener(listener);
         frame.setVisible(false);       // Not visible yet
         frame.setLocationRelativeTo(null);
+    }
+
+    private void setUpDescriptionWindow()
+    {
+        descriptionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        descriptionFrame.setAlwaysOnTop(true);
+        descriptionFrame.setResizable(false);
+        descriptionFrame.setTitle("Description");
+        descriptionFrame.setFocusable(false);
+        descriptionPanel.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
+        descriptionField.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
+        descriptionFrame.setSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
+        descriptionPanel.setDoubleBuffered(true);
+        descriptionPanel.setFocusable(false);
+        descriptionPanel.setVisible(false);
+        descriptionField.setVisible(false);
+        descriptionPanel.add(descriptionField);
+        descriptionFrame.add(descriptionPanel);
+        descriptionFrame.setVisible(false);
+        descriptionFrame.setLocation(frame.getX(), frame.getY() - descriptionFrame.getHeight());
     }
 
     public void setFrameLocation(int x, int y)
@@ -109,48 +139,32 @@ public class PlayerGUI
         }
     }
 
-    /* I'm not sure if PlayerGUI should be in charge of the two methods below... */
-
-    /**
-     * Waits for mouse input and removes the card that was clicked
-     * @param playerNumber
-     */
-    /* public NumberCard removeNumberCard(int playerNumber, Point click)
+    public void writeTrumpCardDescription(String type)
     {
-        int clickCol = (int)click.getX() / GameGUI.UNIT_SIZE;
-        int index;
-        if (clickCol < players[playerNumber - 1].getNumberCardHand().size())
-        {
-            index = clickCol;
-            return players[playerNumber - 1].getNumberCardHand().remove(index);
-        }
-        return null;
-    } */
+        
+    }
 
-    /* public TrumpCard removeTrumpCard(int playerNumber, Point click)
+    public void clearTrumpCardDescription()
     {
-        int clickCol = (int)click.getX() / GameGUI.UNIT_SIZE;
-        int index;
-        if (clickCol >= players[playerNumber - 1].getNumberCardHand().size())
-        {
-            index = clickCol - players[playerNumber - 1].getNumberCardHand().size();
-            return players[playerNumber - 1].getTrumpCardHand().remove(index);
-        }
-        return null;
-    } */
+        descriptionField.setText("");
+        descriptionFrame.setVisible(false);
+        descriptionPanel.setVisible(false);
+        descriptionField.setVisible(false);
+    }
 
     /**
      * Will wait until a point is clicked on the screen. Checks 30 times
      * per second. Returns the mouse event received from the listener.
      * @return the mouse event (can return which mouse button was pressed)
      */
-    public MouseEvent nextMouseClick(int playerNumber)
+    public MouseEvent nextMouseClick()
     {
         if (!guiStarted)
         {
             System.out.println("ERROR: Must start GUI first");
             return null;
         }
+        System.out.println("waiting for panel");
         return panel.nextMouseClick();
     }
 }

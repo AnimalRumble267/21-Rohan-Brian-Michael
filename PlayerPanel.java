@@ -77,7 +77,8 @@ public class PlayerPanel extends JPanel
             delta += currentTime - lastTime;
             if (delta >= waitTime)
             {
-                // System.out.println(System.nanoTime());
+                // For some reason, the code does not work unless I have this print statement...
+                System.out.print("");
                 delta = 0; // this loop is only necessary for testing
             }
             lastTime = currentTime;

@@ -18,11 +18,12 @@ public class Dealer
     private int                  bet;
     private ArrayList<Player>    players                = new ArrayList<Player>();
     private int                  goal                   = 21;
-    private int                  status                 = 3; // TODO Make 0
+    private int                  status                 = 0;
     private int                  punishStatus           = 0;
     private boolean              playerWillBeEliminated = false;
     private ArrayList<TrumpCard> cache;
     private GameGUI              gameGUI;
+    private boolean              isFirstDeal = false;
 
     /**
      * Assigns players, creates Decks intantiates the types of number and trump
@@ -51,17 +52,20 @@ public class Dealer
         // add number trumps
         for (int j = 1; j < 8; j++)
         {
-            tempTrumpDeck.add(new TrumpCard(j, "trumpdraw"));
+            tempTrumpDeck.add(new TrumpCard(j, "draw"));
         }
 
         // go for trumps
-        tempTrumpDeck.add(new TrumpCard(17, "trumpgofor"));
-        tempTrumpDeck.add(new TrumpCard(24, "trumpgofor"));
+        tempTrumpDeck.add(new TrumpCard(17, "gofor"));
+        tempTrumpDeck.add(new TrumpCard(24, "gofor"));
         tempTrumpDeck.add(new TrumpCard(27, "trumpgofor"));
 
         // bet trumps
-        tempTrumpDeck.add(new TrumpCard(1, "trumpup"));
-        tempTrumpDeck.add(new TrumpCard(2, "trumpup"));
+        tempTrumpDeck.add(new TrumpCard(1, "up"));
+        tempTrumpDeck.add(new TrumpCard(2, "up"));
+
+        // shield trump
+        tempTrumpDeck.add(new TrumpCard(1, "shield"));
 
         trumpCardDeck = new Deck(tempTrumpDeck);
 
@@ -110,25 +114,48 @@ public class Dealer
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
 
+        GameGUI.wait(1.0);
+
         // Give starting hand (2 Cards, 1 TC)
         NumberCard muteCardOne = (NumberCard)numberCardDeck.draw();
         muteCardOne.setIsHidden(true);
         players.get(0).giveNumberCard(muteCardOne);
+
+        gameGUI.updateGameWindow();
+        GameGUI.wait(0.5);
+
         NumberCard muteCardTwo = (NumberCard)numberCardDeck.draw();
         muteCardTwo.setIsHidden(true);
         players.get(1).giveNumberCard(muteCardTwo);
 
+        gameGUI.updateGameWindow();
+        GameGUI.wait(0.5);
+
         NumberCard cardOne = (NumberCard)numberCardDeck.draw();
         cardOne.setIsHidden(false);
         players.get(0).giveNumberCard(cardOne);
+
+        gameGUI.updateGameWindow();
+        GameGUI.wait(0.5);
+
         NumberCard cardTwo = (NumberCard)numberCardDeck.draw();
         cardTwo.setIsHidden(false);
         players.get(1).giveNumberCard(cardTwo);
 
+        gameGUI.updateGameWindow();
+        GameGUI.wait(0.5);
+
         TrumpCard trumpCardOne = (TrumpCard)trumpCardDeck.draw();
         players.get(0).giveTrumpCard(trumpCardOne);
+
+        gameGUI.updateGameWindow();
+        GameGUI.wait(0.5);
+
         TrumpCard trumpCardTwo = (TrumpCard)trumpCardDeck.draw();
         players.get(1).giveTrumpCard(trumpCardTwo);
+
+        gameGUI.updateGameWindow();
+        GameGUI.wait(0.5);
 
         Player playerOne = players.get(0);
         Player playerTwo = players.get(1);
@@ -142,6 +169,13 @@ public class Dealer
         {
             playerTwo.setTurn(true);
         }
+
+        isFirstDeal = !isFirstDeal;
+
+        gameGUI.updateGameWindow();
+        GameGUI.wait(5.0);
+        
+        isFirstDeal = !isFirstDeal;
 
         playerOne.updateHand();
         playerTwo.updateHand();
@@ -309,7 +343,9 @@ public class Dealer
     {
         if (code == 1)
         {
-            activePlayer.giveNumberCard((NumberCard)numberCardDeck.draw());
+            NumberCard newNumberCard = (NumberCard)numberCardDeck.draw();
+            newNumberCard.setIsHidden(true);
+            activePlayer.giveNumberCard(newNumberCard);
         }
         else if (code / 10 == 3)
         {
@@ -474,6 +510,16 @@ public class Dealer
     public int getPunishStatus()
     {
         return punishStatus;
+    }
+
+    /**
+     * Returns whether or not the dealer is dealing for the first time in the round.
+     * Indicates if the GUI should say which player is going first.
+     * @return true if this is the dealer's first time dealing the cards, false otherwise
+     */
+    public boolean isFirstDeal()
+    {
+        return isFirstDeal;
     }
 
 }
