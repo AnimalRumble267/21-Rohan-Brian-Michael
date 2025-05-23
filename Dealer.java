@@ -221,7 +221,7 @@ public class Dealer
                 }
                 else
                 {
-                    handleAction(playerOne, oneCode);
+                    handleAction(playerTwo, oneCode);
                 }
 
                 playerOne.setTurn(true);
@@ -243,7 +243,7 @@ public class Dealer
                 }
                 else
                 {
-                    handleAction(playerOne, twoCode);
+                    handleAction(playerTwo, twoCode);
                 }
 
                 playerOne.setTurn(true);
