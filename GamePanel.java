@@ -276,15 +276,14 @@ public class GamePanel extends JPanel
         long delta = 0;
         long waitTime = 1000000000 / 10; // checks 10 times per second
 
-        // This loop may cause problems because Swing is not thread safe
         while (mouseEvent == null)
         {
             currentTime = System.nanoTime();
             delta += currentTime - lastTime;
             if (delta >= waitTime)
             {
-                // System.out.println(System.nanoTime());
-                delta = 0; // this loop is only necessary for testing
+                System.out.print("");
+                delta = 0;
             }
             lastTime = currentTime;
         }
