@@ -352,7 +352,7 @@ public class Dealer
         else if (code / 10 == 3)
         {
             int numTrump = code % 10;
-            TrumpCard trump = activePlayer.getTrumpCardHand().get(numTrump);
+            TrumpCard trump = activePlayer.getTrumpCardHand().get(numTrump-1);
             cache.add(trump);
             String trumpType = trump.getType();
             if (trumpType.equals("trumpgofor"))

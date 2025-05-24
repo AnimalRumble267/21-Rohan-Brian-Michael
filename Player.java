@@ -174,11 +174,16 @@ public class Player
         }
         else { // TODO ADD RIGHT CLICK TO VIEW INFO ABOUT TRUMP CARDS
             Point loc = input.getLocationOnScreen();
-            System.out.println(loc.getX());
-            int trumpThreshold = GameGUI.UNIT_SIZE * 8 * numberCardHand.size();
+            double locx = loc.getX();
+            if (playerNumber == 2) {
+                locx -= 672;
+            }
+            System.out.println(locx);
+            int trumpThreshold =  66 * numberCardHand.size();
             System.out.println(trumpThreshold);
             if (loc.getX() > trumpThreshold) {
-                int numTrump = (int)(loc.getX() - trumpThreshold) / 8;
+                int numTrump = (int)(loc.getX() - trumpThreshold) / 66;
+                System.out.println(numTrump);
                 return 30 + numTrump; // TRUMP
             }
             else {
