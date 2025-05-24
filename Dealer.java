@@ -346,7 +346,7 @@ public class Dealer
         if (code == 1)
         {
             NumberCard newNumberCard = (NumberCard)numberCardDeck.draw();
-            newNumberCard.setIsHidden(true);
+            newNumberCard.setIsHidden(false);
             activePlayer.giveNumberCard(newNumberCard);
         }
         else if (code / 10 == 3)
