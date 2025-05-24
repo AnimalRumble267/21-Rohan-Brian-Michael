@@ -164,7 +164,6 @@ public class PlayerGUI
             System.out.println("ERROR: Must start GUI first");
             return null;
         }
-        System.out.println("waiting for panel");
         return panel.nextMouseClick();
     }
 }
