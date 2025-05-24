@@ -136,6 +136,7 @@ public class GameGUI
                 return i;
             }
         }
+        System.out.println("Could not find trump card: " + type + " " + value);
         return -1;
     }
 
