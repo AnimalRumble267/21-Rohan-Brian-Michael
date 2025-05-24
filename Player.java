@@ -168,13 +168,15 @@ public class Player
 
     public int getInput() {
         MouseEvent input = playerGUI.nextMouseClick();
-        System.out.println(input);
+        //System.out.println(input);
         if (input.getButton() == MouseEvent.BUTTON3) {
             return 2; // STAND
         }
         else { // TODO ADD RIGHT CLICK TO VIEW INFO ABOUT TRUMP CARDS
             Point loc = input.getLocationOnScreen();
+            System.out.println(loc.getX());
             int trumpThreshold = GameGUI.UNIT_SIZE * 8 * numberCardHand.size();
+            System.out.println(trumpThreshold);
             if (loc.getX() > trumpThreshold) {
                 int numTrump = (int)(loc.getX() - trumpThreshold) / 8;
                 return 30 + numTrump; // TRUMP

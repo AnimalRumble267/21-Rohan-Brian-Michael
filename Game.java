@@ -69,6 +69,11 @@ public class Game
                         dealer.punish(player1, dealer.getBet());
                     }
                 }
+
+                if ((player1.isAlive() && player2.isAlive())) {
+                    dealer.incrementBet();
+                }
+                
                 
             }
 
