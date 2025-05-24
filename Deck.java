@@ -36,6 +36,12 @@ public class Deck
     }
 
     public Card getCard(int value) {
-        return (activeDeck.remove(value));
+        for (Card card : activeDeck) {
+            if (card.getValue() == value) {
+                return card;
+            }
+        }
+        return null;
     }
+
 }
