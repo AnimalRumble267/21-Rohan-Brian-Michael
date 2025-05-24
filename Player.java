@@ -179,10 +179,10 @@ public class Player
                 locx -= 672;
             }
             System.out.println(locx);
-            int trumpThreshold =  66 * numberCardHand.size();
+            double trumpThreshold =  66 * numberCardHand.size();
             System.out.println(trumpThreshold);
             if (loc.getX() > trumpThreshold) {
-                int numTrump = (int)(loc.getX() - trumpThreshold) / 66;
+                int numTrump = (int)((locx - trumpThreshold) / 66);
                 System.out.println(numTrump);
                 return 30 + numTrump; // TRUMP
             }
