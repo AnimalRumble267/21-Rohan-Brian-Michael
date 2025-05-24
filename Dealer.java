@@ -109,13 +109,15 @@ public class Dealer
      */
     public int deal()
     {
+        players.get(0).resetHand();
+        players.get(1).resetHand();
         gameGUI.updateGameWindow();
         status = 1;
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
 
         GameGUI.wait(1.0);
-
+        
         // Give starting hand (2 Cards, 1 TC)
         NumberCard muteCardOne = (NumberCard)numberCardDeck.draw();
         muteCardOne.setIsHidden(true);

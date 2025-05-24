@@ -24,7 +24,7 @@ public class Deck
         for (int i = 0; i < idleDeck.size(); i++) {
             activeDeck.add(idleDeck.get(i));
         }
-        Collections.shuffle(activeDeck, new Random(555));
+        Collections.shuffle(activeDeck, new Random(System.currentTimeMillis()));
     }
 
     public Card draw() 

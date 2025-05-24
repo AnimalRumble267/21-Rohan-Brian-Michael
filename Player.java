@@ -168,7 +168,8 @@ public class Player
 
     public int getInput() {
         MouseEvent input = playerGUI.nextMouseClick();
-        if (input.getButton() == MouseEvent.BUTTON2) {
+        System.out.println(input);
+        if (input.getButton() == MouseEvent.BUTTON3) {
             return 2; // STAND
         }
         else { // TODO ADD RIGHT CLICK TO VIEW INFO ABOUT TRUMP CARDS

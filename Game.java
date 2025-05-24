@@ -69,6 +69,7 @@ public class Game
                         dealer.punish(player1, dealer.getBet());
                     }
                 }
+                
             }
 
             // Part 4: reset Game
