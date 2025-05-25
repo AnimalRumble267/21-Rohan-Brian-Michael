@@ -89,7 +89,7 @@ public class Game
                 dealer = new Dealer(player1, player2, 1);
             }
             else {
-                // end whole program
+                // end whole program to end game
                 gameOver = true;
             }
         }

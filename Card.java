@@ -1,7 +1,5 @@
 /**
- * 
- * 
- * @author brian
+ * @author
  * @version
  * 
  */

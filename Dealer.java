@@ -428,11 +428,9 @@ public class Dealer
 
 
     /**
-     * generate changing probability of a player dying on a single shot. This
-     * probability will increase after each shot doesn't kill the player
-     * (probability is 1/n, and n decreases by 1 everyshot). if, on any given
-     * shot, the player gets unlucky (randomly generated probability falls under
-     * probability), the player dies.
+     * runs a punishment on given player and the game bet then sets whether or not a player isAlive following the punishment
+     * Value of bet determines how many shots player undergoes
+     * Chance of player dying on each shot is given by 1 / n, where n = bet - shot number + 1
      * 
      * @param bet
      * @return boolean if player will die
