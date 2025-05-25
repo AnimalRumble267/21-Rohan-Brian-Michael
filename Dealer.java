@@ -198,6 +198,7 @@ public class Dealer
                     while (oneCode / 10 == 3)
                     {
                         handleAction(playerOne, oneCode);
+                        oneCode = playerOne.getInput();
                     }
                 }
                 else
