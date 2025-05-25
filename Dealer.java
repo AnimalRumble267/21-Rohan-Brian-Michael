@@ -357,7 +357,7 @@ public class Dealer
         {
             int numTrump = code % 10;
     
-            TrumpCard trump = activePlayer.getTrumpCardHand().get(numTrump-1);
+            TrumpCard trump = activePlayer.getTrumpCardHand().get(numTrump);
             cache.add(trump);
             String trumpType = trump.getType();
             System.out.println(trumpType);
@@ -378,7 +378,7 @@ public class Dealer
             {
                 bet += trump.getValue();
             }
-            activePlayer.removeTrumpCard(numTrump-1);
+            activePlayer.removeTrumpCard(numTrump);
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
         }
