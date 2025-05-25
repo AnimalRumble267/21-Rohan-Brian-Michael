@@ -375,6 +375,7 @@ public class Dealer
                 {
                     return;
                 }
+                tempCard.setIsHidden(false);
                 activePlayer.giveNumberCard(tempCard);
             }
             else if (trumpType.equals("up"))
