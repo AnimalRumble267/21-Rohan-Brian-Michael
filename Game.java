@@ -42,10 +42,10 @@ public class Game
         dealer.startGUI();
         player1.startGUI();
         player2.startGUI();
-        player1.setFrameLocation(dealer.getGameWindowX() - PlayerGUI.PLAYER_PANEL_WIDTH, 
-                            dealer.getGameWindowY() + GameGUI.GAME_PANEL_HEIGHT - PlayerGUI.PLAYER_PANEL_HEIGHT);
-        player2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_PANEL_WIDTH, 
-                            dealer.getGameWindowY() + GameGUI.GAME_PANEL_HEIGHT - PlayerGUI.PLAYER_PANEL_HEIGHT);
+        player1.setFrameLocation(dealer.getGameWindowX() - PlayerGUI.PLAYER_WINDOW_WIDTH, 
+                                 dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
+        player2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_WINDOW_WIDTH, 
+                                 dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
         
         while (!gameOver) {
             // Part 3; Game loop

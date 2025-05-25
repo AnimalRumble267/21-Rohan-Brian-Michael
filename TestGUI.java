@@ -11,7 +11,7 @@ public class TestGUI
 
     private static void playerPanelTest2()
     {
-        GameGUI.loadDescriptions();
+        // GameGUI.loadDescriptions();
         Player p = new Player("Brian", 1);
         p.setTurn(true);
         p.startGUI();
@@ -210,10 +210,10 @@ public class TestGUI
         p2.setTurn(true);
         p1.startGUI();
         p2.startGUI();
-        p1.setFrameLocation(dealer.getGameWindowX() - PlayerGUI.PLAYER_PANEL_WIDTH, 
-                            dealer.getGameWindowY() + GameGUI.GAME_PANEL_HEIGHT - PlayerGUI.PLAYER_PANEL_HEIGHT);
-        p2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_PANEL_WIDTH, 
-                            dealer.getGameWindowY() + GameGUI.GAME_PANEL_HEIGHT - PlayerGUI.PLAYER_PANEL_HEIGHT);
+        p1.setFrameLocation(dealer.getGameWindowX() - PlayerGUI.PLAYER_WINDOW_WIDTH, 
+                            dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
+        p2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_WINDOW_WIDTH, 
+                            dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
         p1.updateHand();
         p2.updateHand();
         dealer.updateGameWindow();

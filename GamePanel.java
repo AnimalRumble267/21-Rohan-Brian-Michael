@@ -1,14 +1,14 @@
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.sound.sampled.*;
 import java.awt.event.*;
 
 /**
- * 
+ * Represents the panel within the game window. Draws the screen based on the information
+ * given to it by its dealer. Extends JPanel.
  * 
  * @author Michael Lee
- * @version
+ * @version 5/28/2025
  * 
  */
 public class GamePanel extends JPanel
@@ -24,8 +24,14 @@ public class GamePanel extends JPanel
     private Color brown = new Color(79, 59, 52);
     private BasicStroke border = new BasicStroke(5);
 
+    /** The most recent mouse click */
     public static MouseEvent mouseEvent = null;
 
+    /**
+     * Initializes a <code>GamePanel</code> object which uses the information
+     * from the given dealer.
+     * @param d the dealer
+     */
     public GamePanel(Dealer d)
     {
         dealer = d;
@@ -39,6 +45,13 @@ public class GamePanel extends JPanel
         soundEffects[1].loadSound();
     }
 
+    /**
+     * Redraws this panel based on the information from this <code>GamePanel</code>'s dealer.
+     * This method should not be called directly and instead should be called through the 
+     * <code>repaint</code> method.
+     * 
+     * @param g the graphics object of this <code>GamePanel</code>
+     */
     public void paintComponent(Graphics g)
     {
         //Something to note: the screen only updates after the entire method has finished executing
@@ -55,14 +68,14 @@ public class GamePanel extends JPanel
         if (dealer.getStatus() == 1)
         {
             g2.setColor(darkGreen);
-            g2.fillRect(0, 0, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_HEIGHT);
+            g2.fillRect(0, 0, GameGUI.GAME_WINDOW_WIDTH, GameGUI.GAME_WINDOW_HEIGHT);
             int playerCardX;
             int playerCardY;
             for (int i = 0; i < 2; i++)
             {
                 // Drawing table and player cards
                 playerCardX = (int)(GameGUI.UNIT_SIZE * 1.5) + (i * (int)(-GameGUI.UNIT_SIZE * 1.5) + 
-                              i * (GameGUI.GAME_PANEL_WIDTH - (int)(2.5 * GameGUI.UNIT_SIZE)));
+                              i * (GameGUI.GAME_WINDOW_WIDTH - (int)(2.5 * GameGUI.UNIT_SIZE)));
                 playerCardY = (int)(GameGUI.UNIT_SIZE * 2.4);
                 drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8 - 10,
                                    (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.125) + 
@@ -81,34 +94,34 @@ public class GamePanel extends JPanel
             // Drawing trump cards that have been played
             if (dealer.getTrumpCards().size() != 0)
             {
-                drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3) - GameGUI.UNIT_SIZE / 8 + 5,
+                drawRectWithBorder(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3) - GameGUI.UNIT_SIZE / 8 + 5,
                                 (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * dealer.getTrumpCards().size(), Color.RED, Color.BLACK);
-                drawTrumpCards(g2, GameGUI.GAME_PANEL_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3));
+                drawTrumpCards(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3));
             }
 
             // Drawing the current max
             g2.setColor(Color.BLACK);
             g2.setFont(comicSansHalf);
             stringWidth = fontMetrics.stringWidth("GOAL");
-            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 4, 15, stringWidth * 8,
+            drawRectWithBorder(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 4, 15, stringWidth * 8,
                                (int)(GameGUI.UNIT_SIZE * 0.7), brown, Color.BLACK);
-            g2.drawString("GOAL", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 0.5) + 20);
+            g2.drawString("GOAL", GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 0.5) + 20);
             stringWidth = fontMetrics.stringWidth(dealer.getGoal() + "");
-            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 6, (int)(GameGUI.UNIT_SIZE * 0.8) + 6, 
+            drawRectWithBorder(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 6, (int)(GameGUI.UNIT_SIZE * 0.8) + 6, 
                                stringWidth * 12, GameGUI.UNIT_SIZE - 30, Color.YELLOW, Color.BLACK);
-            g2.drawString(dealer.getGoal() + "", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 1.3) + 6);
+            g2.drawString(dealer.getGoal() + "", GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 1.3) + 6);
 
             // Drawing the bet
             g2.setColor(Color.BLACK);
             g2.setFont(comicSansHalf);
             stringWidth = fontMetrics.stringWidth("BET");
-            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 4, (int)(GameGUI.UNIT_SIZE * 1.4) + 25, stringWidth * 8,
+            drawRectWithBorder(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 4, (int)(GameGUI.UNIT_SIZE * 1.4) + 25, stringWidth * 8,
                                (int)(GameGUI.UNIT_SIZE * 0.7), brown, Color.BLACK);
-            g2.drawString("BET", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 1.9) + 25);
+            g2.drawString("BET", GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 1.9) + 25);
             stringWidth = fontMetrics.stringWidth(dealer.getBet() + "");
-            drawRectWithBorder(g2, GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 9, (int)(GameGUI.UNIT_SIZE * 2.1) + 25, 
+            drawRectWithBorder(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 9, (int)(GameGUI.UNIT_SIZE * 2.1) + 25, 
                                stringWidth * 18, GameGUI.UNIT_SIZE - 30, Color.YELLOW, Color.BLACK);
-            g2.drawString(dealer.getBet() + "", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 2.6) + 25);
+            g2.drawString(dealer.getBet() + "", GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 2, (int)(GameGUI.UNIT_SIZE * 2.6) + 25);
 
             if (dealer.isFirstDeal())
             {
@@ -124,7 +137,7 @@ public class GamePanel extends JPanel
                 }
 
                 stringWidth = fontMetrics.stringWidth(players[index].getName() + " is going first...");
-                g2.drawString(players[index].getName() + " is going first...", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 2, 
+                g2.drawString(players[index].getName() + " is going first...", GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 2, 
                               (int)(GameGUI.UNIT_SIZE* 6));
             }
         }
@@ -191,19 +204,19 @@ public class GamePanel extends JPanel
         else if (dealer.getStatus() == 0)
         {
             g2.setColor(Color.DARK_GRAY);
-            g2.fillRect(0, 0, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_HEIGHT);
+            g2.fillRect(0, 0, GameGUI.GAME_WINDOW_WIDTH, GameGUI.GAME_WINDOW_HEIGHT);
 
             g2.setColor(Color.RED);
             g2.setFont(comicSansFull);
             stringWidth = fontMetrics.stringWidth("21");
-            g2.drawString("21", GameGUI.GAME_PANEL_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 3));
+            g2.drawString("21", GameGUI.GAME_WINDOW_WIDTH / 2 - stringWidth * 3, (int)(GameGUI.UNIT_SIZE * 3));
         }
         // if the dealer is ending the game
         else // (dealer.getStatus() == 3)
         {
             this.setFocusable(true); // Can only receive mouse input after game is over
             g2.setColor(Color.BLACK);
-            g2.fillRect(0, 0, GameGUI.GAME_PANEL_WIDTH, GameGUI.GAME_PANEL_HEIGHT);
+            g2.fillRect(0, 0, GameGUI.GAME_WINDOW_WIDTH, GameGUI.GAME_WINDOW_HEIGHT);
             g2.setFont(timesNewRomanFull);
             stringWidth = fontMetrics.stringWidth("Game Over");
             g2.setColor(Color.RED);
@@ -269,6 +282,10 @@ public class GamePanel extends JPanel
         g2.drawRect(x, y, width, height);
     }
 
+    /**
+     * Waits for and returns the next mouse click within this <code>GamePanel</code>
+     * @return the next mouse click
+     */
     public MouseEvent nextMouseClick()
     {
         long currentTime = System.nanoTime();

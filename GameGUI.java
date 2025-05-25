@@ -4,24 +4,34 @@ import javax.swing.*;
 import java.util.*;
 
 /**
+ * Represents the graphical user interface (GUI) for the game, which is visible to 
+ * both players at all times. Displays each player's visible cards and the 
+ * trump cards that have been played during the round. Displays the current 
+ * "goal" (e.g., 21, 17, etc) and the current "bet" (e.g., 1, 2, etc). Displays 
+ * the punishment at the end of each round, showing if the player has been 
+ * eliminated or has survived with drawings and sound.
  * 
+ * This class also contains other helpful methods such as a wait method for 
+ * other classes to use. This class also contains public symbolic constants
+ * such as the card images and dimensions of the screen for other classes to 
+ * reference.
  * 
- * @author
- * @version
+ * @author Michael Lee
+ * @version 5/28/2025
  * 
  */
 public class GameGUI 
 {
+    /** The original size each image tile */
     public static final int ORIGINAL_TILE_SIZE = 32;
+    /** The scale used to scale up each image tile */
     public static final int SCALE = 3;
+    /** The actual size of each image tile on the screen */
     public static final int UNIT_SIZE = ORIGINAL_TILE_SIZE * SCALE;
-    public static final int GAME_PANEL_WIDTH = GameGUI.UNIT_SIZE * 9;
-    public static final int GAME_PANEL_HEIGHT = GameGUI.UNIT_SIZE * 9;
-
-    // TODO MUST UPDATE MONITOR DIMENSIONS IN "DisplayInformation.txt" BEFORE YOU START THE GAME
-    /* private static Scanner scan = new Scanner("DisplayInformation.txt");
-    private static final int MONITOR_WIDTH = scan.nextInt();
-    private static final int MONITOR_HEIGHT = scan.nextInt(); */
+    /** The width of the game window */
+    public static final int GAME_WINDOW_WIDTH = GameGUI.UNIT_SIZE * 9;
+    /** The height of the game window */
+    public static final int GAME_WINDOW_HEIGHT = GameGUI.UNIT_SIZE * 9;
 
     private static final String[] TRUMP_CARD_FILE_PATHS =  {"/images/trumpcards/trumpdraw2.png", 
                                                             "/images/trumpcards/trumpdraw3.png",
@@ -35,20 +45,46 @@ public class GameGUI
                                                             "/images/trumpcards/trumpshield1.png",
                                                             "/images/trumpcards/trumpup1.png",
                                                             "/images/trumpcards/trumpup2.png"};
-    public static final HashMap<String, String[]> TRUMP_CARD_DESCRIPTIONS = new HashMap<String, String[]>(12); 
+    /** 
+     * The descriptions for all trump cards. Keys are represented by the concatenation of a
+     * <code>TrumpCard</code>'s <code>getType</code> and <code>getValue</code> methods' return values 
+     * in that order. Values represent the title of the description (element 0) and the full 
+     * description (element 1).
+     */
+    public static final HashMap<String, String[]> TRUMP_CARD_DESCRIPTIONS = new HashMap<String, String[]>(12);
+    /** 
+     * The image tiles for all number cards. To find the index for a <code>NumberCard</code>, 
+     * take the value from the <code>NumberCard</code>'s <code>getValue</code> method and 
+     * subtract 1 from it. The last <code>Tile</code> of the array is the image tile for a 
+     * hidden card.
+     */ 
     public static final Tile[] NUMBER_CARD_TILES = new Tile[12];
+    /** 
+     * The image tiles for all trump cards. Use <code>getTrumpCardIndex</code> to 
+     * find the index of a <code>TrumpCard</code>.
+     */
     public static final Tile[] TRUMP_CARD_TILES = new Tile[TRUMP_CARD_FILE_PATHS.length];
+    /** The image tile for the nerf gun */
     public static final Tile NERF_GUN_TILE = new Tile(UNIT_SIZE, UNIT_SIZE);
+    /** 
+     * The image tiles for the players. Index 0 is the image tile for a player who has 
+     * not been eliminated and Index 1 is the image tile for a player who has been
+     * eliminated.
+     */
     public static final Tile[] PLAYER_TILES = new Tile[2];
 
     private boolean guiStarted = false;
-
     private JFrame gameWindow;
     private GamePanel gamePanel;
     private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
     private GameListener listener = new GameListener();
 
+    /**
+     * Initializes a <code>GameGUI</code> object which uses the information
+     * from the given dealer.
+     * @param d the dealer
+     */
     public GameGUI(Dealer d)
     {
         gameWindow = new JFrame();
@@ -56,6 +92,10 @@ public class GameGUI
         dealer = d;
     }
 
+    /**
+     * Starts the GUI. Initializes the game window and loads all image tiles and
+     * trump card descriptions.
+     */
     public void start()
     {
         setUpWindow();
@@ -71,7 +111,7 @@ public class GameGUI
         gameWindow.setResizable(false);
         gameWindow.setTitle("21");
         gameWindow.setFocusable(true);
-        gamePanel.setPreferredSize(new Dimension(GAME_PANEL_WIDTH, GAME_PANEL_HEIGHT));
+        gamePanel.setPreferredSize(new Dimension(GAME_WINDOW_WIDTH, GAME_WINDOW_HEIGHT));
         gamePanel.setBackground(darkGreen);
         gamePanel.setDoubleBuffered(true);
         gamePanel.setFocusable(false);
@@ -83,17 +123,7 @@ public class GameGUI
         gameWindow.setVisible(true);
     }
 
-    public void updateGameWindow()
-    {
-        if (!guiStarted)
-        {
-            System.out.println("ERROR: Must start GUI first - updateGameWindow()");
-            return;
-        }
-        gamePanel.repaint();
-    }
-
-    public void loadTiles()
+     private void loadTiles()
     {
         Tile newTile;
 
@@ -124,24 +154,7 @@ public class GameGUI
         PLAYER_TILES[1].loadImage("/images/player/notlivingplayer.png");
     }
 
-    public static int getTrumpCardIndex(TrumpCard trumpCard)
-    {
-        String type = trumpCard.getType();
-        int value = trumpCard.getValue();
-        for (int i = 0; i < TRUMP_CARD_FILE_PATHS.length; i++)
-        {
-            if (TRUMP_CARD_FILE_PATHS[i].contains(type) &&
-                TRUMP_CARD_FILE_PATHS[i].contains(value + ""))
-            {
-                return i;
-            }
-        }
-        System.out.println("Could not find trump card: " + type + " " + value);
-        return -1;
-    }
-
-    // made public static for testing purposes
-    public static void loadDescriptions()
+    private void loadDescriptions()
     {
         TRUMP_CARD_DESCRIPTIONS.put("draw1", new String[]{"Draw 1", "  If it exists in the deck, draw a card with the value of 1"});
         TRUMP_CARD_DESCRIPTIONS.put("draw2", new String[]{"Draw 2", "  If it exists in the deck, draw a card with the value of 2"});
@@ -158,6 +171,46 @@ public class GameGUI
         TRUMP_CARD_DESCRIPTIONS.put("up2", new String[]{"Bet 2", "  Increase the bet by 2"});
     }
 
+    /**
+     * Returns the index of the <code>TrumpCard</code>'s image tile in 
+     * <code>TRUMP_CARD_TILES</code>.
+     * @param trumpCard the trump card
+     * @return the index of the trump card's image tile in <code>TRUMP_CARD_TILES</code>
+     */
+    public static int getTrumpCardIndex(TrumpCard trumpCard)
+    {
+        String type = trumpCard.getType();
+        int value = trumpCard.getValue();
+        for (int i = 0; i < TRUMP_CARD_FILE_PATHS.length; i++)
+        {
+            if (TRUMP_CARD_FILE_PATHS[i].contains(type) &&
+                TRUMP_CARD_FILE_PATHS[i].contains(value + ""))
+            {
+                return i;
+            }
+        }
+        System.out.println("Could not find trump card: " + type + " " + value);
+        return -1;
+    }
+
+    /**
+     * Redraws the game window based on the most current information from this
+     * <code>GameGUI</code>'s dealer.
+     */
+    public void updateGameWindow()
+    {
+        if (!guiStarted)
+        {
+            System.out.println("ERROR: Must start GUI first - updateGameWindow()");
+            return;
+        }
+        gamePanel.repaint();
+    }
+
+    /**
+     * Causes the program to wait for a number of seconds.
+     * @param sec the number of seconds
+     */
     public static void wait(double sec)
     {
         long currentTime = System.nanoTime();
@@ -173,16 +226,28 @@ public class GameGUI
         }
     }
 
+    /**
+     * Returns the x value of the game window's location.
+     * @return the x value of the game window's location
+     */
     public int getGameWindowX()
     {
         return gameWindow.getX();
     }
 
+    /**
+     * Returns the y value of the game window's location.
+     * @return the y value of the game window's location
+     */
     public int getGameWindowY()
     {
         return gameWindow.getY();
     }
 
+    /**
+     * Waits for and returns the next mouse click within the game window.
+     * @return the next mouse click
+     */
     public MouseEvent nextMouseClick()
     {
         if (!guiStarted)

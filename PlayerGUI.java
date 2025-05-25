@@ -4,18 +4,19 @@ import java.util.*;
 import java.awt.event.*;
 
 /**
- * 
+ * Represents the graphical user interface (GUI) for a player. Diplays a player's number cards
+ * and trump cards. Displays a trump card's description if prompted to.
  * 
  * @author Michael Lee
- * @version
+ * @version 5/24/2025
  * @sources https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html
  */
 public class PlayerGUI
 {
-
-    // These dimensions are required because images will be drawn 
-    public static final int PLAYER_PANEL_WIDTH = GameGUI.UNIT_SIZE * 8;
-    public static final int PLAYER_PANEL_HEIGHT = (int)(GameGUI.UNIT_SIZE * 1.5);
+    /** The width of the player's window */
+    public static final int PLAYER_WINDOW_WIDTH = GameGUI.UNIT_SIZE * 8;
+    /** The height of the player's window */
+    public static final int PLAYER_WINDOW_HEIGHT = (int)(GameGUI.UNIT_SIZE * 1.5);
 
     private Player player;
     private int playerNumber;
@@ -24,16 +25,15 @@ public class PlayerGUI
     private JFrame dFrame;
     private JPanel dPanel;
     private JTextPane dPane;
-
     private boolean tilesLoaded;
     private boolean guiStarted;
-
     private PlayerListener listener;
 
     /**
-     * Constructs the GUI for a Player which will be shown only to the Player
-     * @param p the Player
-     * @param g2 the Graphics2D object for the Player's JPanel
+     * Initializes a <code>PlayerGUI</code> object which uses the information from
+     * the given player. Stores the player's number only for window formatting.
+     * @param p the player
+     * @param pnum the player's number
      */
     public PlayerGUI(Player p, int pnum)
     {
@@ -69,8 +69,8 @@ public class PlayerGUI
         frame.setTitle(player.getName() + "'s Hand");
         frame.setFocusable(true);
         frame.setLocationRelativeTo(null);
-        panel.setPreferredSize(new Dimension(PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT));
-        frame.setSize(new Dimension(PLAYER_PANEL_WIDTH, PLAYER_PANEL_HEIGHT));
+        panel.setPreferredSize(new Dimension(PLAYER_WINDOW_WIDTH, PLAYER_WINDOW_HEIGHT));
+        frame.setSize(new Dimension(PLAYER_WINDOW_WIDTH, PLAYER_WINDOW_HEIGHT));
         panel.setDoubleBuffered(true);
         panel.setFocusable(true);
         panel.setVisible(false);      // Not visible yet

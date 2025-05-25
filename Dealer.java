@@ -198,7 +198,6 @@ public class Dealer
                     while (oneCode / 10 == 3)
                     {
                         handleAction(playerOne, oneCode);
-                        oneCode = playerOne.getInput();
                     }
                 }
                 else
@@ -351,6 +350,8 @@ public class Dealer
             NumberCard newNumberCard = (NumberCard)numberCardDeck.draw();
             newNumberCard.setIsHidden(false);
             activePlayer.giveNumberCard(newNumberCard);
+            activePlayer.updateHand();
+            gameGUI.updateGameWindow();
         }
         else if (code / 10 == 3)
         {
@@ -383,7 +384,7 @@ public class Dealer
         }
         else if (code == 2)
         {
-            
+
         }
     }
 
