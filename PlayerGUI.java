@@ -21,9 +21,9 @@ public class PlayerGUI
     private int playerNumber;
     private JFrame frame;
     private PlayerPanel panel;
-    private JFrame descriptionFrame;
-    private JPanel descriptionPanel;
-    private JTextField descriptionField;
+    private JFrame dFrame;
+    private JPanel dPanel;
+    private JTextPane dPane;
 
     private boolean tilesLoaded;
     private boolean guiStarted;
@@ -53,10 +53,10 @@ public class PlayerGUI
         listener = new PlayerListener();
         setUpWindow();
 
-        descriptionFrame = new JFrame();
-        descriptionPanel = new JPanel();
-        descriptionField = new JTextField();
-        setUpDescriptionWindow();
+        dFrame = new JFrame();
+        dPanel = new JPanel();
+        dPane = new JTextPane();
+        setUpDWindow();
 
         guiStarted = true;
     }
@@ -80,24 +80,25 @@ public class PlayerGUI
         frame.setLocationRelativeTo(null);
     }
 
-    private void setUpDescriptionWindow()
+    private void setUpDWindow()
     {
-        descriptionFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        descriptionFrame.setAlwaysOnTop(true);
-        descriptionFrame.setResizable(false);
-        descriptionFrame.setTitle("Description");
-        descriptionFrame.setFocusable(false);
-        descriptionPanel.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
-        descriptionField.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
-        descriptionFrame.setSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
-        descriptionPanel.setDoubleBuffered(true);
-        descriptionPanel.setFocusable(false);
-        descriptionPanel.setVisible(false);
-        descriptionField.setVisible(false);
-        descriptionPanel.add(descriptionField);
-        descriptionFrame.add(descriptionPanel);
-        descriptionFrame.setVisible(false);
-        descriptionFrame.setLocation(frame.getX(), frame.getY() - descriptionFrame.getHeight());
+        dFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        dFrame.setAlwaysOnTop(true);
+        dFrame.setResizable(false);
+        dFrame.setTitle("Description");
+        dFrame.setFocusable(false);
+        dPanel.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
+        dPane.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
+        dPane.setFocusable(false);
+        dFrame.setSize(new Dimension(GameGUI.UNIT_SIZE * 4, GameGUI.UNIT_SIZE));
+        dPanel.setDoubleBuffered(true);
+        dPanel.setFocusable(false);
+        dPanel.setVisible(false);
+        dPane.setVisible(false);
+        dPanel.add(dPane);
+        dFrame.add(dPanel);
+        dFrame.setVisible(false);
+        dFrame.setLocation(frame.getX(), frame.getY() - dFrame.getHeight());
     }
 
     public void setFrameLocation(int x, int y)
@@ -139,17 +140,22 @@ public class PlayerGUI
         }
     }
 
-    public void writeTrumpCardDescription(String type)
+    public void writeTrumpCardDescription(int value, String type)
     {
-        
+        dFrame.setTitle((GameGUI.TRUMP_CARD_DESCRIPTIONS.get(type + value))[0]);
+        dPane.setText((GameGUI.TRUMP_CARD_DESCRIPTIONS.get(type + value))[1]);
+        dPane.setVisible(true);
+        dPanel.setVisible(true);
+        dFrame.setVisible(true);
     }
 
     public void clearTrumpCardDescription()
     {
-        descriptionField.setText("");
-        descriptionFrame.setVisible(false);
-        descriptionPanel.setVisible(false);
-        descriptionField.setVisible(false);
+        dFrame.setTitle("Description");
+        dPane.setText("");
+        dFrame.setVisible(false);
+        dPanel.setVisible(false);
+        dPane.setVisible(false);
     }
 
     /**

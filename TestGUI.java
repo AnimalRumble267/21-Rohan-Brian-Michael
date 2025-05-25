@@ -4,6 +4,24 @@ import java.awt.image.*;
 
 public class TestGUI 
 {
+    public static void main(String[] args) 
+    {
+        playerPanelTest2();
+    }  
+
+    private static void playerPanelTest2()
+    {
+        GameGUI.loadDescriptions();
+        Player p = new Player("Brian", 1);
+        p.setTurn(true);
+        p.startGUI();
+        p.updateHand();
+        GameGUI.wait(2.0);
+        p.writeTrumpCardDescription(1, "shield");
+        GameGUI.wait(10.0);
+        p.clearTrumpCardDescription();
+    }
+
     private static JFrame createBasicFrame(int width, int height)
     {
         JFrame frame = new JFrame();
@@ -222,10 +240,5 @@ public class TestGUI
         Sound sound1 = new Sound("/sound/blast.wav");
         sound1.loadSound();
         sound1.play();
-    }
-
-    public static void main(String[] args) 
-    {
-        gamePanelTest();
-    }    
+    }  
 }

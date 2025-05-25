@@ -354,7 +354,6 @@ public class Dealer
         }
         else if (code / 10 == 3)
         {
-            
             int numTrump = code % 10;
     
             TrumpCard trump = activePlayer.getTrumpCardHand().get(numTrump-1);
@@ -381,8 +380,10 @@ public class Dealer
             activePlayer.removeTrumpCard(numTrump-1);
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
+        }
+        else if (code == 2)
+        {
             
-
         }
     }
 

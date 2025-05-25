@@ -53,6 +53,16 @@ public class Player
         playerGUI.setFrameLocation(x, y);
     }
 
+    public void writeTrumpCardDescription(int value, String type)
+    {
+        playerGUI.writeTrumpCardDescription(value, type);
+    }
+
+    public void clearTrumpCardDescription()
+    {
+        playerGUI.clearTrumpCardDescription();
+    }
+
     /**
      * returns whether or not it is object player's turn
      * @return boolean isTurn

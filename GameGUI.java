@@ -140,21 +140,22 @@ public class GameGUI
         return -1;
     }
 
-    private void loadDescriptions()
+    // made public static for testing purposes
+    public static void loadDescriptions()
     {
-        TRUMP_CARD_DESCRIPTIONS.put("trumpdraw1", new String[]{"Draw 1", "If it exists in the deck, draw a card with the value of 1"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpdraw2", new String[]{"Draw 2", "If it exists in the deck, draw a card with the value of 2"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpdraw3", new String[]{"Draw 3", "If it exists in the deck, draw a card with the value of 3"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpdraw4", new String[]{"Draw 4", "If it exists in the deck, draw a card with the value of 4"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpdraw5", new String[]{"Draw 5", "If it exists in the deck, draw a card with the value of 5"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpdraw6", new String[]{"Draw 6", "If it exists in the deck, draw a card with the value of 6"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpdraw7", new String[]{"Draw 7", "If it exists in the deck, draw a card with the value of 7"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpgofor17", new String[]{"Go For 17", "Sets the goal to 17, overwriting the current goal."});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpgofor24", new String[]{"Go For 24", "Sets the goal to 24, overwriting the current goal."});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpgofor27", new String[]{"Go For 27", "Sets the goal to 27, overwriting the current goal."});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpshield1", new String[]{"Shield 1", "Decrease the bet by 1"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpup1", new String[]{"Bet 1", "Increase the bet by 1"});
-        TRUMP_CARD_DESCRIPTIONS.put("trumpup2", new String[]{"Bet 2", "Increase the bet by 2"});
+        TRUMP_CARD_DESCRIPTIONS.put("draw1", new String[]{"Draw 1", "  If it exists in the deck, draw a card with the value of 1"});
+        TRUMP_CARD_DESCRIPTIONS.put("draw2", new String[]{"Draw 2", "  If it exists in the deck, draw a card with the value of 2"});
+        TRUMP_CARD_DESCRIPTIONS.put("draw3", new String[]{"Draw 3", "  If it exists in the deck, draw a card with the value of 3"});
+        TRUMP_CARD_DESCRIPTIONS.put("draw4", new String[]{"Draw 4", "  If it exists in the deck, draw a card with the value of 4"});
+        TRUMP_CARD_DESCRIPTIONS.put("draw5", new String[]{"Draw 5", "  If it exists in the deck, draw a card with the value of 5"});
+        TRUMP_CARD_DESCRIPTIONS.put("draw6", new String[]{"Draw 6", "  If it exists in the deck, draw a card with the value of 6"});
+        TRUMP_CARD_DESCRIPTIONS.put("draw7", new String[]{"Draw 7", "  If it exists in the deck, draw a card with the value of 7"});
+        TRUMP_CARD_DESCRIPTIONS.put("gofor17", new String[]{"Go For 17", "  Sets the goal to 17, overwriting the current goal."});
+        TRUMP_CARD_DESCRIPTIONS.put("gofor24", new String[]{"Go For 24", "  Sets the goal to 24, overwriting the current goal."});
+        TRUMP_CARD_DESCRIPTIONS.put("gofor27", new String[]{"Go For 27", "  Sets the goal to 27, overwriting the current goal."});
+        TRUMP_CARD_DESCRIPTIONS.put("shield1", new String[]{"Shield 1", "  Decrease the bet by 1"});
+        TRUMP_CARD_DESCRIPTIONS.put("up1", new String[]{"Bet 1", "  Increase the bet by 1"});
+        TRUMP_CARD_DESCRIPTIONS.put("up2", new String[]{"Bet 2", "  Increase the bet by 2"});
     }
 
     public static void wait(double sec)
