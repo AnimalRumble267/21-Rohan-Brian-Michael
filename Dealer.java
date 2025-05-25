@@ -428,12 +428,12 @@ public class Dealer
 
 
     /**
-     * runs a punishment on given player and the game bet then sets whether or not a player isAlive following the punishment
-     * Value of bet determines how many shots player undergoes
+     * runs a punishment on given player and the game bet then sets the attribute of the player saying whether or not they are alive following the punishment //
+     * Value of bet determines how many shots player undergoes //
      * Chance of player dying on each shot is given by 1 / n, where n = bet - shot number + 1
      * 
+     * @param player
      * @param bet
-     * @return boolean if player will die
      */
     public void punish(Player player, int bet)
     {
