@@ -77,10 +77,13 @@ public class GamePanel extends JPanel
                 playerCardX = (int)(GameGUI.UNIT_SIZE * 1.5) + (i * (int)(-GameGUI.UNIT_SIZE * 1.5) + 
                               i * (GameGUI.GAME_WINDOW_WIDTH - (int)(2.5 * GameGUI.UNIT_SIZE)));
                 playerCardY = (int)(GameGUI.UNIT_SIZE * 2.4);
-                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8 - 10,
+                if (players[i].getNumberCardHand().size() > 0)
+                {
+                    drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - GameGUI.UNIT_SIZE / 8 - 10,
                                    (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 0.125) + 
                                    GameGUI.UNIT_SIZE * players[i].getNumberCardHand().size() + 
                                    (int)(GameGUI.UNIT_SIZE * 0.125), brown, Color.BLACK);
+                }           
                 drawPlayerHand(g2, i + 1, playerCardX, playerCardY - 10);
 
                 // Drawing player profile pictures + background
@@ -95,7 +98,7 @@ public class GamePanel extends JPanel
             if (dealer.getTrumpCards().size() != 0)
             {
                 drawRectWithBorder(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3) - GameGUI.UNIT_SIZE / 8 + 5,
-                                (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * dealer.getTrumpCards().size(), Color.RED, Color.BLACK);
+                                (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * dealer.getTrumpCards().size() + 30, Color.RED, Color.BLACK);
                 drawTrumpCards(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3));
             }
 

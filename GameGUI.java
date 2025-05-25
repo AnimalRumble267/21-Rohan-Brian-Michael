@@ -33,12 +33,17 @@ public class GameGUI
     /** The height of the game window */
     public static final int GAME_WINDOW_HEIGHT = GameGUI.UNIT_SIZE * 9;
 
-    private static final String[] TRUMP_CARD_FILE_PATHS =  {"/images/trumpcards/trumpdraw2.png", 
+    private static final String[] TRUMP_CARD_FILE_PATHS =  {"/images/trumpcards/trumpdraw1.png",
+                                                            "/images/trumpcards/trumpdraw2.png", 
                                                             "/images/trumpcards/trumpdraw3.png",
                                                             "/images/trumpcards/trumpdraw4.png",
                                                             "/images/trumpcards/trumpdraw5.png",
                                                             "/images/trumpcards/trumpdraw6.png",
                                                             "/images/trumpcards/trumpdraw7.png",
+                                                            "/images/trumpcards/trumpdraw8.png",
+                                                            "/images/trumpcards/trumpdraw9.png",
+                                                            "/images/trumpcards/trumpdraw10.png",
+                                                            "/images/trumpcards/trumpdraw11.png",
                                                             "/images/trumpcards/trumpgofor17.png",
                                                             "/images/trumpcards/trumpgofor24.png",
                                                             "/images/trumpcards/trumpgofor27.png",
