@@ -121,7 +121,8 @@ public class Dealer
         status = 1;
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
-
+        goal = 21;
+        
         GameGUI.wait(1.0);
         
         // Give starting hand (2 Cards, 1 TC)
