@@ -114,6 +114,7 @@ public class Dealer
      */
     public int deal()
     {
+        cache.clear();
         players.get(0).resetHand();
         players.get(1).resetHand();
         gameGUI.updateGameWindow();
