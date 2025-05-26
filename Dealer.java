@@ -159,6 +159,12 @@ public class Dealer
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
 
+        trumpCardOne = (TrumpCard)trumpCardDeck.draw();
+        players.get(0).giveTrumpCard(trumpCardOne);
+
+        trumpCardTwo = (TrumpCard)trumpCardDeck.draw();
+        players.get(1).giveTrumpCard(trumpCardTwo);
+
         Player playerOne = players.get(0);
         Player playerTwo = players.get(1);
 
@@ -192,11 +198,6 @@ public class Dealer
         {
             if (playerOne.isTurn())
             {
-                trumpCardOne = (TrumpCard)trumpCardDeck.draw();
-                players.get(0).giveTrumpCard(trumpCardOne);
-
-                trumpCardTwo = (TrumpCard)trumpCardDeck.draw();
-                players.get(1).giveTrumpCard(trumpCardTwo);
 
                 oneCode = playerOne.getInput();
                 if (oneCode / 10 == 3)
