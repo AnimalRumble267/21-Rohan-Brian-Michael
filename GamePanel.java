@@ -25,7 +25,7 @@ public class GamePanel extends JPanel
     private BasicStroke border = new BasicStroke(5);
 
     /** The most recent mouse click */
-    public static MouseEvent mouseEvent = null;
+    public static MouseEvent mouseClick = null;
 
     /**
      * Initializes a <code>GamePanel</code> object which uses the information
@@ -296,7 +296,7 @@ public class GamePanel extends JPanel
         long delta = 0;
         long waitTime = 1000000000 / 10; // checks 10 times per second
 
-        while (mouseEvent == null)
+        while (mouseClick == null)
         {
             currentTime = System.nanoTime();
             delta += currentTime - lastTime;
@@ -307,8 +307,8 @@ public class GamePanel extends JPanel
             }
             lastTime = currentTime;
         }
-        MouseEvent temp = mouseEvent;
-        mouseEvent = null;
+        MouseEvent temp = mouseClick;
+        mouseClick = null;
         return temp;
     }
 }
