@@ -192,6 +192,12 @@ public class Dealer
         {
             if (playerOne.isTurn())
             {
+                trumpCardOne = (TrumpCard)trumpCardDeck.draw();
+                players.get(0).giveTrumpCard(trumpCardOne);
+
+                trumpCardTwo = (TrumpCard)trumpCardDeck.draw();
+                players.get(1).giveTrumpCard(trumpCardTwo);
+
                 oneCode = playerOne.getInput();
                 if (oneCode / 10 == 3)
                 {
@@ -371,12 +377,11 @@ public class Dealer
             else if (trumpType.equals("draw"))
             {
                 NumberCard tempCard = (NumberCard)numberCardDeck.getCard(trump.getValue());
-                if (tempCard == null)
+                if (tempCard != null)
                 {
-                    return;
-                }
-                tempCard.setIsHidden(false);
-                activePlayer.giveNumberCard(tempCard);
+                    tempCard.setIsHidden(false);
+                    activePlayer.giveNumberCard(tempCard);
+                } 
             }
             else if (trumpType.equals("up"))
             {
