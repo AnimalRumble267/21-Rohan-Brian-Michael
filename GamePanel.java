@@ -98,7 +98,7 @@ public class GamePanel extends JPanel
             if (dealer.getTrumpCards().size() != 0)
             {
                 drawRectWithBorder(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - GameGUI.UNIT_SIZE / 8 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3) - GameGUI.UNIT_SIZE / 8 + 5,
-                                (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * dealer.getTrumpCards().size() + 30, Color.RED, Color.BLACK);
+                                (int)(GameGUI.UNIT_SIZE * 1.25), GameGUI.UNIT_SIZE * dealer.getTrumpCards().size() + 15, Color.RED, Color.BLACK);
                 drawTrumpCards(g2, GameGUI.GAME_WINDOW_WIDTH / 2 - GameGUI.UNIT_SIZE / 2, (int)(GameGUI.UNIT_SIZE * 3.3));
             }
 
