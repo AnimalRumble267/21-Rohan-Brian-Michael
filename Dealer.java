@@ -239,8 +239,6 @@ public class Dealer
                 }
 
                 playerTwo.clearTrumpCardDescription();
-                playerOne.setTurn(true);
-                playerOne.updateHand();
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
@@ -267,8 +265,6 @@ public class Dealer
                 }
 
                 playerTwo.clearTrumpCardDescription();
-                playerOne.setTurn(true);
-                playerOne.updateHand();
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
