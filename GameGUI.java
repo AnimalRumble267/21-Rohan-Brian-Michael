@@ -118,6 +118,17 @@ public class GameGUI
         guiStarted = true;
     }
 
+    /**
+     * Stops the GUI. Closes the game window in a fashion similar to hitting the "x"
+     * manually.
+     */
+    public void stop()
+    {
+        guiStarted = false;
+        gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        gameWindow.dispatchEvent(new WindowEvent(gameWindow, WindowEvent.WINDOW_CLOSING));
+    }
+
     private void setUpWindow()
     {
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

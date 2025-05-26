@@ -46,6 +46,14 @@ public class Player
     }
 
     /**
+     * stops the playerHand GUI
+     */
+    public void stopGUI()
+    {
+        playerGUI.stop();
+    }
+
+    /**
      * updates GUI for the player hand window based on playerGUI's updateHand()
      */
     public void updateHand()
@@ -122,6 +130,15 @@ public class Player
     public void setAlive(boolean status) 
     {
         isAlive = status;
+    }
+
+    /**
+     * plays sound effect for when cards are delt to this player
+     */
+    public void playCardFlipSound()
+    {
+        playerGUI.stopCardFlipSound();
+        playerGUI.playCardFlipSound();
     }
 
     /**
@@ -234,13 +251,9 @@ public class Player
         if (input.getButton() == MouseEvent.BUTTON3) {
             Point loc = input.getPoint();
             double locx = loc.getX();
-            
-            System.out.println(locx);
             double trumpThreshold =  (GameGUI.UNIT_SIZE) * numberCardHand.size();
-            System.out.println(trumpThreshold);
             if (locx > trumpThreshold) {
                 int numTrump = (int)((locx - trumpThreshold) / (GameGUI.UNIT_SIZE));
-                System.out.println(numTrump);
                 if (numTrump < trumpCardHand.size() && numTrump >= 0) {
                     
                     playerGUI.writeTrumpCardDescription(trumpCardHand.get(numTrump).getValue(), trumpCardHand.get(numTrump).getType());

@@ -51,6 +51,14 @@ public class Game
         GameGUI.wait(5.0);
         
         while (!gameOver) {
+            dealer.startGUI();
+            player1.startGUI();
+            player2.startGUI();
+            player1.setFrameLocation(dealer.getGameWindowX() - PlayerGUI.PLAYER_WINDOW_WIDTH, 
+                                    dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
+            player2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_WINDOW_WIDTH, 
+                                    dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
+
             // Part 3; Game loop
             // check for who's alive, players' turns, then player action, in that order
             while (player1.isAlive() && player2.isAlive()) {
@@ -87,7 +95,10 @@ public class Game
             System.out.println("Player 2, do you wish to continue the game? (Y/N): "); 
             player2Choice = scanner.nextLine();
 
-            if (player1Choice == "Y" && player2Choice == "Y") {
+            if (player1Choice.equals("Y") && player2Choice.equals("Y")) {
+                player1.stopGUI();
+                player2.stopGUI();
+                dealer.stopGUI();
                 player1 = new Player(player1.getName(), 1);
                 player2 = new Player(player2.getName(), 2);
                 dealer = new Dealer(player1, player2, 1);

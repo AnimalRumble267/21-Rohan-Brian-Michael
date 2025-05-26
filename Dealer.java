@@ -85,6 +85,11 @@ public class Dealer
         gameGUI.start();
     }
 
+    public void stopGUI()
+    {
+        gameGUI.stop();
+    }
+
 
     public void updateGameWindow()
     {
@@ -105,7 +110,7 @@ public class Dealer
 
 
     /**
-     * Deals cards to Players and continues the round until a Player
+     * Deals cards to Players and continues the round until a Player is eliminated
      */
     public int deal()
     {
@@ -122,6 +127,7 @@ public class Dealer
         NumberCard muteCardOne = (NumberCard)numberCardDeck.draw();
         muteCardOne.setIsHidden(true);
         players.get(0).giveNumberCard(muteCardOne);
+        players.get(0).playCardFlipSound();
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -129,6 +135,7 @@ public class Dealer
         NumberCard muteCardTwo = (NumberCard)numberCardDeck.draw();
         muteCardTwo.setIsHidden(true);
         players.get(1).giveNumberCard(muteCardTwo);
+        players.get(1).playCardFlipSound();
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -136,6 +143,7 @@ public class Dealer
         NumberCard cardOne = (NumberCard)numberCardDeck.draw();
         cardOne.setIsHidden(false);
         players.get(0).giveNumberCard(cardOne);
+        players.get(0).playCardFlipSound();
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -143,6 +151,7 @@ public class Dealer
         NumberCard cardTwo = (NumberCard)numberCardDeck.draw();
         cardTwo.setIsHidden(false);
         players.get(1).giveNumberCard(cardTwo);
+        players.get(1).playCardFlipSound();
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -318,6 +327,7 @@ public class Dealer
                 playerOne.updateHand();
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
+                playerOne.playCardFlipSound();
                 GameGUI.wait(4.0);
             }
         }
@@ -388,6 +398,7 @@ public class Dealer
             NumberCard newNumberCard = (NumberCard)numberCardDeck.draw();
             newNumberCard.setIsHidden(false);
             activePlayer.giveNumberCard(newNumberCard);
+            activePlayer.playCardFlipSound();
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
         }
@@ -421,6 +432,7 @@ public class Dealer
             activePlayer.removeTrumpCard(numTrump);
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
+            activePlayer.playCardFlipSound();
         }
     }
 

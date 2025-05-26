@@ -28,6 +28,7 @@ public class PlayerGUI
     private boolean tilesLoaded;
     private boolean guiStarted;
     private PlayerListener listener;
+    private Sound cardFlipSound;
 
     /**
      * Initializes a <code>PlayerGUI</code> object which uses the information from
@@ -40,6 +41,7 @@ public class PlayerGUI
         player = p;
         playerNumber = pnum;
         listener = new PlayerListener();
+        cardFlipSound = new Sound("/sound/cardflip.wav");
     }
 
     /**
@@ -58,7 +60,20 @@ public class PlayerGUI
         dPane = new JTextPane();
         setUpDWindow();
 
+        cardFlipSound.loadSound();
+
         guiStarted = true;
+    }
+
+    /**
+     * Stops the GUI. Closes the game window in a fashion similar to hitting the "x"
+     * manually.
+     */
+    public void stop()
+    {
+        guiStarted = false;
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
     private void setUpWindow()
@@ -156,6 +171,17 @@ public class PlayerGUI
         dFrame.setVisible(false);
         dPanel.setVisible(false);
         dPane.setVisible(false);
+    }
+
+    public void playCardFlipSound()
+    {
+        cardFlipSound.play();
+    }
+
+    public void stopCardFlipSound()
+    {
+        cardFlipSound.stop();
+        cardFlipSound.setFramePosition(0);
     }
 
     /**
