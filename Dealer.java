@@ -501,9 +501,8 @@ public class Dealer
 
 
     /**
-     * Returns whether or not the player being punished will be eliminated
-     * 
-     * @return
+     * Returns whether or not the player being punished is/will be eliminated
+     * @return true if the player is/will be eliminated, false otherwise
      */
     public boolean playerWillBeEliminated()
     {
@@ -537,6 +536,7 @@ public class Dealer
     /**
      * Returns whether or not the dealer is dealing for the first time in the round.
      * Indicates if the GUI should say which player is going first.
+     * 
      * @return true if this is the dealer's first time dealing the cards, false otherwise
      */
     public boolean isFirstDeal()
