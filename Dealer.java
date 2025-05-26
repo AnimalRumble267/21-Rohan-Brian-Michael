@@ -219,7 +219,9 @@ public class Dealer
                 playerOne.setTurn(false);
                 playerOne.updateHand();
                 gameGUI.updateGameWindow();
+                gameGUI.writeTurnMessage();
                 GameGUI.wait(5.0);
+                gameGUI.clearTurnMessage();
                 playerTwo.setTurn(true);
                 playerTwo.updateHand();
 
@@ -242,7 +244,9 @@ public class Dealer
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
+                gameGUI.writeTurnMessage();
                 GameGUI.wait(5.0);
+                gameGUI.clearTurnMessage();
                 playerOne.setTurn(true);
                 playerOne.updateHand();
             }
@@ -268,7 +272,9 @@ public class Dealer
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
+                gameGUI.writeTurnMessage();
                 GameGUI.wait(5.0);
+                gameGUI.clearTurnMessage();
                 playerOne.setTurn(true);
                 playerOne.updateHand();
 
@@ -292,7 +298,9 @@ public class Dealer
                 playerOne.setTurn(false);
                 playerOne.updateHand();
                 gameGUI.updateGameWindow();
+                gameGUI.writeTurnMessage();
                 GameGUI.wait(5.0);
+                gameGUI.clearTurnMessage();
                 playerTwo.setTurn(true);
                 playerTwo.updateHand();
             }
@@ -304,13 +312,13 @@ public class Dealer
                 playerOne.updateHand();
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
-                GameGUI.wait(5.0);
+                GameGUI.wait(3.5);
                 playerOne.getNumberCardHand().get(0).setIsHidden(false);
                 playerTwo.getNumberCardHand().get(0).setIsHidden(false);
                 playerOne.updateHand();
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
-                GameGUI.wait(5.0);
+                GameGUI.wait(4.0);
             }
         }
         int valOne = playerOne.calculate();

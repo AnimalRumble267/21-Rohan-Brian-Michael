@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.text.StyledDocument;
+
 import java.util.*;
 
 /**
@@ -81,6 +83,9 @@ public class GameGUI
     private boolean guiStarted = false;
     private JFrame gameWindow;
     private GamePanel gamePanel;
+    private JFrame turnFrame;
+    private JPanel turnPanel;
+    private JTextPane turnTextPane;
     private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
     private GameListener listener = new GameListener();
@@ -94,6 +99,9 @@ public class GameGUI
     {
         gameWindow = new JFrame();
         gamePanel = new GamePanel(d);
+        turnFrame = new JFrame();
+        turnPanel = new JPanel();
+        turnTextPane = new JTextPane();
         dealer = d;
     }
 
@@ -104,6 +112,7 @@ public class GameGUI
     public void start()
     {
         setUpWindow();
+        setUpturnFrame();
         loadTiles();
         loadDescriptions();
         guiStarted = true;
@@ -128,7 +137,28 @@ public class GameGUI
         gameWindow.setVisible(true);
     }
 
-     private void loadTiles()
+    private void setUpturnFrame()
+    {
+        turnFrame.setAlwaysOnTop(true);
+        turnFrame.setResizable(false);
+        turnFrame.setTitle("Changing Turns...");
+        turnFrame.setFocusable(false);
+        turnFrame.setVisible(false);
+        turnPanel.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, (int)(GameGUI.UNIT_SIZE * 0.67)));
+        turnTextPane.setPreferredSize(new Dimension(GameGUI.UNIT_SIZE * 4, (int)(GameGUI.UNIT_SIZE * 0.67)));
+        turnTextPane.setFocusable(false);
+        turnFrame.setSize(new Dimension(GameGUI.UNIT_SIZE * 4, (int)(GameGUI.UNIT_SIZE * 0.67)));
+        turnPanel.setDoubleBuffered(true);
+        turnPanel.setFocusable(false);
+        turnPanel.setVisible(false);
+        turnTextPane.setVisible(false);
+        turnPanel.add(turnTextPane);
+        turnFrame.add(turnPanel);
+        turnFrame.setLocationRelativeTo(null);
+        turnTextPane.setText("Please hand the computer to the other player");
+    }
+
+    private void loadTiles()
     {
         Tile newTile;
 
@@ -174,6 +204,20 @@ public class GameGUI
         TRUMP_CARD_DESCRIPTIONS.put("shield1", new String[]{"Shield 1", "  Decrease the bet by 1"});
         TRUMP_CARD_DESCRIPTIONS.put("up1", new String[]{"Bet 1", "  Increase the bet by 1"});
         TRUMP_CARD_DESCRIPTIONS.put("up2", new String[]{"Bet 2", "  Increase the bet by 2"});
+    }
+
+    public void writeTurnMessage()
+    {
+        turnFrame.setVisible(true);
+        turnPanel.setVisible(true);
+        turnTextPane.setVisible(true);
+    }
+
+    public void clearTurnMessage()
+    {
+        turnFrame.setVisible(false);
+        turnPanel.setVisible(false);
+        turnTextPane.setVisible(false);
     }
 
     /**
