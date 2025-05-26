@@ -422,10 +422,6 @@ public class Dealer
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
         }
-        else if (code == 2)
-        {
-
-        }
     }
 
 
@@ -479,7 +475,6 @@ public class Dealer
 
         gameGUI.updateGameWindow();
         GameGUI.wait(2.0);
-        System.out.println("Waiting... 0");
 
         boolean result = false;
         boolean needToBreak = false;
@@ -494,7 +489,6 @@ public class Dealer
             gameGUI.updateGameWindow();
 
             GameGUI.wait(2.0);
-            System.out.println("Waiting... 1");
 
             if (Math.random() < probability)
             {
@@ -505,15 +499,13 @@ public class Dealer
 
             punishStatus = 2;
             gameGUI.updateGameWindow();
-            System.out.println("Waiting... 2");
 
             GameGUI.wait(1.5);
 
             punishStatus = 3;
             gameGUI.updateGameWindow();
-            System.out.println("Waiting... 3");
 
-            GameGUI.wait(1.5);
+            GameGUI.wait(2.5);
 
             if (needToBreak)
             {
@@ -525,6 +517,7 @@ public class Dealer
 
         if (result)
         {
+            status = 3;
             player.setAlive(false);
         }
     }

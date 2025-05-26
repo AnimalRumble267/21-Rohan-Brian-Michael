@@ -155,7 +155,7 @@ public class GameGUI
         turnPanel.add(turnTextPane);
         turnFrame.add(turnPanel);
         turnFrame.setLocationRelativeTo(null);
-        turnTextPane.setText("Please hand the computer to the other player");
+        turnTextPane.setText("  Please hand the computer to the other player");
     }
 
     private void loadTiles()

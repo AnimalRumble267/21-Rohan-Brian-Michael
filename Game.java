@@ -46,6 +46,9 @@ public class Game
                                  dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
         player2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_WINDOW_WIDTH, 
                                  dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
+
+        dealer.updateGameWindow();
+        GameGUI.wait(5.0);
         
         while (!gameOver) {
             // Part 3; Game loop
@@ -73,9 +76,10 @@ public class Game
                 if ((player1.isAlive() && player2.isAlive())) {
                     dealer.incrementBet();
                 }
-                
-                
             }
+
+            dealer.updateGameWindow();
+            GameGUI.wait(4.0);
 
             // Part 4: reset Game
             System.out.println("Player 1, do you wish to continue the game? (Y/N): ");
