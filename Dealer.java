@@ -114,6 +114,11 @@ public class Dealer
      */
     public int deal()
     {
+        for (TrumpCard i : cache) {
+            if (i.getType().equals("up")) {
+                bet -= i.getValue();
+            }
+        }
         cache.clear();
         players.get(0).resetHand();
         players.get(1).resetHand();
@@ -122,7 +127,7 @@ public class Dealer
         numberCardDeck.shuffle();
         trumpCardDeck.shuffle();
         goal = 21;
-        
+
         GameGUI.wait(1.0);
         
         // Give starting hand (2 Cards, 1 TC)
