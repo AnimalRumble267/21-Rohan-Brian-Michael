@@ -98,12 +98,6 @@ public class GameGUI
      */
     public GameGUI(Dealer d)
     {
-        gameWindow = new JFrame();
-        gamePanel = new GamePanel(d);
-        listener = new GameListener();
-        turnFrame = new JFrame();
-        turnPanel = new JPanel();
-        turnTextPane = new JTextPane();
         dealer = d;
         music = new Sound("/sound/chopinnocturneop9no2.wav");
     }
@@ -114,13 +108,20 @@ public class GameGUI
      */
     public void start()
     {
+        gameWindow = new JFrame();
+        gamePanel = new GamePanel(dealer);
         setUpWindow();
+
+        turnFrame = new JFrame();
+        turnPanel = new JPanel();
+        turnTextPane = new JTextPane();
         setUpturnFrame();
+
+        listener = new GameListener();
         loadTiles();
         loadDescriptions();
         music.loadSound();
         music.loop();
-        music.setVolume(0.5F);
         guiStarted = true;
     }
 
@@ -223,6 +224,7 @@ public class GameGUI
         TRUMP_CARD_DESCRIPTIONS.put("up2", new String[]{"Bet 2", "  Increase the bet by 2"});
     }
 
+    /** Writes the message telling the player that the turn is changing */
     public void writeTurnMessage()
     {
         turnFrame.setVisible(true);
@@ -230,6 +232,7 @@ public class GameGUI
         turnTextPane.setVisible(true);
     }
 
+    /** Clears the message telling the player that the turn is changing */
     public void clearTurnMessage()
     {
         turnFrame.setVisible(false);

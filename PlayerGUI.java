@@ -40,12 +40,12 @@ public class PlayerGUI
     {
         player = p;
         playerNumber = pnum;
-        listener = new PlayerListener();
         cardFlipSound = new Sound("/sound/cardflip.wav");
     }
 
     /**
-     * Starts and creates the GUI (JFrames and JPanels)
+     * Starts the GUI. Initializes the <code>JFrame</code>s and <code>JPanel</code>s
+     * and sounds.
      */
     public void start()
     {
@@ -116,6 +116,11 @@ public class PlayerGUI
         dFrame.setLocation(frame.getX(), frame.getY() - dFrame.getHeight());
     }
 
+    /**
+     * Sets the frame's location on the screen.
+     * @param x the x coordinate of the location
+     * @param y the y coordinate of the location
+     */
     public void setFrameLocation(int x, int y)
     {
         if (!guiStarted)
@@ -127,9 +132,7 @@ public class PlayerGUI
     }
     
     /**
-     * Updates the Player's hand. Only draws it onto the screen if it is the
-     * Player's turn. If it is not the Player's turn, will hide the Player's hand.
-     * @param playerNumber 1 to draw player1's hand or 2 for player 2's hand
+     * 
      */
     public void updateHand()
     {
