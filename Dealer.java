@@ -215,9 +215,10 @@ public class Dealer
                 
                 playerOne.setTurn(false);
                 playerOne.updateHand();
+                gameGUI.updateGameWindow();
+                GameGUI.wait(5.0);
                 playerTwo.setTurn(true);
                 playerTwo.updateHand();
-                gameGUI.updateGameWindow();
 
                 twoCode = playerTwo.getInput();
                 if (twoCode / 10 == 3 || twoCode == 0)
@@ -233,12 +234,12 @@ public class Dealer
                     handleAction(playerTwo, oneCode);
                 }
 
-                
-                playerOne.setTurn(true);
-                playerOne.updateHand();
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
+                GameGUI.wait(5.0);
+                playerOne.setTurn(true);
+                playerOne.updateHand();
             }
             else
             {
@@ -256,12 +257,12 @@ public class Dealer
                     handleAction(playerTwo, twoCode);
                 }
 
-               
-                playerOne.setTurn(true);
-                playerOne.updateHand();
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
+                GameGUI.wait(5.0);
+                playerOne.setTurn(true);
+                playerOne.updateHand();
 
                 oneCode = playerOne.getInput();
                 if (oneCode / 10 == 3 || oneCode == 0)
@@ -280,9 +281,10 @@ public class Dealer
                 
                 playerOne.setTurn(false);
                 playerOne.updateHand();
+                gameGUI.updateGameWindow();
+                GameGUI.wait(5.0);
                 playerTwo.setTurn(true);
                 playerTwo.updateHand();
-                gameGUI.updateGameWindow();
             }
             if (twoCode == 2 && oneCode == 2)
             {
@@ -292,6 +294,13 @@ public class Dealer
                 playerOne.updateHand();
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
+                GameGUI.wait(5.0);
+                playerOne.getNumberCardHand().get(0).setIsHidden(false);
+                playerTwo.getNumberCardHand().get(0).setIsHidden(false);
+                playerOne.updateHand();
+                playerTwo.updateHand();
+                gameGUI.updateGameWindow();
+                GameGUI.wait(5.0);
             }
         }
         int valOne = playerOne.calculate();
