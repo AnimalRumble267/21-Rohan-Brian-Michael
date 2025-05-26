@@ -37,20 +37,9 @@ public class Game
         player2 = new Player(player2name, 2);
 
         dealer = new Dealer(player1, player2, 1);
-     
-        // Part 2: build start of game interface (GUI stuff)
-        dealer.startGUI();
-        player1.startGUI();
-        player2.startGUI();
-        player1.setFrameLocation(dealer.getGameWindowX() - PlayerGUI.PLAYER_WINDOW_WIDTH, 
-                                 dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
-        player2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_WINDOW_WIDTH, 
-                                 dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
-
-        dealer.updateGameWindow();
-        GameGUI.wait(5.0);
         
         while (!gameOver) {
+            // Part 2: build start of game interface (GUI stuff)
             dealer.startGUI();
             player1.startGUI();
             player2.startGUI();
@@ -59,6 +48,7 @@ public class Game
             player2.setFrameLocation(dealer.getGameWindowX() + GameGUI.GAME_WINDOW_WIDTH, 
                                     dealer.getGameWindowY() + GameGUI.GAME_WINDOW_HEIGHT - PlayerGUI.PLAYER_WINDOW_HEIGHT);
 
+            GameGUI.wait(5.0);
             // Part 3; Game loop
             // check for who's alive, players' turns, then player action, in that order
             while (player1.isAlive() && player2.isAlive()) {

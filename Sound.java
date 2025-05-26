@@ -36,6 +36,12 @@ public class Sound
         }
     }
 
+    public void setVolume(float volume)
+    {
+        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);        
+        gainControl.setValue(20f * (float) Math.log10(volume));
+    }
+
     public void play()
     {
         clip.start();
@@ -44,6 +50,11 @@ public class Sound
     public void stop()
     {
         clip.stop();
+    }
+
+    public void loop()
+    {
+        clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     public void setFramePosition(int framePosition)

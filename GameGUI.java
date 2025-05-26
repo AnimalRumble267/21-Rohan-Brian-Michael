@@ -88,7 +88,8 @@ public class GameGUI
     private JTextPane turnTextPane;
     private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
-    private GameListener listener = new GameListener();
+    private GameListener listener;
+    private Sound music;
 
     /**
      * Initializes a <code>GameGUI</code> object which uses the information
@@ -99,10 +100,12 @@ public class GameGUI
     {
         gameWindow = new JFrame();
         gamePanel = new GamePanel(d);
+        listener = new GameListener();
         turnFrame = new JFrame();
         turnPanel = new JPanel();
         turnTextPane = new JTextPane();
         dealer = d;
+        music = new Sound("/sound/chopinnocturneop9no2.wav");
     }
 
     /**
@@ -115,6 +118,9 @@ public class GameGUI
         setUpturnFrame();
         loadTiles();
         loadDescriptions();
+        music.loadSound();
+        music.loop();
+        music.setVolume(0.5F);
         guiStarted = true;
     }
 
