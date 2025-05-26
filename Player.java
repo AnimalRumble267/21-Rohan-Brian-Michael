@@ -235,10 +235,10 @@ public class Player
             double locx = loc.getX();
             
             System.out.println(locx);
-            double trumpThreshold =  (97) * numberCardHand.size();
+            double trumpThreshold =  (GameGUI.UNIT_SIZE) * numberCardHand.size();
             System.out.println(trumpThreshold);
             if (locx > trumpThreshold) {
-                int numTrump = (int)((locx - trumpThreshold) / (97));
+                int numTrump = (int)((locx - trumpThreshold) / (GameGUI.UNIT_SIZE));
                 System.out.println(numTrump);
                 if (numTrump < trumpCardHand.size() && numTrump >= 0) {
                     
@@ -252,16 +252,13 @@ public class Player
             
         }
         else { 
-            Point loc = input.getLocationOnScreen();
+            Point loc = input.getPoint();
             double locx = loc.getX();
-            if (playerNumber == 2) {
-                locx -= 672;
-            }
             System.out.println(locx);
-            double trumpThreshold =  (97) * numberCardHand.size();
+            double trumpThreshold =  (GameGUI.UNIT_SIZE) * numberCardHand.size();
             System.out.println(trumpThreshold);
             if (locx > trumpThreshold) {
-                int numTrump = (int)((locx - trumpThreshold) / (97));
+                int numTrump = (int)((locx - trumpThreshold) / (GameGUI.UNIT_SIZE));
                 System.out.println(numTrump);
                 
                 return 30 + numTrump; // TRUMP

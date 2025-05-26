@@ -82,7 +82,7 @@ public class PlayerGUI
 
     private void setUpDWindow()
     {
-        dFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // dFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         dFrame.setAlwaysOnTop(true);
         dFrame.setResizable(false);
         dFrame.setTitle("Description");
