@@ -4,10 +4,11 @@ import java.util.*;
 import java.awt.event.*;
 
 /**
- * 
+ * Represents the panel within the player's window. Draws the screen based on the information
+ * given to it by its player. Extends JPanel.
  * 
  * @author Michael Lee
- * @version
+ * @version 5/28/2025
  * 
  */
 public class PlayerPanel extends JPanel
@@ -16,11 +17,23 @@ public class PlayerPanel extends JPanel
     private Player player;
     private Color brown = new Color(79, 59, 52);
 
+    /**
+     * Initializes a <code>PlayerPanel</code> object which uses the information
+     * from the given player.
+     * @param p the player
+     */
     public PlayerPanel(Player p)
     {
         player = p;
     }
 
+    /**
+     * Redraws this panel based on the information from this <code>PlayerPanel</code>'s player.
+     * This method should not be called directly and instead should be called through the 
+     * <code>repaint</code> method.
+     * 
+     * @param g the graphics object of this <code>PlayerPanel</code>
+     */
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
@@ -59,9 +72,8 @@ public class PlayerPanel extends JPanel
     }
 
     /**
-     * Will wait until a point is clicked on the screen. Checks 
-     * 30 times per second.
-     * @return the point that was clicked
+     * Waits for and returns the next mouse click within the game window.
+     * @return the next mouse click
      */
     public MouseEvent nextMouseClick()
     {

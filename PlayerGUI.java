@@ -8,7 +8,7 @@ import java.awt.event.*;
  * and trump cards. Displays a trump card's description if prompted to.
  * 
  * @author Michael Lee
- * @version 5/24/2025
+ * @version 5/28/2025
  * @sources https://docs.oracle.com/javase/8/docs/api/javax/swing/package-summary.html
  */
 public class PlayerGUI
@@ -44,8 +44,7 @@ public class PlayerGUI
     }
 
     /**
-     * Starts the GUI. Initializes the <code>JFrame</code>s and <code>JPanel</code>s
-     * and sounds.
+     * Starts the GUI. Initializes the window and sounds.
      */
     public void start()
     {
@@ -132,7 +131,7 @@ public class PlayerGUI
     }
     
     /**
-     * 
+     * Redraws this player's hand based on the player's information
      */
     public void updateHand()
     {
@@ -158,6 +157,11 @@ public class PlayerGUI
         }
     }
 
+    /**
+     * Writes the description for the trump card based on its information
+     * @param value the value of the trump card
+     * @param type the type of the trump card
+     */
     public void writeTrumpCardDescription(int value, String type)
     {
         dFrame.setTitle((GameGUI.TRUMP_CARD_DESCRIPTIONS.get(type + value))[0]);
@@ -167,6 +171,7 @@ public class PlayerGUI
         dFrame.setVisible(true);
     }
 
+    /** Clears the description for the trump card*/
     public void clearTrumpCardDescription()
     {
         dFrame.setTitle("Description");
@@ -176,11 +181,13 @@ public class PlayerGUI
         dPane.setVisible(false);
     }
 
+    /** Plays a card flip sound */
     public void playCardFlipSound()
     {
         cardFlipSound.play();
     }
 
+    /** Stops playing a card flip sound */
     public void stopCardFlipSound()
     {
         cardFlipSound.stop();
@@ -188,9 +195,8 @@ public class PlayerGUI
     }
 
     /**
-     * Will wait until a point is clicked on the screen. Checks 30 times
-     * per second. Returns the mouse event received from the listener.
-     * @return the mouse event (can return which mouse button was pressed)
+     * Waits for and returns the next mouse click within the player's window.
+     * @return the next mouse click
      */
     public MouseEvent nextMouseClick()
     {
