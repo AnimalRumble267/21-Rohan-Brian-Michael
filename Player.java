@@ -229,6 +229,7 @@ public class Player
      */
     public int getInput() {
         MouseEvent input = playerGUI.nextMouseClick();
+        
         //System.out.println(input);
         if (input.getButton() == MouseEvent.BUTTON3) {
             Point loc = input.getPoint();

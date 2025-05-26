@@ -206,13 +206,16 @@ public class Dealer
                     {
                         handleAction(playerOne, oneCode);
                         oneCode = playerOne.getInput();
+                        
                     }
+                    handleAction(playerOne, oneCode);
                 }
                 else
                 {
                     handleAction(playerOne, oneCode);
                 }
                 
+                playerOne.clearTrumpCardDescription();
                 playerOne.setTurn(false);
                 playerOne.updateHand();
                 gameGUI.updateGameWindow();
@@ -227,6 +230,7 @@ public class Dealer
                     {
                         handleAction(playerTwo, twoCode);
                         twoCode = playerTwo.getInput();
+                        
                     }
                 }
                 else
@@ -234,6 +238,9 @@ public class Dealer
                     handleAction(playerTwo, oneCode);
                 }
 
+                playerTwo.clearTrumpCardDescription();
+                playerOne.setTurn(true);
+                playerOne.updateHand();
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
@@ -250,13 +257,18 @@ public class Dealer
                     {
                         handleAction(playerTwo, twoCode);
                         twoCode = playerTwo.getInput();
+                        
                     }
+                    handleAction(playerTwo, twoCode);
                 }
                 else
                 {
                     handleAction(playerTwo, twoCode);
                 }
 
+                playerTwo.clearTrumpCardDescription();
+                playerOne.setTurn(true);
+                playerOne.updateHand();
                 playerTwo.setTurn(false);
                 playerTwo.updateHand();
                 gameGUI.updateGameWindow();
@@ -271,14 +283,16 @@ public class Dealer
                     {
                         handleAction(playerOne, oneCode);
                         oneCode = playerOne.getInput();
+                        
                     }
+                    handleAction(playerOne, oneCode);
                 }
                 else
                 {
                     handleAction(playerOne, oneCode);
                 }
 
-                
+                playerOne.clearTrumpCardDescription();
                 playerOne.setTurn(false);
                 playerOne.updateHand();
                 gameGUI.updateGameWindow();
