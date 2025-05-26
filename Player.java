@@ -220,6 +220,7 @@ public class Player
 
     /**
      * handles player's selection of action from mouse click 
+     * 0 = trumpdescription
      * 1 = hit
      * 2 = stand
      * 3(#) = play trump
@@ -230,9 +231,27 @@ public class Player
         MouseEvent input = playerGUI.nextMouseClick();
         //System.out.println(input);
         if (input.getButton() == MouseEvent.BUTTON3) {
-            return 2; // STAND
+            Point loc = input.getPoint();
+            double locx = loc.getX();
+            
+            System.out.println(locx);
+            double trumpThreshold =  (97) * numberCardHand.size();
+            System.out.println(trumpThreshold);
+            if (locx > trumpThreshold) {
+                int numTrump = (int)((locx - trumpThreshold) / (97));
+                System.out.println(numTrump);
+                if (numTrump < trumpCardHand.size() && numTrump >= 0) {
+                    
+                    playerGUI.writeTrumpCardDescription(trumpCardHand.get(numTrump).getValue(), trumpCardHand.get(numTrump).getType());
+                    
+                    return 0;
+                }
+            }
+            
+            return 2;
+            
         }
-        else { // TODO ADD RIGHT CLICK TO VIEW INFO ABOUT TRUMP CARDS
+        else { 
             Point loc = input.getLocationOnScreen();
             double locx = loc.getX();
             if (playerNumber == 2) {
@@ -244,12 +263,15 @@ public class Player
             if (locx > trumpThreshold) {
                 int numTrump = (int)((locx - trumpThreshold) / (97));
                 System.out.println(numTrump);
+                
                 return 30 + numTrump; // TRUMP
             }
             else {
+               
                 return 1; // HIT
             }
         }
         
     }
+
 }

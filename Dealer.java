@@ -58,7 +58,7 @@ public class Dealer
         // go for trumps
         tempTrumpDeck.add(new TrumpCard(17, "gofor"));
         tempTrumpDeck.add(new TrumpCard(24, "gofor"));
-        tempTrumpDeck.add(new TrumpCard(27, "trumpgofor"));
+        tempTrumpDeck.add(new TrumpCard(27, "gofor"));
 
         // bet trumps
         tempTrumpDeck.add(new TrumpCard(1, "up"));
@@ -200,9 +200,9 @@ public class Dealer
             {
 
                 oneCode = playerOne.getInput();
-                if (oneCode / 10 == 3)
+                if (oneCode / 10 == 3 || oneCode == 0)
                 {
-                    while (oneCode / 10 == 3)
+                    while (oneCode / 10 == 3 || oneCode == 0)
                     {
                         handleAction(playerOne, oneCode);
                         oneCode = playerOne.getInput();
@@ -212,7 +212,7 @@ public class Dealer
                 {
                     handleAction(playerOne, oneCode);
                 }
-
+                
                 playerOne.setTurn(false);
                 playerOne.updateHand();
                 playerTwo.setTurn(true);
@@ -220,9 +220,9 @@ public class Dealer
                 gameGUI.updateGameWindow();
 
                 twoCode = playerTwo.getInput();
-                if (twoCode / 10 == 3)
+                if (twoCode / 10 == 3 || twoCode == 0)
                 {
-                    while (twoCode / 10 == 3)
+                    while (twoCode / 10 == 3 || twoCode == 0)
                     {
                         handleAction(playerTwo, twoCode);
                         twoCode = playerTwo.getInput();
@@ -233,6 +233,7 @@ public class Dealer
                     handleAction(playerTwo, oneCode);
                 }
 
+                
                 playerOne.setTurn(true);
                 playerOne.updateHand();
                 playerTwo.setTurn(false);
@@ -242,9 +243,9 @@ public class Dealer
             else
             {
                 twoCode = playerTwo.getInput();
-                if (twoCode / 10 == 3)
+                if (twoCode / 10 == 3 || twoCode == 0)
                 {
-                    while (twoCode / 10 == 3)
+                    while (twoCode / 10 == 3 || twoCode == 0)
                     {
                         handleAction(playerTwo, twoCode);
                         twoCode = playerTwo.getInput();
@@ -255,6 +256,7 @@ public class Dealer
                     handleAction(playerTwo, twoCode);
                 }
 
+               
                 playerOne.setTurn(true);
                 playerOne.updateHand();
                 playerTwo.setTurn(false);
@@ -262,9 +264,9 @@ public class Dealer
                 gameGUI.updateGameWindow();
 
                 oneCode = playerOne.getInput();
-                if (oneCode / 10 == 3)
+                if (oneCode / 10 == 3 || oneCode == 0)
                 {
-                    while (oneCode / 10 == 3)
+                    while (oneCode / 10 == 3 || oneCode == 0)
                     {
                         handleAction(playerOne, oneCode);
                         oneCode = playerOne.getInput();
@@ -275,6 +277,7 @@ public class Dealer
                     handleAction(playerOne, oneCode);
                 }
 
+                
                 playerOne.setTurn(false);
                 playerOne.updateHand();
                 playerTwo.setTurn(true);
