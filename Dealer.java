@@ -331,11 +331,6 @@ public class Dealer
                 GameGUI.wait(3.5);
                 playerOne.getNumberCardHand().get(0).setIsHidden(false);
                 playerTwo.getNumberCardHand().get(0).setIsHidden(false);
-                playerOne.updateHand();
-                playerTwo.updateHand();
-                gameGUI.updateGameWindow();
-                playerOne.playCardFlipSound();
-                GameGUI.wait(4.0);
             }
         }
         int valOne = playerOne.calculate();
@@ -346,37 +341,83 @@ public class Dealer
         {
             if (distanceFromGoal1 == distanceFromGoal2)
             {
+                gameGUI.updateGameWindow();
+                playerOne.playCardFlipSound();
+                GameGUI.wait(4.0);
+                playerOne.setWon(false);
+                playerTwo.setWon(false);
                 return 0;
             }
             else if (distanceFromGoal1 < distanceFromGoal2)
             {
+                playerTwo.setWon(true);
+                gameGUI.updateGameWindow();
+                playerOne.playCardFlipSound();
+                GameGUI.wait(4.0);
+                playerOne.setWon(false);
+                playerTwo.setWon(false);
                 return 2;
             }
             else if (distanceFromGoal2 < distanceFromGoal1)
             {
+                playerOne.setWon(true);
+                gameGUI.updateGameWindow();
+                playerOne.playCardFlipSound();
+                GameGUI.wait(4.0);
+                playerOne.setWon(false);
+                playerTwo.setWon(false);
                 return 1;
             }
         }
         else if (valOne > goal)
         {
+            playerTwo.setWon(true);
+            gameGUI.updateGameWindow();
+            playerOne.playCardFlipSound();
+            GameGUI.wait(4.0);
+            playerOne.setWon(false);
+            playerTwo.setWon(false);
             return 2;
         }
         else if (valTwo > goal)
         {
+            playerOne.setWon(true);
+            gameGUI.updateGameWindow();
+            playerOne.playCardFlipSound();
+            GameGUI.wait(4.0);
+            playerOne.setWon(false);
+            playerTwo.setWon(false);
             return 1;
         }
         else
         {
             if (distanceFromGoal1 == distanceFromGoal2)
             {
+                gameGUI.updateGameWindow();
+                playerOne.playCardFlipSound();
+                GameGUI.wait(4.0);
+                playerOne.setWon(false);
+                playerTwo.setWon(false);
                 return 0;
             }
             else if (distanceFromGoal1 < distanceFromGoal2)
             {
+                playerOne.setWon(true);
+                gameGUI.updateGameWindow();
+                playerOne.playCardFlipSound();
+                GameGUI.wait(4.0);
+                playerOne.setWon(false);
+                playerTwo.setWon(false);
                 return 1;
             }
             else if (distanceFromGoal2 < distanceFromGoal1)
             {
+                playerTwo.setWon(true);
+                gameGUI.updateGameWindow();
+                playerOne.playCardFlipSound();
+                GameGUI.wait(4.0);
+                playerOne.setWon(false);
+                playerTwo.setWon(false);
                 return 2;
             }
         }
@@ -488,6 +529,7 @@ public class Dealer
      */
     public void punish(Player player, int bet)
     {
+
         status = 2;
         punishStatus = 0;
         playerWillBeEliminated = false;

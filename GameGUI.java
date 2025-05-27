@@ -132,6 +132,8 @@ public class GameGUI
     public void stop()
     {
         guiStarted = false;
+        music.stop();
+        music.setFramePosition(0);
         gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         gameWindow.dispatchEvent(new WindowEvent(gameWindow, WindowEvent.WINDOW_CLOSING));
     }

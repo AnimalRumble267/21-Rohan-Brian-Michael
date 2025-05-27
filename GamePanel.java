@@ -87,9 +87,18 @@ public class GamePanel extends JPanel
                 drawPlayerHand(g2, i + 1, playerCardX, playerCardY - 10);
 
                 // Drawing player profile pictures + background
-                drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
+                if (!players[i].hasWon())
+                {
+                    drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
                                    (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 1.25), 
                                    Color.DARK_GRAY, Color.BLACK);
+                }
+                else
+                {
+                    drawRectWithBorder(g2, playerCardX - GameGUI.UNIT_SIZE / 8, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
+                                   (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 1.25), 
+                                   Color.DARK_GRAY, Color.YELLOW);
+                }
                 g2.drawImage(GameGUI.PLAYER_TILES[0].getImage(), playerCardX, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
                              GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
             }
