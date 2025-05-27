@@ -37,24 +37,39 @@ public class SoundManager
         if (!soundStarted)
         {
             System.out.println("ERROR: Must start sound first - playMusic");
-            
+            return;
         }
         music[index].loop();
     }
 
     public void stopMusic(int index)
     {
+        if (!soundStarted)
+        {
+            System.out.println("ERROR: Must start sound first - stopMusic");
+            return;
+        }
         music[index].stop();
         music[index].setFramePosition(0);
     }
 
     public void playSoundEffect(int index)
     {
+         if (!soundStarted)
+        {
+            System.out.println("ERROR: Must start sound first - playSoundEffect");
+            return;
+        }
         soundEffects[index].loop();
     }
 
     public void stopSoundEffect(int index)
     {
+         if (!soundStarted)
+        {
+            System.out.println("ERROR: Must start sound first - stopSoundEffect");
+            return;
+        }
         soundEffects[index].stop();
         soundEffects[index].setFramePosition(0);
     }
