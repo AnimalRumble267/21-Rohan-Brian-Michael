@@ -133,6 +133,7 @@ public class Dealer
      */
     public int deal()
     {
+        gameGUI.playMusic(0);
         for (TrumpCard i : cache) {
             if (i.getType().equals("up")) {
                 bet -= i.getValue();
@@ -356,6 +357,7 @@ public class Dealer
         int valTwo = playerTwo.calculate();
         int distanceFromGoal1 = goal - valOne;
         int distanceFromGoal2 = goal - valTwo;
+        gameGUI.stopMusic(0);
         if (valOne > goal && valTwo > goal)
         {
             if (distanceFromGoal1 == distanceFromGoal2)
@@ -547,7 +549,7 @@ public class Dealer
      */
     public void punish(Player player, int bet)
     {
-
+        gameGUI.playMusic(1);
         status = 2;
         punishStatus = 0;
         playerWillBeEliminated = false;
@@ -599,6 +601,7 @@ public class Dealer
             status = 3;
             player.setAlive(false);
         }
+        gameGUI.stopMusic(1);
     }
 
 

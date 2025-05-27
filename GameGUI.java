@@ -89,7 +89,7 @@ public class GameGUI
     private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
     private GameListener listener;
-    private Sound music;
+    private Sound[] music;
 
     /**
      * Initializes a <code>GameGUI</code> object which uses the information
@@ -99,7 +99,7 @@ public class GameGUI
     public GameGUI(Dealer d)
     {
         dealer = d;
-        music = new Sound("/sound/chopinnocturneop9no2.wav");
+        music = new Sound[2];
     }
 
     /**
@@ -120,8 +120,10 @@ public class GameGUI
         listener = new GameListener();
         loadTiles();
         loadDescriptions();
-        music.loadSound();
-        music.loop();
+        music[0] = new Sound("/sound/chopinnocturneop9no2.wav");
+        music[1] = new Sound("/sound/21hungariandances.wav");
+        music[0].loadSound();
+        music[1].loadSound();
         guiStarted = true;
     }
 
@@ -132,10 +134,19 @@ public class GameGUI
     public void stop()
     {
         guiStarted = false;
-        music.stop();
-        music.setFramePosition(0);
         gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         gameWindow.dispatchEvent(new WindowEvent(gameWindow, WindowEvent.WINDOW_CLOSING));
+    }
+
+    public void playMusic(int index)
+    {
+        music[index].loop();
+    }
+
+    public void stopMusic(int index)
+    {
+        music[index].stop();
+        music[index].setFramePosition(0);
     }
 
     private void setUpWindow()
