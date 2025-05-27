@@ -90,6 +90,7 @@ public class GameGUI
     private Dealer dealer;
     private GameListener listener;
     private Sound[] music;
+    private Sound[] soundEffects;
 
     /**
      * Initializes a <code>GameGUI</code> object which uses the information
@@ -100,6 +101,7 @@ public class GameGUI
     {
         dealer = d;
         music = new Sound[2];
+        soundEffects = new Sound[2];
     }
 
     /**
@@ -125,6 +127,11 @@ public class GameGUI
         music[1] = new Sound("/sound/21hungariandances.wav");
         music[0].loadSound();
         music[1].loadSound();
+
+        soundEffects[0] = new Sound("/sound/trigger.wav");
+        soundEffects[1] = new Sound("/sound/blast.wav");
+        soundEffects[0].loadSound();
+        soundEffects[1].loadSound();
         guiStarted = true;
     }
 
@@ -137,17 +144,6 @@ public class GameGUI
         guiStarted = false;
         gameWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         gameWindow.dispatchEvent(new WindowEvent(gameWindow, WindowEvent.WINDOW_CLOSING));
-    }
-
-    public void playMusic(int index)
-    {
-        music[index].loop();
-    }
-
-    public void stopMusic(int index)
-    {
-        music[index].stop();
-        music[index].setFramePosition(0);
     }
 
     private void setUpWindow()
