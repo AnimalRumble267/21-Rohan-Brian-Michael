@@ -1,61 +1,74 @@
 import java.util.*;
 
 /**
+ * A class meant to store and retrieve cards. Capable of initializing,
+ * shuffling, and retrieving either the first or a targetted card from the Deck.
  * 
- * 
- * @author
- * @version
- * 
+ * @author Rohan Chaudhary
+ * @version 5-26-2025
  */
 public class Deck
 {
-    private ArrayList<Card> idleDeck;
+    private ArrayList<Card>  idleDeck;
     private LinkedList<Card> activeDeck;
 
     /**
-     * constructor that takes in any type of deck (number card or trump) and as idleDeck and instantiates activeDeck
-     * (idleDeck = base deck that is used to reset // 
-     * activeDeck = copy of idleDeck that will undergo all the changes throughout the rounds/games)
-     * @param i
+     * A constructor that initializes a linkedlist and arraylist based off a
+     * linkedlist of Cards ArrayList is the "idle" deck meant to store the Cards
+     * between resets LinkedList is the active deck which has cards taken in and
+     * out of it
+     * 
+     * @param i - Initial ArrayList dictating the contents of Deck
      */
-    public Deck(ArrayList<Card> i) 
+    public Deck(ArrayList<Card> i)
     {
         idleDeck = i;
         activeDeck = new LinkedList<Card>();
     }
 
+
     /**
-     * uses the java collections shuffle algorithm to shuffle the activeDeck's cards (assumes that round just starts)
+     * Resets the active deck, filling it in with values from the idle deck
+     * before shuffling it using a method from Collections
      */
-    public void shuffle() 
+    public void shuffle()
     {
         activeDeck.clear();
-        for (int i = 0; i < idleDeck.size(); i++) {
+        for (int i = 0; i < idleDeck.size(); i++)
+        {
             activeDeck.add(idleDeck.get(i));
         }
         Collections.shuffle(activeDeck, new Random(System.currentTimeMillis()));
     }
 
+
     /**
-     * remove the top most card from selected deck
-     * @return top Card
+     * Returns the top Card from the activeDeck
+     * 
+     * @return - null if activeDeck is empty, else the top Card
      */
-    public Card draw() 
+    public Card draw()
     {
-        if (activeDeck.isEmpty()) {
+        if (activeDeck.isEmpty())
+        {
             return null;
         }
         return (activeDeck.removeFirst());
     }
 
+
     /**
-     * gets the value of a given number or trump card
-     * @param value
-     * @return
+     * Searches for a Card in the activeDeck, searching for a targeted value
+     * 
+     * @param value - Value of desired card
+     * @return - Desired Card, or null
      */
-    public Card getCard(int value) {
-        for (Card card : activeDeck) {
-            if (card.getValue() == value) {
+    public Card getCard(int value)
+    {
+        for (Card card : activeDeck)
+        {
+            if (card.getValue() == value)
+            {
                 return card;
             }
         }
