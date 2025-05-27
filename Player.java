@@ -2,10 +2,12 @@ import java.util.ArrayList;
 import java.awt.*;
 import java.awt.event.*;
 /**
- * Defines player -- holds values like name, the player's current number and trump card hand
+ * Object representing the Player, a class which contains the playerGUI,
+ * and represents the status of the player, including their name, status,
+ * and card hand. 
  * 
- * @author Brian and Rohan
- * @version
+ * @author - Brian & Rohan
+ * @version - 5/27/2025
  * 
  */
 public class Player 
@@ -23,10 +25,12 @@ public class Player
     private boolean hasWon;
 
     /**
-     * Constructor that takes in name and player #, which will be used later for actions in other classes
+     * Player onstructor that takes in name and player #, 
+     * which will be used later for actions in other classes
      * Player is now assumed to be alive (isAlive = true)
      * Initializes arraylists for deck hands and playerGUI
-     * @param name
+     * @param name - String name of Player
+     * @param playerNum - int number of Player
      */
     public Player(String name, int playerNum)
     {
@@ -41,7 +45,7 @@ public class Player
     }
 
     /**
-     * starts the playerHand GUI
+     * Starts the playerHand GUI
      */
     public void startGUI()
     {
@@ -49,7 +53,7 @@ public class Player
     }
 
     /**
-     * stops the playerHand GUI
+     * Stops the playerHand GUI
      */
     public void stopGUI()
     {
@@ -57,7 +61,7 @@ public class Player
     }
 
     /**
-     * updates GUI for the player hand window based on playerGUI's updateHand()
+     * Updates GUI for the player hand window based on playerGUI's updateHand()
      */
     public void updateHand()
     {
@@ -65,10 +69,11 @@ public class Player
     }
 
     /**
-     * sets frame of player hand on parent screen
+     * Sets the location of the playerGUI
+     * frame using playerGUI.
      * 
-     * @param x
-     * @param y
+     * @param x - int x coordinate of loc
+     * @param y - int y coordinate of loc
      */
     public void setFrameLocation(int x, int y)
     {
@@ -76,10 +81,11 @@ public class Player
     }
 
     /**
-     * gives description of trump card (type: "gofor", "bet", "draw"; value: value of the type // ex. "draw-2 --> type: "draw", value: 2)
+     * Initializes description of trump card (type: "gofor", "bet", "draw";
+     * value: value of the type // ex. "draw-2 --> type: "draw", value: 2)
      * 
-     * @param value
-     * @param type
+     * @param value - int value dictating scale / type of function
+     * @param type - String type dictating function
      */
     public void writeTrumpCardDescription(int value, String type)
     {
@@ -87,7 +93,7 @@ public class Player
     }
 
     /**
-     * clears any current description for targetted trump card
+     * Clears all Trump Card descriptions
      */
     public void clearTrumpCardDescription()
     {
@@ -95,9 +101,9 @@ public class Player
     }
 
     /**
-     * returns whether or not it is object player's turn
+     * Returns whether or not it is object player's turn
      * 
-     * @return boolean isTurn
+     * @return - boolean isTurn
      */
     public boolean isTurn()
     {
@@ -105,9 +111,9 @@ public class Player
     }
 
     /**
-     * sets player turn
+     * Sets player turn to true or false
      * 
-     * @param turn
+     * @param turn - boolean turn to be set
      */
     public void setTurn(boolean turn)
     {
@@ -115,9 +121,9 @@ public class Player
     }
 
     /** 
-     * returns whether or not player is alive
+     * Returns whether or not player is alive
      * 
-     * @return boolean isAlive
+     * @return - boolean isAlive
      */
     public boolean isAlive()
     {
@@ -125,10 +131,10 @@ public class Player
     }
 
     /**
-     * sets isAlive status 
+     * Sets isAlive status 
      * (true = player is alive // false = player is not alive)
      * 
-     * @param status
+     * @param status - boolean whetehr the player is alive or not
      */
     public void setAlive(boolean status) 
     {
@@ -137,7 +143,8 @@ public class Player
 
     /**
      * Sets this player's status which indicates if they have won
-     * @param status the status which indicates if this player has won
+     * 
+     * @param status boolean status which indicates if this player has won
      */
     public void setWon(boolean status)
     {
@@ -154,9 +161,9 @@ public class Player
     }
 
     /**
-     * adds number card to player deck
+     * Adds number card to the end of player hand
      * 
-     * @param card
+     * @param card - NumberCard to be added
      */
     public void giveNumberCard(NumberCard card)
     {
@@ -164,9 +171,9 @@ public class Player
     }
 
     /**
-     * adds trump card to player deck
+     * Adds trump card to the end of player hand
      * 
-     * @param card
+     * @param card - TrumpCard to be added
      */
     public void giveTrumpCard(TrumpCard card)
     {
@@ -174,9 +181,9 @@ public class Player
     }
 
     /**
-     * removes the last number card from the player's number deck
+     * Removes the last number card from the player's number hand
      * 
-     * @return
+     * @return - NumberCard removed
      */
     public NumberCard removeLastNumberCard()
     {
@@ -184,10 +191,10 @@ public class Player
     }
 
     /**
-     * removes a specific trump card from a player's trump card hand given an index;
+     * Removes a specific Trump Card from a player's trump card hand given an index;
      * 
-     * @param index is from 0 to length of size - 1 
-     * @return
+     * @param index int index, is from 0 to length of size - 1 
+     * @return - TrumpCard removed
      */
     public TrumpCard removeTrumpCard(int index)
     {
@@ -195,10 +202,9 @@ public class Player
     }
 
     /** 
-     * calculates total value of numberCardHand
+     * Calculates total value of numberCardHand
      * 
-     * @param 
-     * @returns value
+     * @returns int value of the numberCardHand
      */
     public int calculate() {
         int temp = 0;
@@ -209,7 +215,7 @@ public class Player
     }
     
     /**
-     * clears both trump card and number card hands
+     * Clears both trump card and number card hands
      */
     public void resetHand()
     {
@@ -218,9 +224,9 @@ public class Player
     }
 
     /**
-     * get method
+     * Gets numbercard hand of the Player
      *
-     *  @return the entire number card hand of the player
+     *  @return - ArrayList<NumberCard> signifying hand
      */
     public ArrayList<NumberCard> getNumberCardHand()
     {
@@ -228,9 +234,9 @@ public class Player
     }
 
     /**
-     * get method
+     * Gets trumpcard hand of the Player
      * 
-     * @return the the entire trump card hand of the player
+     * @return - ArrayList<TrumpCard> signifying hand
      */
     public ArrayList<TrumpCard> getTrumpCardHand()
     {
@@ -238,9 +244,9 @@ public class Player
     }
 
     /**
-     * get method
+     * Gets name of the Player
      * 
-     * @return name of the player
+     * @return - String name of the player
      */
     public String getName()
     {
@@ -248,13 +254,17 @@ public class Player
     }
 
     /**
-     * handles player's selection of action from mouse click 
+     * Based on the location of the next mouseclick, returns
+     * a status based on the location of the mouse and the 
+     * input type, signifying the action which is meant to
+     * be executed
+     * 
      * 0 = trumpdescription
      * 1 = hit
      * 2 = stand
-     * 3(#) = play trump
+     * 30 + X = play trump X
      * 
-     * @return
+     * @return int action number
      */
     public int getInput() {
         MouseEvent input = playerGUI.nextMouseClick();
@@ -296,4 +306,15 @@ public class Player
         }
         
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Plays card flip sound
+     */
+    public void playCardFlipSound() {
+        Sound flipSound = new Sound("/sound/cardflip.wav");
+        flipSound.loadSound();
+    }
+>>>>>>> 1f70bc8dfbc09d508b25e05350604c98922fa3ce
 }
