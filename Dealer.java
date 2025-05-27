@@ -24,6 +24,7 @@ public class Dealer
     private ArrayList<TrumpCard> cache;
     private GameGUI              gameGUI;
     private boolean              isFirstDeal = false;
+    private SoundManager         soundManager;
 
     /**
      * Assigns players, creates Decks and intantiates the types of number and trump
@@ -77,6 +78,7 @@ public class Dealer
         // AND the entirety of deck trumps
 
         gameGUI = new GameGUI(this);
+        soundManager = new SoundManager();
     }
 
 
@@ -104,6 +106,13 @@ public class Dealer
         gameGUI.updateGameWindow();
     }
 
+    /**
+     * Starts the sound.
+     */
+    public void startSound()
+    {
+        soundManager.start();
+    }
 
     /**
      * gets the X coord of the GUI's gameWindow
@@ -133,7 +142,7 @@ public class Dealer
      */
     public int deal()
     {
-        gameGUI.playMusic(0);
+        soundManager.playMusic(bet);
         for (TrumpCard i : cache) {
             if (i.getType().equals("up")) {
                 bet -= i.getValue();
@@ -154,7 +163,7 @@ public class Dealer
         NumberCard muteCardOne = (NumberCard)numberCardDeck.draw();
         muteCardOne.setIsHidden(true);
         players.get(0).giveNumberCard(muteCardOne);
-        players.get(0).playCardFlipSound();
+        soundManager.playSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -162,7 +171,8 @@ public class Dealer
         NumberCard muteCardTwo = (NumberCard)numberCardDeck.draw();
         muteCardTwo.setIsHidden(true);
         players.get(1).giveNumberCard(muteCardTwo);
-        players.get(1).playCardFlipSound();
+        soundManager.stopSoundEffect(2);
+        soundManager.playSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -170,7 +180,8 @@ public class Dealer
         NumberCard cardOne = (NumberCard)numberCardDeck.draw();
         cardOne.setIsHidden(false);
         players.get(0).giveNumberCard(cardOne);
-        players.get(0).playCardFlipSound();
+        soundManager.stopSoundEffect(2);
+        soundManager.playSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -178,7 +189,8 @@ public class Dealer
         NumberCard cardTwo = (NumberCard)numberCardDeck.draw();
         cardTwo.setIsHidden(false);
         players.get(1).giveNumberCard(cardTwo);
-        players.get(1).playCardFlipSound();
+        soundManager.stopSoundEffect(2);
+        soundManager.playSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -357,13 +369,13 @@ public class Dealer
         int valTwo = playerTwo.calculate();
         int distanceFromGoal1 = goal - valOne;
         int distanceFromGoal2 = goal - valTwo;
-        gameGUI.stopMusic(0);
+        soundManager.stopAllMusic();
         if (valOne > goal && valTwo > goal)
         {
             if (distanceFromGoal1 == distanceFromGoal2)
             {
                 gameGUI.updateGameWindow();
-                playerOne.playCardFlipSound();
+                soundManager.playSoundEffect(2);
                 GameGUI.wait(4.0);
                 playerOne.setWon(false);
                 playerTwo.setWon(false);
@@ -373,7 +385,7 @@ public class Dealer
             {
                 playerTwo.setWon(true);
                 gameGUI.updateGameWindow();
-                playerOne.playCardFlipSound();
+                soundManager.playSoundEffect(2);
                 GameGUI.wait(4.0);
                 playerOne.setWon(false);
                 playerTwo.setWon(false);
@@ -383,7 +395,7 @@ public class Dealer
             {
                 playerOne.setWon(true);
                 gameGUI.updateGameWindow();
-                playerOne.playCardFlipSound();
+                soundManager.playSoundEffect(2);
                 GameGUI.wait(4.0);
                 playerOne.setWon(false);
                 playerTwo.setWon(false);
@@ -394,7 +406,7 @@ public class Dealer
         {
             playerTwo.setWon(true);
             gameGUI.updateGameWindow();
-            playerOne.playCardFlipSound();
+            soundManager.playSoundEffect(2);
             GameGUI.wait(4.0);
             playerOne.setWon(false);
             playerTwo.setWon(false);
@@ -404,7 +416,7 @@ public class Dealer
         {
             playerOne.setWon(true);
             gameGUI.updateGameWindow();
-            playerOne.playCardFlipSound();
+            soundManager.playSoundEffect(2);
             GameGUI.wait(4.0);
             playerOne.setWon(false);
             playerTwo.setWon(false);
@@ -415,7 +427,7 @@ public class Dealer
             if (distanceFromGoal1 == distanceFromGoal2)
             {
                 gameGUI.updateGameWindow();
-                playerOne.playCardFlipSound();
+                soundManager.playSoundEffect(2);
                 GameGUI.wait(4.0);
                 playerOne.setWon(false);
                 playerTwo.setWon(false);
@@ -425,7 +437,7 @@ public class Dealer
             {
                 playerOne.setWon(true);
                 gameGUI.updateGameWindow();
-                playerOne.playCardFlipSound();
+                soundManager.playSoundEffect(2);
                 GameGUI.wait(4.0);
                 playerOne.setWon(false);
                 playerTwo.setWon(false);
@@ -435,7 +447,7 @@ public class Dealer
             {
                 playerTwo.setWon(true);
                 gameGUI.updateGameWindow();
-                playerOne.playCardFlipSound();
+                soundManager.playSoundEffect(2);
                 GameGUI.wait(4.0);
                 playerOne.setWon(false);
                 playerTwo.setWon(false);
@@ -466,7 +478,7 @@ public class Dealer
             NumberCard newNumberCard = (NumberCard)numberCardDeck.draw();
             newNumberCard.setIsHidden(false);
             activePlayer.giveNumberCard(newNumberCard);
-            activePlayer.playCardFlipSound();
+            soundManager.playSoundEffect(2);
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
         }
@@ -496,21 +508,18 @@ public class Dealer
             else if (trumpType.equals("up"))
             {
                 bet += trump.getValue();
+                soundManager.stopAllMusic();
+                soundManager.playMusic(bet - 1);
             }
             else if (trumpType.equals("shield")) {
                 if (bet > 0) bet--;
-            }
-            else if (trumpType.equals("shield"))
-            {
-                if (bet > 0)
-                {
-                    bet -= trump.getValue();
-                }
+                soundManager.stopAllMusic();
+                soundManager.playMusic(bet - 1);
             }
             activePlayer.removeTrumpCard(numTrump);
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
-            activePlayer.playCardFlipSound();
+            soundManager.playSoundEffect(2);
         }
     }
 
@@ -559,7 +568,7 @@ public class Dealer
      */
     public void punish(Player player, int bet)
     {
-        gameGUI.playMusic(1);
+        soundManager.stopAllMusic();;
         status = 2;
         punishStatus = 0;
         playerWillBeEliminated = false;
@@ -590,9 +599,18 @@ public class Dealer
 
             punishStatus = 2;
             gameGUI.updateGameWindow();
+            if (playerWillBeEliminated)
+            {
+                soundManager.playSoundEffect(0);
+            }
+            else
+            {
+                soundManager.playSoundEffect(1);
+            }
 
             GameGUI.wait(1.5);
 
+            soundManager.stopAllSoundEffects();
             punishStatus = 3;
             gameGUI.updateGameWindow();
 
@@ -611,7 +629,6 @@ public class Dealer
             status = 3;
             player.setAlive(false);
         }
-        gameGUI.stopMusic(1);
     }
 
 

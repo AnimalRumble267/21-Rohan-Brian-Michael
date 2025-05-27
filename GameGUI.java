@@ -89,8 +89,6 @@ public class GameGUI
     private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
     private GameListener listener;
-    private Sound[] music;
-    private Sound[] soundEffects;
 
     /**
      * Initializes a <code>GameGUI</code> object which uses the information
@@ -100,8 +98,6 @@ public class GameGUI
     public GameGUI(Dealer d)
     {
         dealer = d;
-        music = new Sound[2];
-        soundEffects = new Sound[2];
     }
 
     /**
@@ -122,25 +118,7 @@ public class GameGUI
         listener = new GameListener();
         loadTiles();
         loadDescriptions();
-
-        music[0] = new Sound("/sound/chopinnocturneop9no2.wav"); // 1
-        // music[1] = new Sound("/sound/21hungariandances.wav"); ---- not used anymore
-        music[1] = new Sound("/sound/chopinfantasieimpromptu"); // 2
-        music[2] = new Sound("/sound/hungariandanceno5.wav"); // 3
-        music[3] = new Sound("/sound/summer.wav"); // 4
-        music[4] = new Sound("/sound/cancan.wav"); // 5
-        music[5] = new Sound("/sound/carminaburana.wav"); // 6
-        music[0].loadSound();
-        music[1].loadSound();
-        music[2].loadSound();
-        music[3].loadSound();
-        music[4].loadSound();
-        music[5].loadSound();
-
-        soundEffects[0] = new Sound("/sound/trigger.wav");
-        soundEffects[1] = new Sound("/sound/blast.wav");
-        soundEffects[0].loadSound();
-        soundEffects[1].loadSound();
+        
         guiStarted = true;
     }
 

@@ -16,16 +16,26 @@ public class SoundManager
 
     public SoundManager()
     {
-        music = new Sound[2];
+        music = new Sound[7];
         soundEffects = new Sound[3];
     }
 
     public void start()
     {
-        music[0] = new Sound("/sound/chopinnocturneop9no2.wav");
-        music[1] = new Sound("/sound/21hungariandances.wav");
+        music[0] = new Sound("/sound/clairdelune.wav");
+        music[1] = new Sound("/sound/chopinnocturneop9no2.wav");
+        music[2] = new Sound("/sound/chopinfantasieimpromptu.wav");
+        music[3] = new Sound("/sound/cancan.wav");
+        music[4] = new Sound("/sound/hungariandanceno5.wav");
+        music[5] = new Sound("/sound/summer.wav");
+        music[6] = new Sound("/sound/carminaburana.wav");
         music[0].loadSound();
         music[1].loadSound();
+        music[2].loadSound();
+        music[3].loadSound();
+        music[4].loadSound();
+        music[5].loadSound();
+        music[6].loadSound();
 
         soundEffects[0] = new Sound("/sound/trigger.wav");
         soundEffects[1] = new Sound("/sound/blast.wav");
@@ -33,6 +43,8 @@ public class SoundManager
         soundEffects[0].loadSound();
         soundEffects[1].loadSound();
         soundEffects[2].loadSound();
+
+        soundStarted = true;
     }
 
     public void playMusic(int index)
@@ -63,7 +75,7 @@ public class SoundManager
             System.out.println("ERROR: Must start sound first - playSoundEffect");
             return;
         }
-        soundEffects[index].loop();
+        soundEffects[index].play();
     }
 
     public void stopSoundEffect(int index)

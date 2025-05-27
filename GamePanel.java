@@ -15,7 +15,6 @@ public class GamePanel extends JPanel
 {
     private Dealer dealer;
     private Player[] players;
-    private Sound[] soundEffects;
     private Font comicSansHalf = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE / 2);
     private Font comicSansFull = new Font("Comic Sans MS", Font.BOLD, GameGUI.UNIT_SIZE);
     private Font timesNewRomanHalf = new Font("Times New Roman", Font.BOLD, GameGUI.UNIT_SIZE / 2);
@@ -38,11 +37,6 @@ public class GamePanel extends JPanel
         players = new Player[2];
         players[0] = dealer.getPlayers().get(0);
         players[1] = dealer.getPlayers().get(1);
-        soundEffects = new Sound[2];
-        soundEffects[0] = new Sound("/sound/trigger.wav");
-        soundEffects[1] = new Sound("/sound/blast.wav");
-        soundEffects[0].loadSound();
-        soundEffects[1].loadSound();
     }
 
     /**
@@ -183,14 +177,6 @@ public class GamePanel extends JPanel
             {
                 g2.setColor(Color.BLACK);
                 g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-                if (dealer.playerWillBeEliminated())
-                {
-                    soundEffects[1].play();
-                }   
-                else
-                {
-                    soundEffects[0].play();
-                }
             }
             else if (dealer.getPunishStatus() == 3)
             {
@@ -198,15 +184,11 @@ public class GamePanel extends JPanel
                 g2.drawRect(0, 0, this.getWidth(), this.getHeight());
                 if (dealer.playerWillBeEliminated())
                 {
-                    soundEffects[1].stop();
-                    soundEffects[1].setFramePosition(0);
                     g2.drawImage(GameGUI.PLAYER_TILES[1].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
                                  this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
                 }
                 else
                 {
-                    soundEffects[0].stop();
-                    soundEffects[0].setFramePosition(0);
                     g2.drawImage(GameGUI.PLAYER_TILES[0].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
                                  this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
                 }

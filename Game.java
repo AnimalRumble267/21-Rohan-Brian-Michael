@@ -49,6 +49,7 @@ public class Game
         {
             // Part 2: build start of game interface (GUI stuff)
             dealer.startGUI();
+            dealer.startSound();
             player1.startGUI();
             player2.startGUI();
             player1.setFrameLocation(

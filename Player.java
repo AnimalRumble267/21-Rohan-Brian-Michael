@@ -296,12 +296,4 @@ public class Player
         }
         
     }
-
-    /**
-     * plays card flip sound
-     */
-    public void playCardFlipSound() {
-        Sound flipSound = new Sound("/sound/cardflip.wav");
-        flipSound.loadSound();
-    }
 }
