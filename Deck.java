@@ -60,7 +60,7 @@ public class Deck
     /**
      * Searches for a Card in the activeDeck, searching for a targeted value
      * 
-     * @param value - Value of desired card
+     * @param value - int value of desired card
      * @return - Desired Card, or null
      */
     public Card getCard(int value)

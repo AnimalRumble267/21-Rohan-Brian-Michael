@@ -1,77 +1,93 @@
 /**
+ * Object representing a Card with a number 1-11. Can be hidden, or unhidden,
+ * with standard getters, setters, and an equals() override.
  * 
- * 
- * @author brian
- * @version
- * 
+ * @author Brian
+ * @version 5-26-2025
  */
-public class NumberCard implements Card
+public class NumberCard
+    implements Card
 {
-    private int value;
+    private int     value;
     private boolean isHidden;
 
     /**
-     * no args constructor //
-     * by default numberCard value is -1 and is not hidden 
+     * A no arguments constructor which sets value to -1, and isHidden to false.
      */
-    public NumberCard() {
+    public NumberCard()
+    {
         value = -1;
         isHidden = false;
     }
 
+
     /**
-     * instantiates new numberCard through establishing value and whether or not a card is hidden
+     * Constructor which creates a NumberCard with inputted value and isHidden
+     * status
      * 
-     * @param value
-     * @param isHidden
+     * @param value - int value of new card
+     * @param isHidden - boolean signifying if card is hidden
      */
-    public NumberCard(int value, boolean isHidden) {
+    public NumberCard(int value, boolean isHidden)
+    {
         this.value = value;
         this.isHidden = isHidden;
     }
 
+
     /**
-     * getter method
+     * Retrieves value of card
      * 
      * @return int value of the card
      */
-    public int getValue() {
+    public int getValue()
+    {
         return value;
     }
 
+
     /**
-     * getter method
+     * Retrieves ishidden status of card
      * 
-     * @return whether or not the card is hidden
+     * @return boolean whether or not the card is hidden
      */
-    public boolean getIsHidden() {   
+    public boolean getIsHidden()
+    {
         return isHidden;
     }
 
+
     /**
-     * sets the value of a number card
+     * Sets the value of a number card
      * 
-     * @param v
+     * @param v - integer value to be set
      */
-    public void setValue(int v) {
+    public void setValue(int v)
+    {
         value = v;
     }
 
+
     /**
-     * sets whether or not a card is hidden
+     * Sets whether or not a card is hidden
      * 
-     * @param hiddenStatus
+     * @param hiddenStatus - boolean value to be set
      */
-    public void setIsHidden(boolean hiddenStatus) {
+    public void setIsHidden(boolean hiddenStatus)
+    {
         isHidden = hiddenStatus;
     }
 
+
     /**
-     * equals method comparing numberCard values of two cards
+     * equals method oveeride comparing 
+     * numberCard values of two cards
      * 
-     * @return boolean true or false
+     * @param other - Object to be compared with
+     * @return  - boolean true or false
      */
-    public boolean equals(Object other) {
+    public boolean equals(Object other)
+    {
         return (this.getValue() == ((NumberCard)other).getValue());
     }
 }
