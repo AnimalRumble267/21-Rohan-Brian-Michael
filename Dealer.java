@@ -498,7 +498,7 @@ public class Dealer
                 bet += trump.getValue();
             }
             else if (trumpType.equals("shield")) {
-                bet--;
+                if (bet > 0) bet--;
             }
             else if (trumpType.equals("shield"))
             {
