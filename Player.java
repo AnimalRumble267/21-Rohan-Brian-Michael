@@ -291,10 +291,10 @@ public class Player
             double locx = loc.getX();
             System.out.println(locx);
             double trumpThreshold =  (GameGUI.UNIT_SIZE) * numberCardHand.size();
-            System.out.println(trumpThreshold);
+            //System.out.println(trumpThreshold);
             if (locx > trumpThreshold) {
                 int numTrump = (int)((locx - trumpThreshold) / (GameGUI.UNIT_SIZE));
-                System.out.println(numTrump);
+                //System.out.println(numTrump);
                 
                 return 30 + numTrump; // TRUMP
             }
