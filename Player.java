@@ -20,6 +20,8 @@ public class Player
     private PlayerGUI playerGUI;
     private int playerNumber;
 
+    private boolean hasWon;
+
     /**
      * Constructor that takes in name and player #, which will be used later for actions in other classes
      * Player is now assumed to be alive (isAlive = true)
@@ -31,6 +33,7 @@ public class Player
         this.name = name;
         isTurn = false;
         isAlive = true;
+        hasWon = false;
         numberCardHand = new ArrayList<NumberCard>();
         trumpCardHand = new ArrayList<TrumpCard>();
         playerGUI = new PlayerGUI(this, playerNum);
@@ -130,6 +133,24 @@ public class Player
     public void setAlive(boolean status) 
     {
         isAlive = status;
+    }
+
+    /**
+     * Sets this player's status which indicates if they have won
+     * @param status the status which indicates if this player has won
+     */
+    public void setWon(boolean status)
+    {
+        hasWon = status;
+    }
+
+    /**
+     * Returns true if this player has won, false otherwise
+     * @return true if this player has won, false otherwise
+     */
+    public boolean hasWon()
+    {
+        return hasWon;
     }
 
     /**
