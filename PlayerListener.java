@@ -1,7 +1,5 @@
-import java.util.*;
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Represents a mouse listener for a <code>PlayerPanel</code>
@@ -56,5 +54,5 @@ public class PlayerListener implements MouseListener
     {
         
     }
-};
+}
 

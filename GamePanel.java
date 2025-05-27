@@ -227,8 +227,6 @@ public class GamePanel extends JPanel
             g2.setFont(timesNewRomanHalf);
             stringWidth = fontMetrics.stringWidth("Play Again?");
             g2.drawString("Play Again?", this.getWidth() / 2 - stringWidth * 4, this.getHeight() / 2 + (int)(GameGUI.UNIT_SIZE * 0.6));
-
-            // TODO make sure to setFocusable(false) after the game over screen is done
         }
         g2.dispose();
     }
@@ -237,9 +235,7 @@ public class GamePanel extends JPanel
     {
         Player player = players[playerNumber - 1];
         ArrayList<NumberCard> numberCardHand = player.getNumberCardHand();
-        ArrayList<TrumpCard> trumpCardHand = player.getTrumpCardHand();
         NumberCard currentNumberCard;
-        TrumpCard currentTrumpCard;
         Tile currentTile;
         int i;
 
