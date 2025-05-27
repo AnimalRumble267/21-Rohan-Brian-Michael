@@ -1,9 +1,10 @@
 
 /**
- * 
+ * Represents the manager for all sounds of the game. Plays and stops
+ * music and sound effects.
  * 
  * @author Michael Lee
- * @version
+ * @version 5/28/2025
  * 
  */
 public class SoundManager 
@@ -16,7 +17,7 @@ public class SoundManager
     public SoundManager()
     {
         music = new Sound[2];
-        soundEffects = new Sound[2];
+        soundEffects = new Sound[3];
     }
 
     public void start()
@@ -28,8 +29,10 @@ public class SoundManager
 
         soundEffects[0] = new Sound("/sound/trigger.wav");
         soundEffects[1] = new Sound("/sound/blast.wav");
+        soundEffects[2] = new Sound("/sound/cardflip.wav");
         soundEffects[0].loadSound();
         soundEffects[1].loadSound();
+        soundEffects[2].loadSound();
     }
 
     public void playMusic(int index)

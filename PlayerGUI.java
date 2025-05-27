@@ -180,19 +180,6 @@ public class PlayerGUI
         dPane.setVisible(false);
     }
 
-    /** Plays a card flip sound */
-    public void playCardFlipSound()
-    {
-        cardFlipSound.play();
-    }
-
-    /** Stops playing a card flip sound */
-    public void stopCardFlipSound()
-    {
-        cardFlipSound.stop();
-        cardFlipSound.setFramePosition(0);
-    }
-
     /**
      * Waits for and returns the next mouse click within the player's window.
      * @return the next mouse click

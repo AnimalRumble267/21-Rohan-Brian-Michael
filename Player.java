@@ -154,15 +154,6 @@ public class Player
     }
 
     /**
-     * plays sound effect for when cards are delt to this player
-     */
-    public void playCardFlipSound()
-    {
-        playerGUI.stopCardFlipSound();
-        playerGUI.playCardFlipSound();
-    }
-
-    /**
      * adds number card to player deck
      * 
      * @param card
