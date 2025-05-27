@@ -115,7 +115,7 @@ public class GameGUI
         turnFrame = new JFrame();
         turnPanel = new JPanel();
         turnTextPane = new JTextPane();
-        setUpturnFrame();
+        setUpTurnFrame();
 
         listener = new GameListener();
         loadTiles();
@@ -155,7 +155,7 @@ public class GameGUI
         gameWindow.setVisible(true);
     }
 
-    private void setUpturnFrame()
+    private void setUpTurnFrame()
     {
         turnFrame.setAlwaysOnTop(true);
         turnFrame.setResizable(false);
