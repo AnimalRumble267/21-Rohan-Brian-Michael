@@ -61,7 +61,7 @@ public class Game
                     - PlayerGUI.PLAYER_WINDOW_HEIGHT);
 
             GameGUI.wait(5.0);
-            // Part 3; Game loop
+            // Part 3: Game loop
             // check for who's alive, players' turns, then player action, in
             // that order
             while (player1.isAlive() && player2.isAlive())
