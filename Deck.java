@@ -65,13 +65,18 @@ public class Deck
      */
     public Card getCard(int value)
     {
+        Card output = null;
         for (Card card : activeDeck)
         {
             if (card.getValue() == value)
             {
-                return card;
+                output = card;
             }
         }
-        return null;
+        if (output == null) {
+            return null;
+        }
+        activeDeck.remove(output);
+        return output;
     }
 }

@@ -26,13 +26,13 @@ public class Dealer
     private boolean              isFirstDeal = false;
 
     /**
-     * Assigns players, creates Decks intantiates the types of number and trump
+     * Assigns players, creates Decks and intantiates the types of number and trump
      * cards Number cards: 1-11 Trump cards: String type --> name, int value -->
      * value of the command within the Trump Card
      * 
-     * @param playerOne
-     * @param playerTwo
-     * @param bet
+     * @param playerOne - First player to deal to
+     * @param playerTwo - Second player to deal to
+     * @param bet - Current bet
      */
     public Dealer(Player playerOne, Player playerTwo, int bet)
     {
@@ -80,23 +80,35 @@ public class Dealer
     }
 
 
+    /**
+     * Starts the gameGUI
+     */
     public void startGUI()
     {
         gameGUI.start();
     }
 
+    /**
+     * Stops the gameGUI
+     */
     public void stopGUI()
     {
         gameGUI.stop();
     }
 
-
+    /**
+     * Forces GameGUI to update
+     */
     public void updateGameWindow()
     {
         gameGUI.updateGameWindow();
     }
 
 
+    /**
+     * gets the X coord of the GUI's gameWindow
+     * @return - int x coordinate
+     */
     public int getGameWindowX()
     {
         return gameGUI.getGameWindowX();
@@ -110,7 +122,14 @@ public class Dealer
 
 
     /**
-     * Deals cards to Players and continues the round until a Player is eliminated
+     * Handles a round of 21.
+     * Resets Deck, shuffles, deals cards to both players and randomly 
+     * decides who goes first. Gets input for each player, and handles
+     * each action accordingly using the handleAction method. Continues
+     * until both stands, then decides the winner, returning an int based
+     * on who wins the round.
+     * 
+     * @return int signifying result (0 = draw, 1  = p1 wins, 2 = p2 wins)
      */
     public int deal()
     {
@@ -429,12 +448,11 @@ public class Dealer
     /**
      * takes in the parameter of a player and a code (symbolizing action of the
      * player to either hit, stand or play trump) executes result of selecting
-     * the hit, stand or playing a trump card
+     * the hit, stand or playing a trump card, which can increase bet, draw
+     * a certain card, reduce bet, or change the goal
      * 
-     * @param Player
-     *            activePlayer
-     * @param int
-     *            code @
+     * @param activePlayer - Player who's action is being handled
+     * @param code - int symbolizing action which needs to be taken
      */
     public void handleAction(Player activePlayer, int code)
     {
@@ -520,12 +538,12 @@ public class Dealer
 
 
     /**
-     * runs a punishment on given player and the game bet then sets the attribute of the player saying whether or not they are alive following the punishment //
-     * Value of bet determines how many shots player undergoes //
-     * Chance of player dying on each shot is given by 1 / n, where n = bet - shot number + 1
+     * Runs a punishment on given player and the game bet then sets the attribute of the player saying whether
+     * or not they are alive following the punishment. The value of bet determines how many shots player undergoes,
+     * the chance of player dying on each shot is given by 1 / n, where n = bet - shot number + 1
      * 
-     * @param player
-     * @param bet
+     * @param player - Player to be punished
+     * @param bet - int signifying how many times punishment must be executed.
      */
     public void punish(Player player, int bet)
     {
