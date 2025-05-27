@@ -120,6 +120,7 @@ public class GameGUI
         listener = new GameListener();
         loadTiles();
         loadDescriptions();
+
         music[0] = new Sound("/sound/chopinnocturneop9no2.wav");
         music[1] = new Sound("/sound/21hungariandances.wav");
         music[0].loadSound();
