@@ -497,6 +497,13 @@ public class Dealer
             {
                 bet += trump.getValue();
             }
+            else if (trumpType.equals("shield"))
+            {
+                if (bet > 0)
+                {
+                    bet -= trump.getValue();
+                }
+            }
             activePlayer.removeTrumpCard(numTrump);
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
