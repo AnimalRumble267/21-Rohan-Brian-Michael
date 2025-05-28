@@ -249,6 +249,7 @@ public class Dealer
             {
 
                 oneCode = playerOne.getInput();
+                System.out.println(oneCode);
                 if (oneCode / 10 == 3 || oneCode == 0)
                 {
                     while (oneCode / 10 == 3 || oneCode == 0)
@@ -275,6 +276,7 @@ public class Dealer
                 playerTwo.updateHand();
 
                 twoCode = playerTwo.getInput();
+                System.out.println(twoCode);
                 if (twoCode / 10 == 3 || twoCode == 0)
                 {
                     while (twoCode / 10 == 3 || twoCode == 0)
@@ -302,6 +304,7 @@ public class Dealer
             else
             {
                 twoCode = playerTwo.getInput();
+                System.out.println(twoCode);
                 if (twoCode / 10 == 3 || twoCode == 0)
                 {
                     while (twoCode / 10 == 3 || twoCode == 0)
@@ -328,6 +331,7 @@ public class Dealer
                 playerOne.updateHand();
 
                 oneCode = playerOne.getInput();
+                System.out.println(oneCode);
                 if (oneCode / 10 == 3 || oneCode == 0)
                 {
                     while (oneCode / 10 == 3 || oneCode == 0)
