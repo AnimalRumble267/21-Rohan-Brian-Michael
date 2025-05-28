@@ -68,6 +68,11 @@ public class Player
         playerGUI.updateHand();
     }
 
+    public void setAbleToGetClick(boolean status)
+    {
+        playerGUI.setAbleToGetClick(status);
+    }
+
     /**
      * Sets the location of the playerGUI
      * frame using playerGUI.

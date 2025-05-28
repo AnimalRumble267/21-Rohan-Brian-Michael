@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.text.StyledDocument;
 
 import java.util.*;
 
@@ -72,13 +71,13 @@ public class GameGUI
      */
     public static final Tile[] TRUMP_CARD_TILES = new Tile[TRUMP_CARD_FILE_PATHS.length];
     /** The image tile for the nerf gun */
-    public static final Tile NERF_GUN_TILE = new Tile(UNIT_SIZE, UNIT_SIZE);
+    public static final Tile NERF_GUN_TILE = new Tile("/images/nerfgun.png");
     /** 
      * The image tiles for the players. Index 0 is the image tile for a player who has 
      * not been eliminated and Index 1 is the image tile for a player who has been
      * eliminated.
      */
-    public static final Tile[] PLAYER_TILES = new Tile[2];
+    public static final Tile[] PLAYER_TILES = new Tile[3];
 
     private boolean guiStarted = false;
     private JFrame gameWindow;
@@ -180,28 +179,30 @@ public class GameGUI
         // Loading numbercards;
         for (int i = 0; i < NUMBER_CARD_TILES.length - 1; i++)
         {
-            newTile = new Tile(UNIT_SIZE, UNIT_SIZE);
-            newTile.loadImage("/images/numbercards/numbercard" + (i + 1) + ".png");
+            newTile = new Tile("/images/numbercards/numbercard" + (i + 1) + ".png");
+            newTile.loadImage();
             NUMBER_CARD_TILES[i] = newTile;
         }
 
-        NUMBER_CARD_TILES[11] = new Tile(UNIT_SIZE, UNIT_SIZE);
-        NUMBER_CARD_TILES[11].loadImage("/images/numbercards/numbercardhidden.png");
+        NUMBER_CARD_TILES[11] = new Tile("/images/numbercards/numbercardhidden.png");
+        NUMBER_CARD_TILES[11].loadImage();
 
         // Loading trumpcards
         for (int i = 0; i < TRUMP_CARD_FILE_PATHS.length; i++)
         {
-            newTile = new Tile(UNIT_SIZE, UNIT_SIZE);
-            newTile.loadImage(TRUMP_CARD_FILE_PATHS[i]);
+            newTile = new Tile(TRUMP_CARD_FILE_PATHS[i]);
+            newTile.loadImage();
             TRUMP_CARD_TILES[i] = newTile;
         }
 
-        NERF_GUN_TILE.loadImage("/images/nerfgun.png");
+        NERF_GUN_TILE.loadImage();
 
-        PLAYER_TILES[0] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
-        PLAYER_TILES[0].loadImage("/images/player/livingplayer.png");
-        PLAYER_TILES[1] = new Tile(GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE);
-        PLAYER_TILES[1].loadImage("/images/player/notlivingplayer.png");
+        PLAYER_TILES[0] = new Tile("/images/player/livingplayer.png");
+        PLAYER_TILES[0].loadImage();
+        PLAYER_TILES[1] = new Tile("/images/player/notlivingplayer.png");
+        PLAYER_TILES[1].loadImage();
+        PLAYER_TILES[2] = new Tile("/images/player/sampleGIF.gif");
+        PLAYER_TILES[2].loadImage();
     }
 
     private void loadDescriptions()

@@ -117,6 +117,9 @@ public class Game
             {
                 // end whole program to end game
                 gameOver = true;
+                player1.stopGUI();
+                player2.stopGUI();
+                dealer.stopGUI();
             }
         }
     }

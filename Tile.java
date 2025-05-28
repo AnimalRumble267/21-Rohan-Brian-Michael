@@ -1,8 +1,5 @@
 import java.awt.*;
 import javax.swing.*;
-import java.awt.image.*;
-import java.io.IOException;
-import javax.imageio.*;
 
 /**
  * Represents one tile on the screen. Each tile loads and
@@ -14,32 +11,29 @@ import javax.imageio.*;
  */
 public class Tile
 {
-    private BufferedImage image;
-    private boolean imageLoaded = false;
-    private int tileWidth;
-    private int tileHeight;
+    private Image image;
+    private String filePath;
 
-    public Tile(int width, int height)
+    public Tile(String fp)
     {
-        tileWidth = width;
-        tileHeight = height;
+        filePath = fp;
     }
 
-    public void loadImage(String filePath)
+    public void loadImage()
     {
         try
         {
-            image = ImageIO.read(getClass().getResourceAsStream(filePath));
-            imageLoaded = true;
+            image = new ImageIcon(getClass().getResource(filePath)).getImage();;
+            // image = ImageIO.read(getClass().getResourceAsStream(filePath));
         } 
-        catch (IOException e)
+        catch (Exception e)
         {
             e.printStackTrace();
-            System.out.println("ERROR - loadImage(" + filePath + ")");
+            System.out.println("ERROR - loadImage() " + filePath);
         }
     }
 
-    public BufferedImage getImage()
+    public Image getImage()
     {
         return image;
     }

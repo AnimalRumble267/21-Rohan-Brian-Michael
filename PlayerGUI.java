@@ -27,7 +27,6 @@ public class PlayerGUI
     private boolean tilesLoaded;
     private boolean guiStarted;
     private PlayerListener listener;
-    private Sound cardFlipSound;
 
     /**
      * Initializes a <code>PlayerGUI</code> object which uses the information from
@@ -39,7 +38,6 @@ public class PlayerGUI
     {
         player = p;
         playerNumber = pnum;
-        cardFlipSound = new Sound("/sound/cardflip.wav");
     }
 
     /**
@@ -58,8 +56,6 @@ public class PlayerGUI
         dPane = new JTextPane();
         setUpDWindow();
 
-        cardFlipSound.loadSound();
-
         guiStarted = true;
     }
 
@@ -74,18 +70,24 @@ public class PlayerGUI
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
+    public void setAbleToGetClick(boolean status)
+    {
+        frame.setFocusable(status);
+        panel.setFocusable(status);
+    }
+
     private void setUpWindow()
     {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setAlwaysOnTop(true);
         frame.setResizable(false);
         frame.setTitle(player.getName() + "'s Hand");
-        frame.setFocusable(true);
+        frame.setFocusable(false);
         frame.setLocationRelativeTo(null);
         panel.setPreferredSize(new Dimension(PLAYER_WINDOW_WIDTH, PLAYER_WINDOW_HEIGHT));
         frame.setSize(new Dimension(PLAYER_WINDOW_WIDTH, PLAYER_WINDOW_HEIGHT));
         panel.setDoubleBuffered(true);
-        panel.setFocusable(true);
+        panel.setFocusable(false);
         panel.setVisible(false);      // Not visible yet
         frame.add(panel);
         frame.getContentPane().addMouseListener(listener);

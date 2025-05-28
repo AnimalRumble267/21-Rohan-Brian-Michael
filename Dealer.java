@@ -142,12 +142,13 @@ public class Dealer
      */
     public int deal()
     {
-        soundManager.playMusic(bet);
         for (TrumpCard i : cache) {
             if (i.getType().equals("up")) {
                 bet -= i.getValue();
             }
         }
+        soundManager.stopAllMusic();
+        soundManager.playMusic(bet);
         cache.clear();
         players.get(0).resetHand();
         players.get(1).resetHand();
@@ -247,16 +248,18 @@ public class Dealer
         {
             if (playerOne.isTurn())
             {
-
+                playerOne.setAbleToGetClick(true);
                 oneCode = playerOne.getInput();
+                playerOne.setAbleToGetClick(false);
                 System.out.println(oneCode);
                 if (oneCode / 10 == 3 || oneCode == 0)
                 {
                     while (oneCode / 10 == 3 || oneCode == 0)
                     {
                         handleAction(playerOne, oneCode);
+                        playerOne.setAbleToGetClick(true);
                         oneCode = playerOne.getInput();
-                        
+                        playerOne.setAbleToGetClick(false);
                     }
                     handleAction(playerOne, oneCode);
                 }
@@ -275,14 +278,18 @@ public class Dealer
                 playerTwo.setTurn(true);
                 playerTwo.updateHand();
 
+                playerTwo.setAbleToGetClick(true);
                 twoCode = playerTwo.getInput();
+                playerTwo.setAbleToGetClick(false);
                 System.out.println(twoCode);
                 if (twoCode / 10 == 3 || twoCode == 0)
                 {
                     while (twoCode / 10 == 3 || twoCode == 0)
                     {
                         handleAction(playerTwo, twoCode);
+                        playerTwo.setAbleToGetClick(true);
                         twoCode = playerTwo.getInput();
+                        playerTwo.setAbleToGetClick(false);
                         
                     }
                 }
@@ -303,14 +310,18 @@ public class Dealer
             }
             else
             {
+                playerTwo.setAbleToGetClick(true);
                 twoCode = playerTwo.getInput();
+                playerTwo.setAbleToGetClick(false);
                 System.out.println(twoCode);
                 if (twoCode / 10 == 3 || twoCode == 0)
                 {
                     while (twoCode / 10 == 3 || twoCode == 0)
                     {
                         handleAction(playerTwo, twoCode);
+                        playerTwo.setAbleToGetClick(false);
                         twoCode = playerTwo.getInput();
+                        playerTwo.setAbleToGetClick(true);
                         
                     }
                     handleAction(playerTwo, twoCode);
@@ -330,14 +341,18 @@ public class Dealer
                 playerOne.setTurn(true);
                 playerOne.updateHand();
 
+                playerOne.setAbleToGetClick(true);
                 oneCode = playerOne.getInput();
+                playerOne.setAbleToGetClick(false);
                 System.out.println(oneCode);
                 if (oneCode / 10 == 3 || oneCode == 0)
                 {
                     while (oneCode / 10 == 3 || oneCode == 0)
                     {
                         handleAction(playerOne, oneCode);
+                        playerOne.setAbleToGetClick(true);
                         oneCode = playerOne.getInput();
+                        playerOne.setAbleToGetClick(false);
                         
                     }
                     handleAction(playerOne, oneCode);
@@ -512,14 +527,14 @@ public class Dealer
             }
             else if (trumpType.equals("up"))
             {
-                bet += trump.getValue();
-                soundManager.stopAllMusic();
-                soundManager.playMusic(bet - 1);
+                for (int i = 0; i < trump.getValue(); i++)
+                {
+                    incrementBet();
+                }
             }
             else if (trumpType.equals("shield")) {
-                if (bet > 0) bet--;
-                soundManager.stopAllMusic();
-                soundManager.playMusic(bet - 1);
+                if (bet > 0) decrementBet();
+
             }
             activePlayer.removeTrumpCard(numTrump);
             activePlayer.updateHand();
@@ -545,6 +560,15 @@ public class Dealer
     public void incrementBet()
     {
         bet++;
+        soundManager.stopAllMusic();
+        soundManager.playMusic(bet);
+    }
+
+    public void decrementBet()
+    {
+        bet--;
+        soundManager.stopAllMusic();
+        soundManager.playMusic(bet);
     }
 
     public int getGoal()
@@ -561,6 +585,8 @@ public class Dealer
     public void resetBet()
     {
         bet = 1;
+        soundManager.stopAllMusic();
+        soundManager.playMusic(bet);
     }    
 
 
