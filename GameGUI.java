@@ -73,9 +73,9 @@ public class GameGUI
     /** The image tile for the nerf gun */
     public static final Tile NERF_GUN_TILE = new Tile("/images/nerfgun.png");
     /** 
-     * The image tiles for the players. Index 0 is the image tile for a player who has 
-     * not been eliminated and Index 1 is the image tile for a player who has been
-     * eliminated.
+     * The image tiles for the players. Indicies 0, 1, and 2 each represent a different character sprite
+     * which is currently alive. Indicies 3, 4, and 5 each represent the eliminated character sprite images for
+     * indicies 0, 1, and 2 respectively.
      */
     public static final Tile[] PLAYER_TILES = new Tile[6];
 
@@ -87,7 +87,6 @@ public class GameGUI
     private JTextPane turnTextPane;
     private Color darkGreen = new Color(25, 87, 30);
     private Dealer dealer;
-    private GameListener listener;
 
     /**
      * Initializes a <code>GameGUI</code> object which uses the information
@@ -114,7 +113,6 @@ public class GameGUI
         turnTextPane = new JTextPane();
         setUpTurnFrame();
 
-        listener = new GameListener();
         loadTiles();
         loadDescriptions();
         
@@ -143,7 +141,6 @@ public class GameGUI
         gamePanel.setBackground(darkGreen);
         gamePanel.setDoubleBuffered(true);
         gamePanel.setFocusable(false);
-        gamePanel.addMouseListener(listener);
         gamePanel.setVisible(true);
         gameWindow.add(gamePanel);
         gameWindow.pack();

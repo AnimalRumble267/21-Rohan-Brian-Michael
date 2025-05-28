@@ -42,7 +42,7 @@ public class Player
         hasWon = false;
         numberCardHand = new ArrayList<NumberCard>();
         trumpCardHand = new ArrayList<TrumpCard>();
-        playerGUI = new PlayerGUI(this, playerNum);
+        playerGUI = new PlayerGUI(this);
         playerNumber = playerNum;
     }
 
@@ -312,7 +312,6 @@ public class Player
     public int getInput() {
         MouseEvent input = playerGUI.nextMouseClick();
         
-        //System.out.println(input);
         if (input.getButton() == MouseEvent.BUTTON3) {
             Point loc = input.getPoint();
             double locx = loc.getX();
@@ -333,12 +332,9 @@ public class Player
         else { 
             Point loc = input.getPoint();
             double locx = loc.getX();
-            System.out.println(locx);
             double trumpThreshold =  (GameGUI.UNIT_SIZE) * numberCardHand.size();
-            //System.out.println(trumpThreshold);
             if (locx > trumpThreshold) {
                 int numTrump = (int)((locx - trumpThreshold) / (GameGUI.UNIT_SIZE));
-                //System.out.println(numTrump);
                 
                 return 30 + numTrump; // TRUMP
             }

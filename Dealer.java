@@ -251,7 +251,6 @@ public class Dealer
                 playerOne.setAbleToGetClick(true);
                 oneCode = playerOne.getInput();
                 playerOne.setAbleToGetClick(false);
-                System.out.println(oneCode);
                 if (oneCode / 10 == 3 || oneCode == 0)
                 {
                     while (oneCode / 10 == 3 || oneCode == 0)
@@ -281,7 +280,6 @@ public class Dealer
                 playerTwo.setAbleToGetClick(true);
                 twoCode = playerTwo.getInput();
                 playerTwo.setAbleToGetClick(false);
-                System.out.println(twoCode);
                 if (twoCode / 10 == 3 || twoCode == 0)
                 {
                     while (twoCode / 10 == 3 || twoCode == 0)
@@ -313,7 +311,6 @@ public class Dealer
                 playerTwo.setAbleToGetClick(true);
                 twoCode = playerTwo.getInput();
                 playerTwo.setAbleToGetClick(false);
-                System.out.println(twoCode);
                 if (twoCode / 10 == 3 || twoCode == 0)
                 {
                     while (twoCode / 10 == 3 || twoCode == 0)
@@ -344,7 +341,6 @@ public class Dealer
                 playerOne.setAbleToGetClick(true);
                 oneCode = playerOne.getInput();
                 playerOne.setAbleToGetClick(false);
-                System.out.println(oneCode);
                 if (oneCode / 10 == 3 || oneCode == 0)
                 {
                     while (oneCode / 10 == 3 || oneCode == 0)
@@ -491,8 +487,6 @@ public class Dealer
     public void handleAction(Player activePlayer, int code)
     {
 
-        System.out.println(code);
-
         if (code == 1)
         {
             NumberCard newNumberCard = (NumberCard)numberCardDeck.draw();
@@ -511,7 +505,6 @@ public class Dealer
             TrumpCard trump = activePlayer.getTrumpCardHand().get(numTrump);
             cache.add(trump);
             String trumpType = trump.getType();
-            System.out.println(trumpType);
             if (trumpType.equals("gofor"))
             {
                 goal = trump.getValue();

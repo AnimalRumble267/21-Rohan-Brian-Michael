@@ -18,13 +18,11 @@ public class PlayerGUI
     public static final int PLAYER_WINDOW_HEIGHT = (int)(GameGUI.UNIT_SIZE * 1.5);
 
     private Player player;
-    private int playerNumber;
     private JFrame frame;
     private PlayerPanel panel;
     private JFrame dFrame;
     private JPanel dPanel;
     private JTextPane dPane;
-    private boolean tilesLoaded;
     private boolean guiStarted;
     private PlayerListener listener;
 
@@ -34,10 +32,9 @@ public class PlayerGUI
      * @param p the player
      * @param pnum the player's number
      */
-    public PlayerGUI(Player p, int pnum)
+    public PlayerGUI(Player p)
     {
         player = p;
-        playerNumber = pnum;
     }
 
     /**
@@ -70,6 +67,9 @@ public class PlayerGUI
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
     }
 
+    /**
+     * Sets if the window is able to get mouse input.
+     */
     public void setAbleToGetClick(boolean status)
     {
         frame.setFocusable(status);

@@ -2,11 +2,10 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- * Represents one tile on the screen. Each tile loads and
- * stores an image.
+ * Represents one tile on the screen. Each tile stores an image.
  * 
  * @author Michael Lee
- * @version
+ * @version  5/28/2025
  * 
  */
 public class Tile
@@ -14,11 +13,18 @@ public class Tile
     private Image image;
     private String filePath;
 
+    /**
+     * Initializes a <code>Tile</code> with the file path. Does not load the image yet.
+     * @param fp the file path
+     */
     public Tile(String fp)
     {
         filePath = fp;
     }
 
+    /**
+     * Loads the image.
+     */
     public void loadImage()
     {
         try
@@ -33,6 +39,10 @@ public class Tile
         }
     }
 
+    /**
+     * Returns the image
+     * @return the image
+     */
     public Image getImage()
     {
         return image;
