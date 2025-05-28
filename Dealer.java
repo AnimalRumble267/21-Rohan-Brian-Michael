@@ -164,6 +164,7 @@ public class Dealer
         muteCardOne.setIsHidden(true);
         players.get(0).giveNumberCard(muteCardOne);
         soundManager.playSoundEffect(2);
+        soundManager.stopSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -171,8 +172,8 @@ public class Dealer
         NumberCard muteCardTwo = (NumberCard)numberCardDeck.draw();
         muteCardTwo.setIsHidden(true);
         players.get(1).giveNumberCard(muteCardTwo);
-        soundManager.stopSoundEffect(2);
         soundManager.playSoundEffect(2);
+        soundManager.stopSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -180,8 +181,8 @@ public class Dealer
         NumberCard cardOne = (NumberCard)numberCardDeck.draw();
         cardOne.setIsHidden(false);
         players.get(0).giveNumberCard(cardOne);
-        soundManager.stopSoundEffect(2);
         soundManager.playSoundEffect(2);
+        soundManager.stopSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -189,8 +190,8 @@ public class Dealer
         NumberCard cardTwo = (NumberCard)numberCardDeck.draw();
         cardTwo.setIsHidden(false);
         players.get(1).giveNumberCard(cardTwo);
-        soundManager.stopSoundEffect(2);
         soundManager.playSoundEffect(2);
+        soundManager.stopSoundEffect(2);
 
         gameGUI.updateGameWindow();
         GameGUI.wait(0.5);
@@ -520,6 +521,7 @@ public class Dealer
             activePlayer.updateHand();
             gameGUI.updateGameWindow();
             soundManager.playSoundEffect(2);
+            soundManager.stopSoundEffect(2);
         }
     }
 
@@ -568,7 +570,7 @@ public class Dealer
      */
     public void punish(Player player, int bet)
     {
-        soundManager.stopAllMusic();;
+        soundManager.stopAllMusic();
         status = 2;
         punishStatus = 0;
         playerWillBeEliminated = false;

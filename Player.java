@@ -306,15 +306,4 @@ public class Player
         }
         
     }
-<<<<<<< HEAD
-=======
-
-    /**
-     * Plays card flip sound
-     */
-    public void playCardFlipSound() {
-        Sound flipSound = new Sound("/sound/cardflip.wav");
-        flipSound.loadSound();
-    }
->>>>>>> 1f70bc8dfbc09d508b25e05350604c98922fa3ce
 }

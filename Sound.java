@@ -15,6 +15,7 @@ public class Sound
     private Clip clip;
     private AudioInputStream audio;
     private URL url;
+    private double duration;
 
     public Sound(String fp)
     {
@@ -29,10 +30,15 @@ public class Sound
             audio = AudioSystem.getAudioInputStream(url);
             clip = AudioSystem.getClip();
             clip.open(audio);
+            
+            AudioFormat format = audio.getFormat();
+            long frames = audio.getFrameLength();
+            duration = (double)frames / format.getFrameRate();
         }
         catch (Exception e)
         {
             e.printStackTrace();
+            System.out.println("\n" + filePath + "\n");
         }
     }
 
@@ -54,5 +60,10 @@ public class Sound
     public void setFramePosition(int framePosition)
     {
         clip.setFramePosition(framePosition);
+    }
+
+    public double getDuration()
+    {
+        return duration;
     }
 }
