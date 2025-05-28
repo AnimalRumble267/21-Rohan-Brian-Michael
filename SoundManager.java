@@ -1,7 +1,7 @@
 
 /**
- * Represents the manager for all sounds of the game. Plays and stops
- * music and sound effects.
+ * Represents the manager for all <code>Sound</code>s of the game. Can play and stop
+ * individual <code>Sound</code>s.
  * 
  * @author Michael Lee
  * @version 5/28/2025
@@ -16,6 +16,10 @@ public class SoundManager
 
     private boolean soundStarted = false;
 
+    /**
+     * Initializes a <code>SoundManager</code> object which only holds null references.
+     * Does not load the <code>Sound</code>s yet.
+     */
     public SoundManager()
     {
         music = new Sound[7];
@@ -24,6 +28,9 @@ public class SoundManager
         soundEffectsStatus = new boolean[3];
     }
 
+    /**
+     * Loads all of the <code>Sound</code>s.
+     */
     public void start()
     {
         music[0] = new Sound("/sound/1clairdelune.wav");
@@ -51,6 +58,10 @@ public class SoundManager
         soundStarted = true;
     }
 
+    /**
+     * Plays the <code>Sound</code> at the specified index within the music library.
+     * @param index the specified index
+     */
     public void playMusic(int index)
     {
         if (!soundStarted)
@@ -65,6 +76,10 @@ public class SoundManager
         }
     }
 
+    /**
+     * Stops and restarts the <code>Sound</code> at the specified index within the music library.
+     * @param index the specified index
+     */
     public void stopMusic(int index)
     {
         if (!soundStarted)
@@ -81,6 +96,11 @@ public class SoundManager
         
     }
 
+    /**
+     * Plays the <code>Sound</code> at the specified index within the sound effects library.
+     * Ensures that the entire <code>Sound</code> clip is played for its entire duration.
+     * @param index the specified index
+     */
     public void playSoundEffect(int index)
     {
         if (!soundStarted)
@@ -93,6 +113,10 @@ public class SoundManager
         GameGUI.wait(soundEffects[index].getDuration());
     }
 
+    /**
+     * Stops and restarts the <code>Sound</code> at the specified index within the sound effects library.
+     * @param index the specified index
+     */
     public void stopSoundEffect(int index)
     {
         if (!soundStarted)
@@ -108,6 +132,9 @@ public class SoundManager
         }
     }
 
+    /**
+     * Stops and restarts all <code>Sound</code>s in the music library which are currently playing.
+     */
     public void stopAllMusic()
     {
         if (!soundStarted)
@@ -121,6 +148,9 @@ public class SoundManager
         }
     }
 
+    /**
+     * Stops and restarts all <code>Sound</code>s in the sound effects library which are currently playing.
+     */
     public void stopAllSoundEffects()
     {
         if (!soundStarted)
