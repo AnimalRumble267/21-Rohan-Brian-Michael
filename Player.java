@@ -23,6 +23,8 @@ public class Player
     private int playerNumber;
 
     private boolean hasWon;
+    private int icon;
+    private boolean isBeingPunished = false;
 
     /**
      * Player onstructor that takes in name and player #, 
@@ -103,6 +105,42 @@ public class Player
     public void clearTrumpCardDescription()
     {
         playerGUI.clearTrumpCardDescription();
+    }
+
+    /** 
+     * Sets this player's icon to the icon number
+     * @param iconNum the icon number
+     */
+    public void setPlayerIcon(int iconNum)
+    {
+        icon = iconNum;
+    }
+
+    /**
+     * Returns this player's icon
+     * @return this player's icon
+     */
+    public int getPlayerIcon()
+    {
+        return icon;
+    }
+
+    /**
+     * Sets if this player is being punished currently
+     * @param status if this player is being punished currently
+     */
+    public void setBeingPunished(boolean status)
+    {
+        isBeingPunished = status;
+    }
+
+    /**
+     * Returns if this player is being punished currently
+     * @return if this player is being punished currently
+     */
+    public boolean isBeingPunished()
+    {
+        return isBeingPunished;
     }
 
     /**

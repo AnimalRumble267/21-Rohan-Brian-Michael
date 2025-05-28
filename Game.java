@@ -39,9 +39,11 @@ public class Game
         System.out.println("Player 1, enter your name: ");
         player1name = scanner.nextLine();
         player1 = new Player(player1name, 1);
+        player1.setPlayerIcon((int)(Math.random() * 3));
         System.out.println("Player 2, enter your name: ");
         player2name = scanner.nextLine();
         player2 = new Player(player2name, 2);
+        player2.setPlayerIcon((int)(Math.random() * 3));
 
         dealer = new Dealer(player1, player2, 1);
 

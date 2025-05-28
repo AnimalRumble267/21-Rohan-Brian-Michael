@@ -600,6 +600,7 @@ public class Dealer
      */
     public void punish(Player player, int bet)
     {
+        player.setBeingPunished(true);
         soundManager.stopAllMusic();
         status = 2;
         punishStatus = 0;
@@ -661,6 +662,7 @@ public class Dealer
             status = 3;
             player.setAlive(false);
         }
+        player.setBeingPunished(false);
     }
 
 

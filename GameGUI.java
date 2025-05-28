@@ -77,7 +77,7 @@ public class GameGUI
      * not been eliminated and Index 1 is the image tile for a player who has been
      * eliminated.
      */
-    public static final Tile[] PLAYER_TILES = new Tile[3];
+    public static final Tile[] PLAYER_TILES = new Tile[6];
 
     private boolean guiStarted = false;
     private JFrame gameWindow;
@@ -197,12 +197,18 @@ public class GameGUI
 
         NERF_GUN_TILE.loadImage();
 
-        PLAYER_TILES[0] = new Tile("/images/player/livingplayer.png");
+        PLAYER_TILES[0] = new Tile("/images/player/1st character idle.gif");
         PLAYER_TILES[0].loadImage();
-        PLAYER_TILES[1] = new Tile("/images/player/notlivingplayer.png");
+        PLAYER_TILES[1] = new Tile("/images/player/2nd character idle.gif");
         PLAYER_TILES[1].loadImage();
-        PLAYER_TILES[2] = new Tile("/images/player/sampleGIF.gif");
+        PLAYER_TILES[2] = new Tile("/images/player/3rd character idle.gif");
         PLAYER_TILES[2].loadImage();
+        PLAYER_TILES[3] = new Tile("/images/player/1st character dead.png");
+        PLAYER_TILES[3].loadImage();
+        PLAYER_TILES[4] = new Tile("/images/player/2nd character dead.png");
+        PLAYER_TILES[4].loadImage();
+        PLAYER_TILES[5] = new Tile("/images/player/3rd character dead.png");
+        PLAYER_TILES[5].loadImage();
     }
 
     private void loadDescriptions()

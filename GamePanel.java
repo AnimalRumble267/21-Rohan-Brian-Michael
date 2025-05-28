@@ -93,7 +93,7 @@ public class GamePanel extends JPanel
                                    (int)(GameGUI.UNIT_SIZE * 1.25), (int)(GameGUI.UNIT_SIZE * 1.25), 
                                    Color.DARK_GRAY, Color.YELLOW);
                 }
-                g2.drawImage(GameGUI.PLAYER_TILES[0].getImage(), playerCardX, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
+                g2.drawImage(GameGUI.PLAYER_TILES[players[i].getPlayerIcon()].getImage(), playerCardX, playerCardY - (int)(GameGUI.UNIT_SIZE * 1.7),
                              GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE, null);
             }
 
@@ -184,13 +184,29 @@ public class GamePanel extends JPanel
                 g2.drawRect(0, 0, this.getWidth(), this.getHeight());
                 if (dealer.playerWillBeEliminated())
                 {
-                    g2.drawImage(GameGUI.PLAYER_TILES[1].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
+                    if (players[0].isBeingPunished())
+                    {
+                        g2.drawImage(GameGUI.PLAYER_TILES[players[0].getPlayerIcon() + 3].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
                                  this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
+                    }
+                    else
+                    {
+                        g2.drawImage(GameGUI.PLAYER_TILES[players[1].getPlayerIcon() + 3].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
+                                 this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
+                    }
                 }
                 else
                 {
-                    g2.drawImage(GameGUI.PLAYER_TILES[0].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
+                    if (players[0].isBeingPunished())
+                    {
+                        g2.drawImage(GameGUI.PLAYER_TILES[players[0].getPlayerIcon()].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
                                  this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
+                    }
+                    else
+                    {
+                        g2.drawImage(GameGUI.PLAYER_TILES[players[1].getPlayerIcon()].getImage(), this.getWidth() / 2 - GameGUI.UNIT_SIZE,
+                                 this.getHeight() / 2 - GameGUI.UNIT_SIZE, GameGUI.UNIT_SIZE * 2, GameGUI.UNIT_SIZE * 2, null);
+                    }
                 }
             }
         }
