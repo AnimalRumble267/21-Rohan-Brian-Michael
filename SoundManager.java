@@ -41,8 +41,8 @@ public class SoundManager
         music[5].loadSound();
         music[6].loadSound();
 
-        soundEffects[0] = new Sound("/sound/trigger.wav");
-        soundEffects[1] = new Sound("/sound/blast.wav");
+        soundEffects[0] = new Sound("/sound/blast.wav");
+        soundEffects[1] = new Sound("/sound/trigger.wav");
         soundEffects[2] = new Sound("/sound/cardflip.wav");
         soundEffects[0].loadSound();
         soundEffects[1].loadSound();
