@@ -30,7 +30,6 @@ public class PlayerGUI
      * Initializes a <code>PlayerGUI</code> object which uses the information from
      * the given player. Stores the player's number only for window formatting.
      * @param p the player
-     * @param pnum the player's number
      */
     public PlayerGUI(Player p)
     {
@@ -69,6 +68,8 @@ public class PlayerGUI
 
     /**
      * Sets if the window is able to get mouse input.
+     * 
+     * @param status boolean if window is able to get mouse input
      */
     public void setAbleToGetClick(boolean status)
     {

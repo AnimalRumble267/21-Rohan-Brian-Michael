@@ -70,6 +70,10 @@ public class Player
         playerGUI.updateHand();
     }
 
+    /**
+     * Calls the playerGUI setAbleToGetClick true or false
+     * @param status boolean setAbleToGetClick
+     */
     public void setAbleToGetClick(boolean status)
     {
         playerGUI.setAbleToGetClick(status);
@@ -247,7 +251,7 @@ public class Player
     /** 
      * Calculates total value of numberCardHand
      * 
-     * @returns int value of the numberCardHand
+     * @return int value of the numberCardHand
      */
     public int calculate() {
         int temp = 0;
