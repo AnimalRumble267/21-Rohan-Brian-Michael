@@ -6,7 +6,7 @@ import java.awt.event.*;
  * and represents the status of the player, including their name, status,
  * and card hand. 
  * 
- * @author - Brian & Rohan
+ * @author - Brian, Rohan
  * @version - 5/27/2025
  * 
  */
