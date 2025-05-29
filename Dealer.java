@@ -123,7 +123,10 @@ public class Dealer
         return gameGUI.getGameWindowX();
     }
 
-
+    /**
+     * gets the Y coord of the GUI's gameWindow
+     * @return - int y coordinate
+     */
     public int getGameWindowY()
     {
         return gameGUI.getGameWindowY();
@@ -538,18 +541,27 @@ public class Dealer
     }
 
 
+    /**
+     * Returns an arraylist of player
+     * @return ArrayList<Player> of concurrent players
+     */
     public ArrayList<Player> getPlayers()
     {
         return players;
     }
 
-
+    /**
+     * Returns an arraylist of played trumpcards
+     * @return ArrayList<TrumpCard> of played TrumpCards
+     */
     public ArrayList<TrumpCard> getTrumpCards()
     {
         return cache;
     }
 
-
+    /**
+     * Increments bet, changes music
+     */
     public void incrementBet()
     {
         bet++;
@@ -557,6 +569,9 @@ public class Dealer
         soundManager.playMusic(bet);
     }
 
+    /**
+     * Decrements bet, changes music
+     */
     public void decrementBet()
     {
         bet--;
@@ -564,17 +579,28 @@ public class Dealer
         soundManager.playMusic(bet);
     }
 
+    /**
+     * Returns current goal
+     * @return int goal
+     */
     public int getGoal()
     {
         return goal;
     }
 
 
+    /**
+     * Returns current bet
+     * @return int bet
+     */
     public int getBet()
     {
         return bet;
     }
 
+    /**
+     * Sets bet to one, resets music
+     */
     public void resetBet()
     {
         bet = 1;
