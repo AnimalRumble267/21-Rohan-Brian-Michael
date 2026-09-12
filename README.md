@@ -1,4 +1,3 @@
-<img width="825" height="621" alt="Screenshot 2026-09-11 at 9 14 50 PM" src="https://github.com/user-attachments/assets/eb098950-6b19-4a7e-a21d-8f1b109bb0a8" />
 # Twenty One
 
 Twenty One is a two-player, blackjack-inspired Java game. Players draw numbered cards and try to finish as close as possible to a target score without exceeding it. Trump cards can change the target, draw a specific card, or modify the round's bet. A foam-dart blaster provides a school-safe elimination mechanic after each round.
@@ -99,3 +98,6 @@ The application entry point is `Game.main(String[] args)`. Open the Java project
 - Rohan Chaudhary
 - Brian Lee
 - Michael Lee
+
+<img width="825" height="621" alt="Screenshot 2026-09-11 at 9 14 50 PM" src="https://github.com/user-attachments/assets/eb098950-6b19-4a7e-a21d-8f1b109bb0a8" />
+
